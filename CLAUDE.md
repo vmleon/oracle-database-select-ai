@@ -50,4 +50,4 @@ python manage.py clean     # print destroy commands
 - Oracle Autonomous Database Shared (26ai)
 - Package: dev.victormartin.selectai.demo
 - OCI resource prefix: selectai
-- Dataset: SH sample schema
+- Dataset: HR sample schema

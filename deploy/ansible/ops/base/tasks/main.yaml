@@ -114,6 +114,26 @@
   ansible.builtin.debug:
     msg: "{{ resource_principal_result.stdout_lines }}"
 
+- name: Unlock HR schema
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/unlock_hr.sql"
+  become_user: opc
+  register: unlock_hr_result
+  failed_when: "'ORA-' in unlock_hr_result.stdout or unlock_hr_result.rc != 0"
+
+- name: Show Unlock HR output
+  ansible.builtin.debug:
+    msg: "{{ unlock_hr_result.stdout_lines }}"
+
+- name: Add HR table comments
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/add_comments.sql"
+  become_user: opc
+  register: add_comments_result
+  failed_when: "'ORA-' in add_comments_result.stdout or add_comments_result.rc != 0"
+
+- name: Show Add Comments output
+  ansible.builtin.debug:
+    msg: "{{ add_comments_result.stdout_lines }}"
+
 - name: Create Select AI profiles
   ansible.builtin.command: "sql -name admin -s @/home/opc/init/create_profile_{{ item }}.sql"
   become_user: opc

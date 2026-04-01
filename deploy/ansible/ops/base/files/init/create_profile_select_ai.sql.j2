@@ -16,12 +16,13 @@ BEGIN
             "provider": "oci",
             "credential_name": "OCI$RESOURCE_PRINCIPAL",
             "object_list": [
-                {"owner": "SH", "name": "customers"},
-                {"owner": "SH", "name": "countries"},
-                {"owner": "SH", "name": "supplementary_demographics"},
-                {"owner": "SH", "name": "profits"},
-                {"owner": "SH", "name": "promotions"},
-                {"owner": "SH", "name": "products"}
+                {"owner": "HR", "name": "EMPLOYEES"},
+                {"owner": "HR", "name": "DEPARTMENTS"},
+                {"owner": "HR", "name": "JOBS"},
+                {"owner": "HR", "name": "JOB_HISTORY"},
+                {"owner": "HR", "name": "LOCATIONS"},
+                {"owner": "HR", "name": "COUNTRIES"},
+                {"owner": "HR", "name": "REGIONS"}
             ],
             "region": "{{ region_name }}",
             "oci_compartment_id": "{{ oci_genai_compartment_id }}",

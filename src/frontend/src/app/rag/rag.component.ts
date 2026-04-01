@@ -20,6 +20,13 @@ import { SelectAiService, RagResponse } from '../select-ai.service';
       </button>
     </div>
 
+    <div class="examples">
+      <span>Try: </span>
+      @for (ex of examples; track ex) {
+        <button class="example-btn" (click)="prompt = ex">{{ ex }}</button>
+      }
+    </div>
+
     @if (response()) {
       <section>
         <h3>Answer</h3>
@@ -38,6 +45,12 @@ export class RagComponent {
   loading = signal(false);
   response = signal<RagResponse | null>(null);
   error = signal('');
+
+  examples = [
+    'What is the company policy on remote work?',
+    'How do I submit a travel expense report?',
+    'What health insurance plans are available?',
+  ];
 
   constructor(private selectAi: SelectAiService) {}
 

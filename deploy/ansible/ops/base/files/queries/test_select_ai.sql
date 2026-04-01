@@ -1,6 +1,6 @@
 -- Test Select AI query
-SELECT AI showsql what is the total number of customers;
+SELECT AI showsql What is the total number of employees;
 
-SELECT AI narrate what is the total number of customers;
+SELECT AI narrate What is the total number of employees;
 
 EXIT;

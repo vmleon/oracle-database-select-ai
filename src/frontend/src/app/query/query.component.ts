@@ -7,13 +7,13 @@ import { SelectAiService, QueryResponse } from '../select-ai.service';
   imports: [FormsModule],
   template: `
     <h2 class="page-title">Select AI — Natural Language to SQL</h2>
-    <p class="subtitle">Ask questions about customers, products, promotions, and sales data.</p>
+    <p class="subtitle">Ask questions about employees, departments, salaries, and job history.</p>
 
     <div class="input-row">
       <textarea
         [(ngModel)]="prompt"
         rows="3"
-        placeholder="e.g. What are the top 10 customers by total amount sold?"
+        placeholder="e.g. Who are the highest paid employees in the IT department?"
       ></textarea>
       <button (click)="submit()" [disabled]="!prompt.trim() || loading()">
         {{ loading() ? 'Asking...' : 'Ask' }}
@@ -95,9 +95,9 @@ export class QueryComponent {
   });
 
   examples = [
-    'What are the top 10 customers by total amount sold?',
-    'How many customers are in each country?',
-    'Which products have the highest profit margin?',
+    'Who are the top 5 highest paid employees?',
+    'How many employees are in each department?',
+    'Show me all employees hired in the last 3 years',
   ];
 
   constructor(private selectAi: SelectAiService) {}
