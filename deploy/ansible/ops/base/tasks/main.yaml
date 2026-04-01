@@ -94,10 +94,6 @@
   ansible.builtin.command: "sql /nolog @/home/opc/conn/admin.sql"
   become_user: opc
 
-- name: Grant Permissions
-  ansible.builtin.command: "sql -name admin -s @/home/opc/init/grant_permissions.sql"
-  become_user: opc
-
 - name: Add Network ACL
   ansible.builtin.command: "sql -name admin -s @/home/opc/init/network_acl.sql"
   become_user: opc
