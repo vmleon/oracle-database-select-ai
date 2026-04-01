@@ -1,71 +1,225 @@
 EMPLOYEE BENEFITS GUIDE
 Acme Corporation
+Effective Date: January 1, 2025
+
+OVERVIEW
+
+Acme Corporation offers a comprehensive benefits package to support the health, financial security, and well-being of our employees and their families. This guide covers all available benefits. For questions, contact the Benefits team at benefits@acmecorp.com or visit the HR portal.
+
+ELIGIBILITY
+
+Full-time employees (working 30+ hours per week) are eligible for all benefits. Part-time employees working 20-29 hours per week are eligible for the 401(k) plan, Employee Assistance Program, and prorated wellness reimbursement. Benefits coverage begins on the first day of the month following your start date. For example, an employee starting on March 15 becomes eligible for benefits on April 1.
 
 HEALTH INSURANCE
 
-Acme Corporation offers three health insurance plans through BlueCross BlueShield:
+Acme Corporation offers two health insurance plan types through BlueCross BlueShield: a PPO (Preferred Provider Organization) and an HMO (Health Maintenance Organization).
 
-1. Basic Plan: $75/month employee-only, $200/month family
-   - $1,500 individual deductible, $3,000 family deductible
-   - 80/20 coinsurance after deductible
-   - $5,000 out-of-pocket maximum
+PPO Plans — provide flexibility to see any doctor or specialist without a referral, both in-network and out-of-network (with higher out-of-network costs):
 
-2. Standard Plan: $150/month employee-only, $400/month family
-   - $750 individual deductible, $1,500 family deductible
-   - 90/10 coinsurance after deductible
-   - $3,000 out-of-pocket maximum
+Standard PPO: $150/month employee-only, $400/month family
+- $750 individual deductible, $1,500 family deductible
+- In-network: 90/10 coinsurance after deductible
+- Out-of-network: 60/40 coinsurance after a separate $1,500 deductible
+- $3,000 individual out-of-pocket maximum (in-network)
+- Prescription drugs: $10 generic, $30 preferred brand, $50 non-preferred brand
 
-3. Premium Plan: $250/month employee-only, $600/month family
-   - $250 individual deductible, $500 family deductible
-   - 100% covered after deductible
-   - $1,000 out-of-pocket maximum
+Premium PPO: $250/month employee-only, $600/month family
+- $250 individual deductible, $500 family deductible
+- In-network: 100% covered after deductible
+- Out-of-network: 70/30 coinsurance after a separate $1,000 deductible
+- $1,000 individual out-of-pocket maximum (in-network)
+- Prescription drugs: $5 generic, $20 preferred brand, $40 non-preferred brand
 
-All plans include preventive care at no cost, prescription drug coverage, and mental health services. Acme Corporation covers 70% of premium costs for all plans.
+HMO Plan — lower premiums and no deductible, but requires choosing a primary care physician (PCP) and getting referrals for specialists. All care must be in-network except for emergencies:
+
+Basic HMO: $75/month employee-only, $200/month family
+- No deductible
+- $20 copay for primary care visits
+- $40 copay for specialist visits (referral from PCP required)
+- $150 copay for emergency room visits (waived if admitted)
+- $5,000 individual out-of-pocket maximum
+- Prescription drugs: $10 generic, $35 preferred brand, $60 non-preferred brand
+
+All plans include:
+- Preventive care at no cost (annual physicals, immunizations, screenings)
+- Mental health and behavioral health services (parity with medical coverage)
+- Telehealth visits through Teladoc at $0 copay
+- Maternity coverage including prenatal visits, delivery, and postnatal care
+- Pediatric care including dental and vision for dependents under 19
+
+Acme Corporation covers 70% of premium costs for all plans. The employee portion is deducted pre-tax from each paycheck (24 pay periods per year).
+
+HEALTH SAVINGS ACCOUNT (HSA)
+
+Employees enrolled in the Standard PPO plan (the only HSA-eligible plan) may open a Health Savings Account:
+- Employee contribution limit: $4,150/year for individual coverage, $8,300/year for family coverage (2025 IRS limits)
+- Acme Corporation contributes $750/year for individual coverage or $1,500/year for family coverage
+- Contributions are pre-tax, growth is tax-free, and withdrawals for qualified medical expenses are tax-free
+- Funds roll over year to year with no expiration
+- HSA funds can be invested once the account balance exceeds $1,000
+- HSA debit card provided for direct payment of medical expenses
+
+Note: The Basic HMO and Premium PPO plans are not HSA-eligible because they do not qualify as high-deductible health plans (HDHPs). Employees in those plans may use a Flexible Spending Account (FSA) instead.
+
+FLEXIBLE SPENDING ACCOUNT (FSA)
+
+Employees not enrolled in an HSA-eligible plan may elect a Healthcare FSA:
+- Maximum contribution: $3,200/year (2025 IRS limit)
+- Funds are pre-tax and available for qualified medical expenses
+- Grace period: expenses incurred through March 15 of the following year can be reimbursed from the prior year's FSA
+- Unlike the HSA, unused FSA funds beyond $640 are forfeited (use-it-or-lose-it rule with $640 carryover)
+
+A Dependent Care FSA is available to all employees regardless of health plan:
+- Maximum contribution: $5,000/year per household
+- Covers daycare, preschool, summer camps, and elder care expenses
 
 DENTAL INSURANCE
 
-Dental coverage is provided through Delta Dental at $25/month for individual coverage and $65/month for family coverage. Coverage includes two preventive cleanings per year at no cost, basic procedures at 80% coverage, and major procedures at 50% coverage. Annual maximum benefit is $2,000 per person.
+Dental coverage is provided through Delta Dental:
+- Individual: $25/month; Family: $65/month
+- Preventive care (cleanings, exams, X-rays): 100% covered, two visits per year
+- Basic procedures (fillings, extractions, root canals): 80% covered after $50 deductible
+- Major procedures (crowns, bridges, dentures): 50% covered after $50 deductible
+- Orthodontia (adults and children): 50% covered, lifetime maximum of $2,000 per person
+- Annual maximum benefit: $2,000 per person (excluding orthodontia)
+- Waiting period: none for preventive and basic; 12-month waiting period for major procedures for new enrollees
 
 VISION INSURANCE
 
-Vision coverage is provided through VSP at $10/month for individual and $25/month for family. Benefits include an annual eye exam with a $10 copay, $150 allowance for frames every 24 months, and contact lens coverage up to $130 per year.
-
-401(K) RETIREMENT PLAN
-
-Acme Corporation offers a 401(k) retirement plan through Fidelity Investments. Key features:
-- Employee contributions up to IRS annual limits
-- Company match: 100% of the first 4% of salary contributed, plus 50% of the next 2%
-- Maximum employer match: 5% of salary
-- Immediate vesting on employee contributions
-- Employer match vests over 3 years: 33% after year 1, 66% after year 2, 100% after year 3
-- Both traditional (pre-tax) and Roth (post-tax) options available
+Vision coverage is provided through VSP:
+- Individual: $10/month; Family: $25/month
+- Annual eye exam: $10 copay
+- Frames: $200 allowance every 24 months
+- Contact lenses: up to $150 per year (in lieu of frames allowance for that cycle)
+- Lens enhancements (anti-reflective, progressive, transitions): 20% discount
+- Laser vision correction (LASIK/PRK): 15% discount at VSP-participating providers
 
 LIFE INSURANCE
 
-Acme Corporation provides basic life insurance at 2x annual salary at no cost to the employee, up to a maximum of $500,000. Supplemental life insurance is available for purchase at group rates up to 5x salary.
+Basic life insurance: provided at no cost
+- Coverage: 2x annual base salary, up to a maximum of $500,000
+- Includes Accidental Death and Dismemberment (AD&D) coverage at the same level
+
+Supplemental life insurance: voluntary, employee-paid at group rates
+- Available in increments of $10,000 up to 5x annual salary or $1,000,000, whichever is less
+- Guaranteed issue up to $300,000 if elected within 30 days of hire (no medical exam required)
+- Coverage above $300,000 or elected after the initial enrollment period requires Evidence of Insurability (medical questionnaire)
+- Spousal coverage: up to $100,000; Child coverage: $10,000 per child
 
 DISABILITY INSURANCE
 
-Short-term disability: 60% of base salary for up to 26 weeks, with a 7-day waiting period. Provided at no cost.
-Long-term disability: 60% of base salary after 26 weeks of disability, continuing until age 65. Employee cost is $15/month.
+Short-Term Disability (STD):
+- Provided at no cost to the employee
+- Benefit: 60% of base salary for up to 26 weeks
+- Waiting period: 7 calendar days from date of disability
+- Covers illness, injury, surgery recovery, and pregnancy-related disability
+
+Long-Term Disability (LTD):
+- Employee cost: $15/month
+- Benefit: 60% of base salary after 26 weeks of disability, continuing until age 65 or recovery
+- Maximum monthly benefit: $10,000
+- Includes a rehabilitation and return-to-work program
+
+If you are absent for 5 or more consecutive sick days, contact HR to determine whether your situation qualifies for STD. See the PTO Policy for sick leave details.
+
+401(K) RETIREMENT PLAN
+
+Acme Corporation offers a 401(k) retirement plan through Fidelity Investments:
+
+Employee Contributions:
+- Contribute from 1% to 75% of eligible compensation, up to IRS annual limits ($23,500 for 2025; $31,000 for employees age 50+)
+- Both Traditional (pre-tax) and Roth (post-tax) options are available
+- Contribution changes can be made at any time through the Fidelity portal
+
+Employer Match:
+- Acme matches 100% of the first 4% of salary you contribute
+- Plus 50% of the next 2% of salary you contribute
+- Maximum employer match: 5% of salary
+- Example: An employee earning $100,000 who contributes 6% ($6,000) receives a $5,000 match ($4,000 + $1,000)
+
+Vesting Schedule for Employer Match:
+- Employee contributions: always 100% vested
+- Employer match: 33% after 1 year, 66% after 2 years, 100% after 3 years
+- Years of service are calculated from your most recent hire date
+
+Investment Options:
+- Target-date funds (default option based on expected retirement year)
+- Index funds covering domestic and international equities, bonds, and real estate
+- Company stock fund (limited to 10% of total 401(k) balance)
+- Self-directed brokerage option for experienced investors
+
+Loans and Hardship Withdrawals:
+- Loans: borrow up to 50% of vested balance, maximum $50,000, repaid through payroll deductions over up to 5 years
+- Hardship withdrawals: available for qualifying events (medical expenses, home purchase, education) but subject to taxes and early withdrawal penalties
 
 WELLNESS PROGRAMS
 
-Acme Corporation offers a comprehensive wellness program including:
-- $500 annual wellness reimbursement for gym memberships, fitness classes, or wellness apps
-- Free annual health screenings and flu shots
-- Employee Assistance Program (EAP) with 8 free counseling sessions per year
-- Monthly wellness challenges with prizes
-- Ergonomic workstation assessments
+Acme Corporation invests in employee well-being through several programs:
 
-EDUCATION BENEFITS
+Wellness Reimbursement: $500 per year for eligible expenses including:
+- Gym memberships and fitness studio fees
+- Fitness equipment for home use (over $50)
+- Wellness apps and subscriptions (meditation, nutrition, fitness tracking)
+- Race or event registration fees
+- Smoking cessation programs
 
-Tuition reimbursement up to $5,250 per year for job-related courses and degree programs. Employees must maintain a grade of B or above and remain employed for 12 months after reimbursement, or repay the benefit.
+Submit receipts through the HR portal for reimbursement within 30 days of purchase.
+
+Employee Assistance Program (EAP):
+- 8 free confidential counseling sessions per year for employees and their household members
+- Covers mental health, substance abuse, financial stress, relationship issues, and legal concerns
+- Available 24/7 at 1-800-555-0199 or through the EAP portal
+- Completely confidential — Acme receives no information about individual usage
+
+Additional Wellness Benefits:
+- Free annual health screenings and biometric assessments
+- Annual flu shots at on-site clinics
+- Monthly wellness challenges with prizes (gift cards up to $50)
+- Ergonomic workstation assessments (request through Facilities)
+- Standing desk available upon request at no cost to the employee
+
+EDUCATION AND PROFESSIONAL DEVELOPMENT
+
+Tuition Reimbursement:
+- Up to $5,250 per calendar year for job-related courses and degree programs
+- Pre-approval required from your manager and HR
+- Must maintain a grade of B or above (or Pass for pass/fail courses)
+- Employee must remain employed for 12 months after reimbursement or repay the benefit on a prorated basis
+
+Professional Development:
+- $1,500 per year for conferences, workshops, certifications, and professional memberships
+- Manager approval required; submit requests through the learning management system
 
 COMMUTER BENEFITS
 
-Pre-tax commuter benefits up to $300/month for transit passes and $300/month for qualified parking expenses.
+Pre-tax payroll deductions available for:
+- Transit passes: up to $300/month
+- Qualified parking expenses: up to $300/month
+- Enroll or change elections at any time through the HR portal
 
-ENROLLMENT
+EMPLOYEE DISCOUNTS
 
-Benefits enrollment occurs annually during Open Enrollment (November 1-15). New hires have 30 days from their start date to enroll. Life events (marriage, birth, adoption) allow a 30-day special enrollment period.
+Acme Corporation partners with several vendors for employee discounts:
+- 25% off company products and services
+- Corporate rates at select hotel chains and car rental companies
+- Discounts on cell phone plans, home/auto insurance, and entertainment
+
+ENROLLMENT AND CHANGES
+
+Annual Open Enrollment: November 1-15 each year
+- Changes take effect January 1
+- All employees must confirm or update their elections during open enrollment
+
+New Hire Enrollment:
+- 30 days from start date to complete enrollment
+- Coverage effective the first of the month after your start date
+
+Qualifying Life Events (allow mid-year changes within 30 days):
+- Marriage or divorce
+- Birth, adoption, or foster placement
+- Loss of other coverage
+- Spouse's employment change
+- Death of a dependent
+- Change in dependent eligibility (e.g., child aging out at 26)
+
+For questions or assistance with enrollment, contact the Benefits team at benefits@acmecorp.com or visit the HR portal. For the Employee Handbook and other company policies, see the Employee Handbook.

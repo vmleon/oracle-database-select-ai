@@ -1,55 +1,120 @@
 PAID TIME OFF (PTO) POLICY
 Acme Corporation
+Effective Date: January 1, 2025
+
+OVERVIEW
+
+Acme Corporation provides a comprehensive paid time off program to support work-life balance. This policy covers vacation, sick leave, personal days, holidays, and other forms of leave. All PTO requests are managed through the HR portal. For questions about leave policies, contact your HR Business Partner or email hr@acmecorp.com.
 
 VACATION DAYS
 
-New employees (0-2 years of service): 15 vacation days per year
-Mid-level employees (3-5 years of service): 20 vacation days per year
-Senior employees (6-10 years of service): 25 vacation days per year
-Long-tenure employees (10+ years of service): 30 vacation days per year
+Vacation days are based on years of continuous service as of January 1 each year:
 
-Vacation days accrue on a monthly basis. For example, a new employee earns 1.25 vacation days per month.
+Tier 1 — New employees (0-2 years of service): 15 vacation days per year
+Tier 2 — Mid-level employees (3-5 years of service): 20 vacation days per year
+Tier 3 — Senior employees (6-10 years of service): 25 vacation days per year
+Tier 4 — Long-tenure employees (10+ years of service): 30 vacation days per year
+
+Vacation days accrue on a monthly basis. For example, a Tier 1 employee earns 1.25 vacation days per month. New hires begin accruing vacation on their first day, but may not use vacation days during their first 90 days of employment except with VP-level approval.
+
+Part-time employees working at least 20 hours per week receive prorated vacation based on their scheduled hours relative to a 40-hour week. Employees working fewer than 20 hours per week are not eligible for paid vacation.
+
+Tier upgrades take effect on the January 1 following the employee's service anniversary. For example, an employee who reaches their 3rd anniversary on March 15 will move to Tier 2 on January 1 of the following year.
 
 CARRYOVER POLICY
 
-Employees may carry over up to 5 unused vacation days to the following calendar year. Any days beyond the 5-day carryover limit will be forfeited on December 31st. Carried-over days must be used by March 31st of the following year.
+Employees may carry over up to 5 unused vacation days to the following calendar year. Any days beyond the 5-day carryover limit will be forfeited on December 31. Carried-over days must be used by March 31 of the following year or they will be forfeited.
+
+Exceptions: Employees who were unable to use vacation due to a company-mandated project freeze may request a carryover exception through their VP. Such requests must be submitted by December 15.
+
+VACATION PAYOUT
+
+Upon voluntary separation with at least 2 weeks' notice, employees will be paid for accrued but unused vacation days at their current daily rate. Employees terminated for cause forfeit unused vacation days, except where state law requires payout.
 
 SICK LEAVE
 
-All employees receive 10 sick days per year, available immediately upon hire. Sick days do not accrue and reset on January 1st each year. Unused sick days do not carry over and are not paid out upon separation.
+All employees receive 10 sick days per year, available immediately upon hire. Sick days do not accrue — the full 10 days are available on January 1 (or on the hire date for new employees). Unused sick days do not carry over to the following year and are not paid out upon separation.
 
-For absences exceeding 3 consecutive sick days, a doctor's note is required upon return to work.
+Sick leave may be used for:
+- Employee's own illness, injury, or medical appointment
+- Care of an immediate family member (spouse, child, parent) who is ill
+- Mental health days (no documentation required for single-day absences)
+- Medical procedures and recovery time
+
+Documentation Requirements:
+- Absences of 1-2 days: no documentation required
+- Absences of 3 consecutive days: a doctor's note is required upon return to work
+- Absences of 5 or more consecutive days: may qualify for short-term disability; contact HR to initiate the process. See the Benefits Guide for disability coverage details.
 
 PERSONAL DAYS
 
-Employees receive 3 personal days per year for personal matters such as appointments, family events, or moving. Personal days do not carry over.
+Employees receive 3 personal days per year for personal matters such as appointments, family events, moving, or religious observances not covered by company holidays. Personal days do not carry over and are not paid out upon separation. Personal days require 48 hours' advance notice except in emergencies.
 
 HOLIDAY CALENDAR
 
-Acme Corporation observes the following paid holidays:
-- New Year's Day (January 1)
-- Martin Luther King Jr. Day (third Monday in January)
-- Presidents' Day (third Monday in February)
-- Memorial Day (last Monday in May)
-- Independence Day (July 4)
-- Labor Day (first Monday in September)
-- Thanksgiving Day (fourth Thursday in November)
-- Day after Thanksgiving (fourth Friday in November)
-- Christmas Eve (December 24)
-- Christmas Day (December 25)
+Acme Corporation observes the following 10 paid holidays:
 
-When a holiday falls on a weekend, the preceding Friday or following Monday will be observed.
+1. New Year's Day — January 1
+2. Martin Luther King Jr. Day — third Monday in January
+3. Presidents' Day — third Monday in February
+4. Memorial Day — last Monday in May
+5. Independence Day — July 4
+6. Labor Day — first Monday in September
+7. Thanksgiving Day — fourth Thursday in November
+8. Day after Thanksgiving — fourth Friday in November
+9. Christmas Eve — December 24
+10. Christmas Day — December 25
+
+When a holiday falls on a Saturday, the preceding Friday will be observed. When a holiday falls on a Sunday, the following Monday will be observed.
+
+Employees who are required to work on a company holiday receive 1.5x their regular pay rate for hours worked, plus a floating holiday to be used within 90 days.
+
+FLOATING HOLIDAYS
+
+In addition to the 10 fixed holidays, each employee receives 2 floating holidays per year to use for personal, cultural, or religious observances not covered by the company holiday calendar. Floating holidays must be used within the calendar year and do not carry over. Requests should be submitted at least 5 business days in advance.
 
 REQUESTING TIME OFF
 
-All PTO requests must be submitted through the HR portal at least 2 weeks in advance for vacations of 3 or more days. Requests of 1-2 days require at least 3 business days' notice. Manager approval is required for all PTO requests.
+All PTO requests must be submitted through the HR portal:
+- Vacations of 3 or more consecutive days: submit at least 2 weeks in advance
+- Vacations of 1-2 days: submit at least 3 business days in advance
+- Personal days: submit at least 48 hours in advance
+- Sick days: notify your manager as soon as possible, ideally before your scheduled start time
 
-During peak periods (November 15 through January 5), PTO requests are subject to team coverage requirements and may be limited.
+Manager approval is required for all PTO requests except sick days (which require notification only). Managers should respond to PTO requests within 2 business days. If a request is denied, the manager must provide a reason in writing.
+
+BLACKOUT PERIODS
+
+During peak business periods, PTO requests are subject to team coverage requirements and may be limited:
+- Year-end close: November 15 through January 5 (Finance and Accounting teams)
+- Q4 product launch: October 1 through November 30 (Engineering and Product teams)
+- Annual audit: March 1 through March 31 (Finance and Legal teams)
+
+Blackout periods do not apply to sick leave, bereavement leave, or legally protected leave. Employees may still request vacation during blackout periods, but approval is subject to minimum coverage requirements (at least 50% of the team must be available). Requests during blackout periods must be submitted at least 4 weeks in advance.
 
 BEREAVEMENT LEAVE
 
-Employees are entitled to 5 paid bereavement days for the loss of an immediate family member (spouse, child, parent, sibling) and 3 paid days for extended family members (grandparent, in-law, aunt, uncle).
+Employees are entitled to paid bereavement leave as follows:
+- Immediate family (spouse, domestic partner, child, parent, sibling): 5 paid days
+- Extended family (grandparent, grandchild, in-law, aunt, uncle, niece, nephew): 3 paid days
+- Close friend or colleague: 1 paid day
+
+Additional unpaid time may be granted at the manager's discretion. Bereavement leave does not need to be taken consecutively but must be used within 30 days of the loss. Employees may also use vacation or personal days to extend bereavement leave.
 
 JURY DUTY
 
-Employees called for jury duty will receive full pay for up to 10 business days. Extended jury service beyond 10 days will be reviewed on a case-by-case basis.
+Employees called for jury duty will receive full pay for up to 10 business days. Extended jury service beyond 10 days will be reviewed on a case-by-case basis with HR. Employees must provide a copy of the jury summons to their manager and HR as soon as it is received.
+
+PARENTAL LEAVE
+
+Acme Corporation provides 12 weeks of paid parental leave for the birth, adoption, or foster placement of a child. Both parents are eligible regardless of gender. Parental leave may be taken in a single continuous block or, with manager approval, split into two blocks within the first 12 months. Employees must have been employed for at least 6 months to be eligible. Additional unpaid leave may be available under FMLA.
+
+MILITARY LEAVE
+
+Acme Corporation complies with the Uniformed Services Employment and Reemployment Rights Act (USERRA). Employees who serve in the military will receive the difference between their military pay and regular salary for up to 12 months. Job reinstatement rights are protected as required by law.
+
+LEAVE OF ABSENCE
+
+Unpaid leaves of absence for personal reasons may be granted for up to 90 days with VP approval. During unpaid leave, employees may continue benefits coverage by paying the full premium. Tenure and PTO accrual are paused during unpaid leave and resume upon return.
+
+For questions about any leave type, contact HR at hr@acmecorp.com or visit the HR portal.

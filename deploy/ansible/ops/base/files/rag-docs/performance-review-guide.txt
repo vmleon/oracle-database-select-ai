@@ -1,103 +1,221 @@
 PERFORMANCE REVIEW GUIDE
 Acme Corporation
+Effective Date: January 1, 2025
+
+OVERVIEW
+
+Acme Corporation's performance management process is designed to support employee growth, recognize contributions, and align individual goals with company objectives. This guide covers the review cycle, rating scale, evaluation criteria, self-assessment guidance, promotion process, compensation, and performance improvement plans. For questions, contact your HR Business Partner or email hr@acmecorp.com.
 
 REVIEW CYCLE
 
 Acme Corporation conducts formal performance reviews twice per year:
-- Mid-year review: June (lightweight check-in, no rating)
-- Annual review: December (full review with rating and compensation discussion)
 
-The annual review cycle timeline:
-- November 1-15: Self-assessments due
-- November 15-30: Manager assessments and calibration
-- December 1-10: Calibration meetings across departments
+Mid-Year Review (June):
+- Lightweight check-in focused on goal progress and development
+- No formal rating assigned
+- Manager and employee discuss progress on goals set in January
+- Opportunity to adjust goals based on changing priorities
+- Self-assessment is optional but encouraged
+- Completed in a 45-minute 1:1 meeting
+
+Annual Review (December):
+- Full review with formal rating, compensation discussion, and goal setting for the next year
+- Includes self-assessment, peer feedback, manager assessment, and calibration
+- Results inform compensation adjustments, promotions, and development plans
+
+Annual Review Cycle Timeline:
+- October 15: Peer feedback nominations open (each employee selects 3-5 peers)
+- November 1: Self-assessments and peer feedback forms due
+- November 1-15: Manager assessments completed
+- November 15-30: Department calibration sessions (managers align on ratings across teams)
+- December 1-10: Cross-department calibration meetings (senior leadership)
 - December 10-20: Review conversations between manager and employee
-- January: Compensation adjustments effective
+- January 1: Compensation adjustments effective
+- January 15: New goals for the year finalized and entered in the HR portal
 
 RATING SCALE
 
 Employees are rated on a 5-point scale:
 
-5 - Exceptional: Consistently exceeds all expectations. Delivers outstanding results and is a role model for others. Reserved for truly extraordinary performance (top 5%).
+5 — Exceptional
+Consistently exceeds all expectations and delivers outstanding results. A role model for others and a significant contributor to team and company success. This rating is reserved for truly extraordinary performance. Target distribution: approximately 5% of employees.
 
-4 - Exceeds Expectations: Frequently exceeds expectations in most areas. Delivers strong results and demonstrates growth. Approximately 20% of employees.
+4 — Exceeds Expectations
+Frequently exceeds expectations in most areas. Delivers strong results, demonstrates growth, and often takes on responsibilities beyond their current role. Target distribution: approximately 20% of employees.
 
-3 - Meets Expectations: Consistently meets all expectations and occasionally exceeds them. Solid, reliable performance that fully satisfies role requirements. Approximately 50% of employees.
+3 — Meets Expectations
+Consistently meets all expectations and occasionally exceeds them. Solid, reliable performance that fully satisfies the requirements of the role. This is a strong rating that reflects good performance. Target distribution: approximately 50% of employees.
 
-2 - Needs Improvement: Meets some expectations but falls short in key areas. Requires a development plan with specific milestones. Approximately 20% of employees.
+2 — Needs Improvement
+Meets some expectations but falls short in one or more key areas. Requires a development plan with specific milestones and regular check-ins. A rating of 2 for two consecutive cycles may result in a Performance Improvement Plan. Target distribution: approximately 20% of employees.
 
-1 - Unsatisfactory: Does not meet minimum expectations. Requires immediate performance improvement plan (PIP) with clear consequences. Approximately 5% of employees.
+1 — Unsatisfactory
+Does not meet minimum expectations for the role. Requires an immediate Performance Improvement Plan (PIP) with clear objectives, timelines, and consequences. Target distribution: approximately 5% of employees.
+
+Note: Target distributions are guidelines for calibration, not strict quotas. Managers are not forced to fit their team into the distribution if the performance data doesn't support it.
 
 EVALUATION CRITERIA
 
-Performance is assessed across four dimensions:
+Performance is assessed across four dimensions, each with a defined weight:
 
 1. Results and Impact (40% weight)
-   - Achievement of goals and objectives
-   - Quality and timeliness of deliverables
-   - Business impact and value created
+- Achievement of goals and key results set at the beginning of the cycle
+- Quality and timeliness of deliverables
+- Business impact and measurable value created
+- Contribution to team and department-level objectives
+- Example indicators: projects delivered on time, revenue influenced, bugs resolved, customer satisfaction scores improved
 
 2. Skills and Expertise (25% weight)
-   - Technical or functional competence
-   - Problem-solving and decision-making
-   - Continuous learning and skill development
+- Technical or functional competence in your domain
+- Problem-solving and decision-making quality
+- Continuous learning and skill development
+- Ability to apply knowledge to new or ambiguous situations
+- Example indicators: certifications earned, new technologies adopted, complex problems solved independently
 
 3. Collaboration and Communication (20% weight)
-   - Teamwork and cross-functional partnership
-   - Communication clarity and effectiveness
-   - Mentoring and knowledge sharing
+- Teamwork and cross-functional partnership
+- Communication clarity, frequency, and effectiveness
+- Mentoring and knowledge sharing with colleagues
+- Responsiveness and reliability as a collaborator
+- Example indicators: peer feedback scores, successful cross-team projects, documentation contributions, mentoring relationships
 
 4. Leadership and Initiative (15% weight)
-   - Proactive identification of opportunities or issues
-   - Influence and leadership (regardless of title)
-   - Alignment with company values
+- Proactive identification of opportunities, risks, or improvements
+- Influence and leadership regardless of formal title
+- Alignment with and demonstration of company values (see the Employee Handbook for company values)
+- Willingness to take on challenges and stretch assignments
+- Example indicators: process improvements proposed, teams or initiatives led, company values awards received
 
 GOAL SETTING
 
-Employees and managers collaborate on setting 3-5 goals each review cycle using the SMART framework (Specific, Measurable, Achievable, Relevant, Time-bound). Goals should include:
-- At least 1 business/results goal
-- At least 1 development/growth goal
-- Goals aligned with team and company objectives
+Employees and managers collaborate on setting 3-5 goals each review cycle using the SMART framework:
 
-Goals are documented in the HR portal and reviewed during monthly 1:1 meetings.
+- Specific: clearly defined outcome or deliverable
+- Measurable: quantifiable success criteria
+- Achievable: realistic given available resources and time
+- Relevant: aligned with team and company objectives
+- Time-bound: clear deadline or milestone dates
+
+Goal Requirements:
+- At least 1 business/results goal tied to team or company OKRs
+- At least 1 development/growth goal focused on skill building or career progression
+- At least 1 collaboration goal involving cross-team work or mentoring (for employees at Senior level and above)
+- Goals must be entered in the HR portal by January 15 and reviewed during monthly 1:1 meetings
+
+Goal Adjustment: Goals may be adjusted mid-year during the June review if business priorities change. Adjustments must be documented in the HR portal with the rationale for the change.
+
+PEER FEEDBACK
+
+The annual review includes structured peer feedback:
+- Each employee nominates 3-5 peers to provide feedback
+- Manager may add additional reviewers to ensure coverage
+- Peer feedback is collected via a standardized form with both ratings and written comments
+- Questions cover collaboration, communication, technical skill, and values alignment
+- Feedback is shared with the employee in summarized form (individual attributions are removed)
+- Peer feedback informs the manager's assessment but does not directly determine the rating
+
+SELF-ASSESSMENT GUIDE
+
+Your self-assessment is a critical input to the review process. Tips for writing an effective self-assessment:
+
+1. Be specific: use data, metrics, and concrete examples rather than generalities
+   - Weak: "I did a good job on the migration project"
+   - Strong: "I led the database migration project, completing it 2 weeks ahead of schedule with zero data loss, reducing query latency by 40%"
+
+2. Reference your goals: map accomplishments directly to the goals you set at the beginning of the cycle
+
+3. Quantify impact: include numbers wherever possible — revenue, cost savings, time saved, error rates reduced, customers impacted
+
+4. Acknowledge growth areas honestly: managers value self-awareness. Identify 1-2 areas where you want to improve and propose a plan
+
+5. Document feedback received: include positive feedback from peers, stakeholders, or customers that supports your self-assessment
+
+6. Highlight stretch contributions: note any work you did beyond your defined role — cross-team projects, mentoring, process improvements
+
+7. Propose development goals: suggest 1-2 goals for the next cycle that build on your strengths or address growth areas
 
 PROMOTION PROCESS
 
-Promotions are considered during the annual review cycle. Criteria include:
-- Consistent performance rating of 4 or above for at least 2 consecutive cycles
-- Demonstration of skills at the next level for at least 6 months
-- Manager nomination and skip-level approval
-- Budget availability within the department
-- Minimum 12 months in current role
+Promotions are considered during the annual review cycle (December calibration). Criteria for promotion:
 
-Promotion decisions are finalized during December calibration meetings. Off-cycle promotions are rare and require VP approval with HR partnership.
+1. Performance: consistent rating of 4 or above for at least 2 consecutive review cycles
+2. Readiness: demonstration of skills and behaviors at the next level for at least 6 months
+3. Scope: evidence of taking on responsibilities or projects at the next level
+4. Manager Nomination: your manager must formally nominate you during calibration
+5. Skip-Level Approval: your manager's manager must approve the nomination
+6. Budget: promotion must be supported by the department's compensation budget
+7. Tenure: minimum 12 months in your current role (exceptions rare and require VP approval)
+
+Promotion decisions are finalized during December calibration meetings and communicated during review conversations. Off-cycle promotions are rare and require VP approval with HR partnership. They are typically reserved for retention-critical situations or significant role changes.
+
+If you are not promoted, your manager should provide clear, specific feedback on what you need to demonstrate. This feedback should be incorporated into your goals for the next cycle.
 
 COMPENSATION ADJUSTMENTS
 
-Annual merit increases are tied to performance ratings:
-- Rating 5: 6-10% increase
-- Rating 4: 4-6% increase
-- Rating 3: 2-4% increase
-- Rating 2: 0-1% increase
-- Rating 1: No increase
+Annual merit increases are tied to performance ratings and are effective January 1:
 
-Market adjustments may be applied independently of performance ratings to ensure competitive compensation.
+Rating 5 (Exceptional): 6-10% increase
+Rating 4 (Exceeds Expectations): 4-6% increase
+Rating 3 (Meets Expectations): 2-4% increase
+Rating 2 (Needs Improvement): 0-1% increase
+Rating 1 (Unsatisfactory): no increase
+
+Additional compensation considerations:
+- Market adjustments: applied independently of performance ratings to ensure competitive compensation. Based on annual salary survey data.
+- Promotion increases: typically 8-15% depending on the level change, in addition to any merit increase
+- Equity refresh grants: available for employees at Senior level and above, based on performance and retention considerations
+- Spot bonuses: managers may award spot bonuses of $500-$5,000 for exceptional project contributions (requires VP approval)
+
+Compensation changes are communicated during or shortly after the December review conversation. Employees who disagree with their compensation may request a review through HR.
 
 PERFORMANCE IMPROVEMENT PLANS (PIP)
 
-Employees rated 1 or 2 may be placed on a Performance Improvement Plan:
-- Duration: 60-90 days
-- Includes specific, measurable improvement targets
-- Weekly check-ins with manager
-- HR Business Partner involvement
-- Successful completion returns the employee to regular review process
-- Failure to meet PIP objectives may result in termination
+A PIP may be initiated when:
+- An employee receives a rating of 1 (Unsatisfactory)
+- An employee receives a rating of 2 (Needs Improvement) for 2 consecutive cycles
+- A manager identifies a significant, sustained performance gap at any time during the year
 
-SELF-ASSESSMENT TIPS
+PIP Structure:
+- Duration: 60-90 days depending on the nature of the performance issues
+- Specific, measurable improvement targets agreed upon by the employee, manager, and HR
+- Weekly check-in meetings between the employee and manager (documented in writing)
+- HR Business Partner involvement throughout the PIP
+- Written mid-point assessment at the 30-day or 45-day mark
 
-- Be specific: use data, metrics, and concrete examples
-- Reference your goals and how you achieved or progressed toward them
-- Highlight accomplishments and their business impact
-- Acknowledge areas for growth honestly
-- Document feedback received from peers and stakeholders
-- Propose development goals for the next cycle
+PIP Outcomes:
+- Successful completion: the employee returns to the regular review process. The PIP is noted in their file but does not permanently affect future ratings.
+- Partial improvement: the PIP may be extended for up to 30 additional days at HR's discretion.
+- Failure to meet PIP objectives: may result in termination of employment. Termination decisions require HR and Legal approval.
+- Voluntary resignation during PIP: the employee may resign at any time. Standard resignation terms apply (see the Employee Handbook).
+
+Employee Rights During PIP:
+- Employees may request to see all documentation related to their PIP
+- Employees may submit written responses to PIP assessments
+- Employees may request a different HR Business Partner if they believe there is a conflict of interest
+- Employees may consult with the Employee Assistance Program (EAP) for support — see the Benefits Guide for EAP details
+
+MANAGER RESPONSIBILITIES
+
+Managers play a critical role in the performance management process:
+- Conduct monthly 1:1 meetings focused on goal progress, feedback, and development
+- Provide ongoing feedback throughout the year — the annual review should contain no surprises
+- Complete peer feedback reviews and manager assessments by the published deadlines
+- Participate in calibration sessions with an open mind and evidence-based assessments
+- Deliver review conversations in person (or video) — never via email or chat
+- Document performance discussions and agreements in the HR portal
+- Support employees on PIPs with clear expectations and regular check-ins
+
+TIMELINE SUMMARY
+
+January 15: Goals finalized for the new year
+Monthly: Manager 1:1 meetings with goal check-ins
+June: Mid-year review conversations
+October 15: Peer feedback nominations open
+November 1: Self-assessments and peer feedback due
+November 1-15: Manager assessments completed
+November 15-30: Department calibration
+December 1-10: Cross-department calibration
+December 10-20: Review conversations delivered
+January 1: Compensation adjustments effective
+
+For questions about the performance review process, contact your HR Business Partner or email hr@acmecorp.com.

@@ -1,34 +1,160 @@
 EMPLOYEE HANDBOOK
 Acme Corporation
+Effective Date: January 1, 2025
+
+WELCOME
+
+Welcome to Acme Corporation. This handbook outlines the policies, procedures, and expectations that guide our workplace. All employees are expected to read and understand this handbook. If you have questions, contact your HR Business Partner or email hr@acmecorp.com.
 
 COMPANY VALUES
 
-At Acme Corporation, we are guided by four core values: Integrity, Innovation, Collaboration, and Customer Focus. Every employee is expected to embody these values in their daily work and interactions with colleagues, partners, and customers.
+Acme Corporation is guided by four core values:
+
+1. Integrity — We do the right thing, even when no one is watching. We are transparent in our decisions and honest in our communications.
+2. Innovation — We challenge the status quo and embrace creative solutions. Failure in pursuit of innovation is not punished; it is a learning opportunity.
+3. Collaboration — We believe the best results come from diverse teams working together. We share knowledge freely and support each other's success.
+4. Customer Focus — Every decision we make considers the impact on our customers. We measure success by the value we deliver.
+
+These values are embedded in our performance review process. See the Performance Review Guide for details on how values alignment is evaluated.
 
 CODE OF CONDUCT
 
-All employees must maintain professional behavior in the workplace. This includes treating colleagues with respect and dignity, avoiding conflicts of interest, and protecting company confidential information. Harassment, discrimination, or retaliation of any kind will not be tolerated and may result in immediate termination.
+Professional Behavior
+All employees must conduct themselves with professionalism and respect. This includes:
+- Treating all colleagues, vendors, and customers with dignity regardless of role, background, or opinion
+- Communicating constructively, even during disagreements
+- Being punctual for meetings and responsive to communications within one business day
+- Maintaining a positive and inclusive work environment
 
-Employees must not use company resources for personal gain or engage in activities that could damage the company's reputation. Any gifts from vendors or partners exceeding $50 in value must be reported to your manager and the Ethics team.
+Conflicts of Interest
+Employees must avoid situations where personal interests conflict with company interests. Specific examples include:
+- Holding a financial interest in a competitor, supplier, or customer without disclosure
+- Accepting consulting or employment with a competitor while employed at Acme
+- Using company resources, information, or relationships for personal benefit
+- Hiring or supervising family members without HR approval
+
+If a potential conflict exists, disclose it in writing to your manager and the Ethics team at ethics@acmecorp.com. Failure to disclose conflicts of interest is grounds for disciplinary action up to and including termination.
+
+Gifts and Entertainment
+Employees may accept business courtesies (meals, small gifts) from vendors or partners up to a value of $50 per occurrence and $200 per calendar year from any single source. Gifts exceeding these thresholds must be reported to your manager and the Ethics team within 5 business days. Cash or cash-equivalent gifts (gift cards, cryptocurrency) are never acceptable regardless of value.
+
+ANTI-HARASSMENT AND NON-DISCRIMINATION
+
+Acme Corporation is committed to a workplace free from harassment, discrimination, and retaliation. We do not tolerate harassment based on race, color, religion, sex, sexual orientation, gender identity, national origin, age, disability, veteran status, or any other protected characteristic.
+
+What Constitutes Harassment
+Harassment includes but is not limited to:
+- Unwelcome verbal conduct: slurs, jokes, comments about appearance or identity, repeated unwanted requests for dates
+- Unwelcome physical conduct: touching, blocking movement, assault
+- Visual harassment: offensive images, cartoons, or gestures displayed in the workplace or shared digitally
+- Quid pro quo harassment: conditioning employment benefits on submission to unwelcome conduct
+
+Reporting Process
+If you experience or witness harassment:
+1. Document the incident(s) with dates, times, locations, and any witnesses
+2. Report to your manager, HR Business Partner, or the anonymous Ethics Hotline at 1-800-555-0188
+3. HR will initiate an investigation within 3 business days of receiving a report
+4. All investigations are conducted confidentially to the extent possible
+5. Retaliation against anyone who reports in good faith is prohibited and will result in disciplinary action
+
+WORKPLACE BEHAVIOR
+
+Attendance and Punctuality
+Employees are expected to adhere to their scheduled work hours. If you will be late or absent, notify your manager as early as possible and no later than 30 minutes after your scheduled start time. Excessive unexcused absences (defined as more than 3 in a rolling 90-day period) may result in disciplinary action. See the PTO Policy for details on requesting planned absences.
+
+Substance-Free Workplace
+Acme Corporation maintains a drug-free and alcohol-free workplace. The use, possession, sale, or distribution of illegal drugs on company premises or during work hours is prohibited. Alcohol may be served at company-sponsored events with executive approval, but intoxication is never acceptable. Employees taking prescription medications that may affect their ability to perform job duties safely must notify HR confidentially.
+
+Use of Company Property
+Company property — including laptops, phones, software licenses, and office supplies — is provided for business use. Limited personal use is acceptable provided it does not interfere with work duties, violate any company policy, or incur significant costs. All data stored on company devices is company property and may be accessed by IT for legitimate business purposes.
 
 REMOTE WORK POLICY
 
-Acme Corporation supports flexible work arrangements. Employees in eligible roles may work remotely up to three days per week with manager approval. Remote workers must maintain a dedicated workspace, be available during core business hours (10:00 AM to 3:00 PM local time), and attend all required in-person meetings.
+Acme Corporation supports flexible work arrangements. Employees in eligible roles may work remotely up to 3 days per week with manager approval. Remote work eligibility is determined by role requirements, performance history, and team needs.
 
-Fully remote positions are available for certain roles and require VP-level approval. Remote employees are expected to visit the office at least once per quarter for team-building events.
+Requirements for Remote Workers:
+- Maintain a dedicated, private workspace suitable for video calls
+- Be available during core business hours (10:00 AM to 3:00 PM local time)
+- Attend all required in-person meetings and team events
+- Ensure reliable internet connectivity (minimum 25 Mbps download speed recommended)
+- Follow all data security protocols, including using the company VPN for accessing internal systems
+
+Fully remote positions require VP-level approval and are available only for select roles. Fully remote employees must visit the office at least once per quarter for team-building events. Travel expenses for quarterly visits are covered by the company. See the Travel and Expense Policy for reimbursement details.
 
 DRESS CODE
 
-Business casual attire is expected Monday through Thursday. Fridays are casual dress days. When meeting with clients or attending formal events, business professional attire is required.
+Business casual attire is expected Monday through Thursday. Fridays are casual dress days. When meeting with clients, attending board meetings, or representing the company at external events, business professional attire is required.
 
-CONFIDENTIALITY
+Guidelines:
+- Business casual: collared shirts, blouses, slacks, skirts, closed-toe shoes
+- Casual Friday: jeans (no rips), sneakers, polo shirts, company-branded apparel
+- Not acceptable: flip-flops, athletic wear (unless at a company wellness event), offensive or political messaging on clothing
 
-All employees sign a Non-Disclosure Agreement upon hiring. Company trade secrets, customer data, financial information, and strategic plans must be kept strictly confidential. Violations may result in termination and legal action.
+Employees working in laboratory or manufacturing areas must follow safety-specific dress requirements as posted in those areas.
+
+CONFIDENTIALITY AND DATA PROTECTION
+
+All employees sign a Non-Disclosure Agreement (NDA) upon hire. Company trade secrets, customer data, financial information, strategic plans, and proprietary technology must be kept strictly confidential both during and after employment.
+
+Specific obligations:
+- Never share confidential information with unauthorized individuals, including family members
+- Use encrypted channels (company email, approved messaging tools) for transmitting sensitive data
+- Do not store confidential data on personal devices or cloud storage accounts
+- Immediately report any suspected data breach to the IT Security team at security@acmecorp.com
+- Return all company materials, including electronic copies, upon separation
+
+Violations of confidentiality obligations may result in termination, legal action, and financial liability. Employees who handle personally identifiable information (PII) must complete annual data privacy training. See the Onboarding Checklist for initial training requirements.
+
+DISCIPLINARY PROCESS
+
+Acme Corporation follows a progressive discipline approach for most policy violations:
+
+Step 1 — Verbal Warning: Manager discusses the issue with the employee and documents the conversation. The employee is given clear expectations and a timeframe for improvement.
+
+Step 2 — Written Warning: If the behavior continues, a formal written warning is issued and placed in the employee's HR file. The warning includes specific examples, expected changes, and consequences of continued violations.
+
+Step 3 — Final Written Warning or Suspension: A final written warning is issued, potentially accompanied by a suspension of up to 5 business days without pay. The employee must acknowledge the warning in writing.
+
+Step 4 — Termination: If no improvement occurs, employment is terminated. HR must approve all terminations in advance.
+
+Exceptions: Severe violations (theft, violence, fraud, serious safety violations, sexual harassment) may result in immediate termination without progressive steps. The company reserves the right to skip steps based on the severity of the violation.
+
+Employees may appeal any disciplinary action by submitting a written appeal to HR within 10 business days. Appeals are reviewed by the HR Director and the employee's skip-level manager.
 
 WORKPLACE SAFETY
 
-Acme Corporation is committed to providing a safe and healthy work environment. Report any safety hazards, accidents, or near-misses to your manager and the Safety team immediately. All employees must complete annual safety training.
+Acme Corporation is committed to providing a safe and healthy work environment in compliance with OSHA regulations. All employees are responsible for:
+- Reporting safety hazards, accidents, or near-misses to your manager and the Safety team at safety@acmecorp.com immediately
+- Following all posted safety procedures and using required protective equipment
+- Completing annual safety training (assigned through the learning management system)
+- Participating in emergency drills (fire drills conducted quarterly, active threat drills conducted annually)
+
+Work-related injuries must be reported within 24 hours. Workers' compensation claims are managed through HR.
 
 COMMUNICATION GUIDELINES
 
-Official company communications go through designated channels. Employees should use company email for business correspondence and Slack for internal collaboration. Social media posts about the company must be approved by the Communications team.
+Official company communications go through designated channels:
+- Company email: for business correspondence and formal communications
+- Slack: for internal collaboration and quick questions
+- Company intranet: for policies, forms, and announcements
+- Town halls: quarterly all-hands meetings with the executive team
+
+Social media posts about the company or that reference the company must be approved by the Communications team at comms@acmecorp.com. Employees may not represent themselves as company spokespeople without authorization.
+
+SEPARATION OF EMPLOYMENT
+
+Voluntary Resignation
+Employees wishing to resign should provide at least 2 weeks' written notice to their manager. Directors and above are asked to provide 4 weeks' notice. Resignation letters should be submitted to your manager with a copy to HR.
+
+Exit Process
+- IT will schedule equipment return and access revocation
+- HR will conduct an exit interview
+- Final paycheck, including unused PTO payout, will be processed on the next regular pay date
+- COBRA information for benefits continuation will be mailed within 14 days of separation
+- 401(k) accounts remain active; see the Benefits Guide for rollover options
+
+ACKNOWLEDGMENT
+
+By continuing employment at Acme Corporation, you acknowledge that you have received, read, and understood this Employee Handbook. This handbook is not a contract of employment. Acme Corporation reserves the right to modify these policies at any time with reasonable notice.
+
+For questions about any policy in this handbook, contact HR at hr@acmecorp.com or call extension 2100.

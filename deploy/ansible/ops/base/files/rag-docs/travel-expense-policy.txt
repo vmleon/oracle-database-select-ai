@@ -1,72 +1,177 @@
 TRAVEL AND EXPENSE POLICY
 Acme Corporation
+Effective Date: January 1, 2025
 
-GENERAL GUIDELINES
+PURPOSE AND SCOPE
 
-All business travel must be pre-approved by your manager. International travel requires VP-level approval. Book travel at least 14 days in advance when possible to secure the best rates. All bookings should be made through the company's approved travel platform (Concur).
+This policy establishes guidelines for business travel and expense reimbursement for all Acme Corporation employees. The goal is to ensure that employees can travel comfortably and efficiently while being responsible stewards of company resources. All business travel must comply with this policy. Exceptions require written approval from your VP.
+
+TRAVEL APPROVAL
+
+All business travel must be pre-approved:
+- Domestic travel: manager approval required
+- International travel: VP-level approval required
+- Travel to restricted countries (as listed on the company intranet): requires Legal and Security team approval in addition to VP approval
+
+Submit travel requests through the Concur travel system at least 14 days before departure when possible. Last-minute travel (under 7 days' notice) is permitted but must include a justification note. Frequent travelers (4+ trips per year) may request pre-approval for recurring routes.
 
 AIR TRAVEL
 
-- Domestic flights: Economy class for all employees
-- International flights under 6 hours: Economy class
-- International flights over 6 hours: Premium economy for all employees; business class for VP and above
+Booking Guidelines:
 - Book the lowest logical fare within a 2-hour window of your preferred departure time
-- Frequent flyer miles earned on business travel belong to the employee
+- Book at least 14 days in advance when possible — fares are typically 30-40% lower
+- Use the company's approved travel platform (Concur) for all bookings
+- Direct flights are preferred when the cost difference is less than $200 vs. connecting flights
+
+Class of Service:
+- Domestic flights: economy class for all employees
+- International flights under 6 hours: economy class for all employees
+- International flights 6-10 hours: premium economy for all employees
+- International flights over 10 hours: premium economy for all; business class for Directors and above
+- Business class for any flight: available for employees with documented medical needs (note from physician required)
+
+Frequent Flyer Programs:
+- Miles and points earned on business travel belong to the employee
+- However, loyalty program membership may not influence flight selection when a significantly cheaper option (more than $200 less) is available on another carrier
+
+Cancellations and Changes:
+- Refundable tickets are permitted when the trip is tentative or the fare difference is under $100
+- Flight change fees are reimbursable when due to business reasons; personal changes are not reimbursable
 
 HOTEL ACCOMMODATIONS
 
-Per-night hotel limits by city tier:
-- Tier 1 cities (New York, San Francisco, London, Tokyo): $250/night
-- Tier 2 cities (Chicago, Boston, Seattle, Los Angeles): $200/night
-- Tier 3 cities (all others): $150/night
+Per-Night Hotel Limits by City Tier:
+- Tier 1 cities (New York, San Francisco, Washington DC, London, Tokyo, Zurich): $250/night
+- Tier 2 cities (Chicago, Boston, Seattle, Los Angeles, Denver, Austin, Toronto, Paris): $200/night
+- Tier 3 cities (all others domestic): $150/night
+- Tier 4 cities (all others international): varies by country, see the rate table on the company intranet
 
-Exceptions may be approved by your manager for conferences where the event hotel exceeds these limits.
+Exceptions:
+- Conference hotel rates that exceed the tier limit are automatically approved when the conference provides a group rate
+- Travel during peak events (CES, re:Invent, SXSW, etc.) may qualify for temporary tier upgrades — submit a request to your manager before booking
+- Extended stays (5+ nights) may be eligible for serviced apartment or Airbnb alternatives at comparable or lower nightly rates
+
+Hotel Selection:
+- Use preferred hotel partners listed in Concur for the best rates and corporate benefits
+- Room type: standard room; suites are not reimbursable without VP approval
+- Incidental charges (mini-bar, room service, movies, spa) are not reimbursable
+- Hotel loyalty points belong to the employee
 
 GROUND TRANSPORTATION
 
+Ride-Sharing and Taxis:
 - Use ride-sharing services (Uber, Lyft) or taxis for airport transfers and local transportation
-- Rental cars are approved when ride-sharing is impractical or when traveling between multiple locations
-- Rental cars must be mid-size or below; SUVs allowed only with justification
-- Mileage reimbursement for personal vehicle use: $0.67 per mile (IRS standard rate)
+- Uber X or Lyft Standard is the default; Uber XL or premium services require justification (e.g., group transport, heavy luggage)
+
+Rental Cars:
+- Approved when ride-sharing is impractical, when traveling between multiple locations, or for trips where 3+ rides per day are expected
+- Vehicle class: mid-size or below; SUVs allowed only with justification (multiple passengers or equipment transport)
+- Always accept the rental company's insurance unless using the corporate credit card that provides coverage
+- Fuel: use regular unleaded; premium fuel is not reimbursable
+- Return cars with a full tank to avoid refueling surcharges
+
+Personal Vehicle Use:
+- Mileage reimbursement: $0.67 per mile (2025 IRS standard rate)
+- Applies to travel between work locations; does not include regular commuting
 - Parking and tolls are reimbursable with receipts
 
 MEALS AND PER DIEM
 
-Daily meal allowances (including tax and tip):
-- Breakfast: $20
-- Lunch: $30
-- Dinner: $50
-- Total daily maximum: $100
+Employees may choose between actual expense reimbursement or a flat per diem rate:
 
-Alcohol is not reimbursable except for client entertainment with prior manager approval. Team dinners during travel are reimbursable up to $75 per person with manager approval.
+Option A — Actual Expenses (receipts required for all meals):
+- Breakfast: up to $20
+- Lunch: up to $30
+- Dinner: up to $50
+- Daily total maximum: $100
+
+Option B — Flat Per Diem by City (no receipts required for meals):
+- Tier 1 cities (New York, San Francisco, Washington DC, London, Tokyo): $120/day
+- Tier 2 cities (Chicago, Boston, Seattle, Los Angeles, Denver, Austin): $100/day
+- Tier 3 cities (all others domestic): $80/day
+- International (varies): see the rate table on the company intranet
+
+Per diem election must be made before the trip begins and applies to the entire trip. Partial travel days (departure and return days) are reimbursed at 75% of the applicable rate.
+
+General Meal Rules:
+- Alcohol is not reimbursable except for client entertainment with prior manager approval
+- Meals over $50 per person require manager approval, whether or not a client is present
+- Team dinners during travel are reimbursable up to $75 per person with manager pre-approval
+- Room service is treated as a meal and counts against the daily meal limits
+- Grocery purchases for extended stays may be reimbursed in lieu of meal expenses
 
 CLIENT ENTERTAINMENT
 
-Client meals and entertainment require pre-approval and must include:
-- Business purpose documented on the expense report
-- Names and titles of all attendees
-- Company/organization of external attendees
+Client meals and entertainment require pre-approval from your manager and must include:
+- Clear business purpose documented on the expense report
+- Names, titles, and companies of all attendees (both internal and external)
 - Maximum $150 per person for client dinners
+- Maximum $100 per person for client lunches
+- Maximum $200 per person for ticketed events (sports, theater, concerts)
+
+Gifts to clients or business partners exceeding $50 in value must be reported to the Ethics team. See the Employee Handbook for the full gifts and entertainment policy.
 
 EXPENSE REPORTING
 
-- Submit expense reports within 14 days of travel completion
-- Receipts required for all expenses over $25
-- Use the Concur expense system for all submissions
-- Reports are routed to your manager for approval
-- Reimbursement is processed within 5 business days of approval via direct deposit
+Submission:
+- Submit expense reports through Concur within 14 days of travel completion
+- Reports submitted more than 30 days after travel require VP approval and may be subject to delayed processing
+- Each trip should be a separate expense report
+
+Receipt Requirements:
+- Receipts are required for all individual expenses over $25
+- Itemized receipts are required for meals (credit card slips alone are not sufficient)
+- If a receipt is lost, complete a Missing Receipt Affidavit in Concur (limited to 3 per calendar year)
+
+Approval and Reimbursement:
+- Expense reports are automatically routed to your manager for approval
+- Managers should review and approve within 5 business days
+- Approved reports are reimbursed within 5 business days via direct deposit
+- Reports flagged by the automated audit system may require additional documentation
+
+Currency and Exchange Rates:
+- International expenses should be submitted in the local currency
+- Concur will convert using the exchange rate on the transaction date
+- Credit card foreign transaction fees are reimbursable
 
 NON-REIMBURSABLE EXPENSES
 
-The following are not reimbursable:
-- Personal entertainment (movies, spa, mini-bar)
-- Laundry service for trips under 5 days
-- First-class upgrades (unless pre-approved)
-- Spouse/partner travel expenses
-- Traffic violations or parking tickets
+The following expenses are not covered:
+- Personal entertainment (movies, spa services, mini-bar, personal reading material)
+- Laundry and dry cleaning for trips under 5 consecutive days
+- First-class airline upgrades (unless pre-approved by VP)
+- Spouse, partner, or family member travel expenses
+- Traffic violations, parking tickets, or moving violations
 - Personal phone calls exceeding $10/day
-- Travel insurance (company policy provides coverage)
+- Travel insurance (the company's corporate policy provides coverage)
+- Pet boarding or pet sitting
+- Childcare expenses during travel (unless covered by Dependent Care FSA — see the Benefits Guide)
+- TSA PreCheck or Global Entry application fees (however, a one-time reimbursement of $100 is available for employees who travel 6+ times per year; submit through Concur with manager approval)
 
 CORPORATE CREDIT CARD
 
-Employees who travel frequently (4+ trips per year) may request a corporate credit card. The card must be used exclusively for business expenses. Personal charges on the corporate card are a policy violation and may result in card revocation and disciplinary action.
+Employees who travel frequently (4+ trips per year) may request a corporate credit card:
+- Application available on the HR portal; requires manager approval
+- Card must be used exclusively for business expenses
+- Personal charges on the corporate card are a policy violation and may result in card revocation and disciplinary action
+- Monthly statements must be reconciled and submitted with expense reports
+- Cardholders are responsible for charges that are not submitted as business expenses within 45 days
+
+TRAVEL SAFETY
+
+- Register all international trips with the company's travel security provider through Concur
+- Carry the emergency assistance card (provided with your corporate credit card)
+- In case of emergency while traveling: call the 24/7 travel assistance line at 1-800-555-0177
+- For medical emergencies abroad, the company's travel insurance covers evacuation and treatment up to $500,000
+- Employees traveling to high-risk destinations must complete a security briefing with the Security team at least 7 days before departure
+
+POLICY VIOLATIONS
+
+Violations of this policy, including submitting false or inflated expense reports, may result in:
+- Denial of reimbursement for the specific expense
+- Requirement to repay previously reimbursed expenses
+- Revocation of corporate credit card privileges
+- Disciplinary action up to and including termination
+- Fraudulent expense claims may be referred to law enforcement
+
+For questions about this policy, contact the Travel team at travel@acmecorp.com or the Finance team at finance@acmecorp.com.

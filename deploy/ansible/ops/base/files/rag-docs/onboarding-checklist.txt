@@ -1,82 +1,223 @@
 NEW EMPLOYEE ONBOARDING CHECKLIST
 Acme Corporation
+Effective Date: January 1, 2025
 
-BEFORE YOUR FIRST DAY
+OVERVIEW
 
-Your manager and HR will coordinate the following before you arrive:
-- Laptop and equipment ordered and configured
-- Email account and system access provisioned
-- Building access badge prepared
-- Desk or workspace assigned
-- Welcome kit assembled (company swag, office supplies, org chart)
+Welcome to Acme Corporation! This checklist guides you through your first 90 days. Your manager and onboarding buddy will support you throughout this process. For any questions, reach out to your HR Business Partner or email hr@acmecorp.com.
 
-DAY 1 - WELCOME AND ORIENTATION
+BEFORE YOUR FIRST DAY (Pre-Boarding)
 
-Morning:
-- Check in at the front desk; collect your badge and welcome kit
-- Meet your manager for a welcome coffee
-- Tour of the office: restrooms, kitchen, meeting rooms, emergency exits
-- IT setup session: laptop configuration, email, Slack, VPN, and password setup
-- Review and sign employment documents with HR
+Your manager and HR coordinate the following before you arrive:
+- Laptop and equipment ordered, configured, and shipped (remote) or placed at your desk (on-site)
+- Company email account created and system access provisioned
+- Building access badge prepared (on-site employees)
+- Desk or workspace assigned with monitor, keyboard, and mouse
+- Welcome kit assembled: company swag (t-shirt, water bottle, notebook), office supplies, and printed org chart
+- Onboarding buddy assigned: a peer mentor on your team who will guide you through your first 90 days
+- Calendar invitations sent for Day 1 orientation sessions and first-week meetings
 
-Afternoon:
-- Company overview presentation by HR (mission, values, org structure)
-- Benefits enrollment walkthrough
-- Set up direct deposit and tax forms
-- Meet your onboarding buddy (assigned peer mentor for your first 90 days)
-- Lunch with your immediate team
+DAY 1 — WELCOME AND ORIENTATION (Monday)
 
-WEEK 1 - GETTING STARTED
+8:30 AM — Arrival and Check-In
+- On-site: check in at the front desk reception; collect your badge and welcome kit
+- Remote: join the virtual orientation Zoom link sent to your personal email
+- Meet your manager for a welcome coffee (in-person or virtual)
 
-Required training (complete by end of week 1):
-- Information Security Awareness training (online, 45 minutes)
-- Anti-Harassment and Inclusion training (online, 60 minutes)
-- Data Privacy and GDPR compliance (online, 30 minutes)
-- Code of Conduct acknowledgment
-- Emergency procedures and safety training (15 minutes)
+9:00 AM — Office Tour (on-site) / Virtual Workspace Tour (remote)
+- On-site: tour of the office including your desk, restrooms, kitchen and break room, meeting rooms, emergency exits, mail room, and parking
+- Remote: walkthrough of key digital tools — email, Slack, Zoom, VPN, shared drives
 
-Key meetings:
-- 1:1 with your manager to discuss role expectations, 30-60-90 day goals
-- Team standup or weekly meeting
-- Introduction meetings with key cross-functional partners
-- Schedule recurring 1:1s with your manager (weekly recommended)
+10:00 AM — IT Setup Session
+- Laptop configuration and software installation
+- Email and calendar setup (Outlook/Google Workspace)
+- Slack workspace access: join #general, #random, #announcements, and your team channel
+- VPN setup and testing for remote access
+- Multi-factor authentication (MFA) enrollment
+- Password manager setup (1Password)
+- Printer setup (on-site employees)
 
-Systems and tools to set up:
-- Slack: join your team channel and #general, #random, #announcements
-- HR portal: review your profile, emergency contacts, benefits selections
-- Concur: set up your travel and expense profile
-- JIRA/project management tool: get access to relevant boards
-- GitHub/source control: set up SSH keys and repository access
+11:30 AM — HR Document Review
+- Review and sign employment agreement, NDA, and intellectual property assignment
+- Verify personal information, emergency contacts, and tax forms (W-4, state withholding)
+- Set up direct deposit for payroll
+- Review the Employee Handbook — see the Employee Handbook for full details on company policies
 
-WEEKS 2-4 - RAMPING UP
+12:00 PM — Lunch with Your Team
+- On-site: team lunch at a local restaurant (company-paid)
+- Remote: virtual lunch — a meal delivery gift card will be sent to your address
 
-- Complete any role-specific technical training
-- Shadow team members on key workflows and processes
+1:00 PM — Company Overview Presentation
+- HR presentation covering: company history, mission, values, organizational structure, and strategic priorities
+- Introduction to key departments and their leaders
+- Overview of communication norms and meeting culture
+
+2:30 PM — Benefits Enrollment Walkthrough
+- Overview of health insurance options (PPO vs. HMO), dental, vision, 401(k), HSA/FSA, and wellness programs
+- You have 30 days to complete enrollment — see the Benefits Guide for detailed plan information
+- Set up your Fidelity 401(k) account and contribution elections
+
+3:30 PM — Meet Your Onboarding Buddy
+- Informal 1:1 with your assigned buddy
+- Your buddy will be your go-to resource for questions about team culture, processes, and unwritten norms
+- Schedule recurring weekly check-ins with your buddy for the first 90 days
+
+4:00 PM — Manager 1:1
+- Discuss your role, team structure, and initial expectations
+- Review your first week's schedule
+- Set up a recurring weekly 1:1 meeting
+
+DAY 2 — SYSTEMS AND TOOLS (Tuesday)
+
+9:00 AM — Required Training Block 1
+- Information Security Awareness training (online, 45 minutes) — covers data handling, phishing awareness, password policies, and incident reporting
+- Anti-Harassment and Inclusion training (online, 60 minutes) — covers company policies, reporting procedures, bystander intervention
+
+11:00 AM — Development Environment Setup (Technical Roles)
+- GitHub/GitLab: SSH key setup and repository access
+- IDE and toolchain installation
+- Access to staging and development environments
+- Review team coding standards and contribution guidelines
+
+11:00 AM — Tools Setup (Non-Technical Roles)
+- CRM, project management, or department-specific tool access and training
+- Document management system walkthrough
+
+1:00 PM — HR Portal Walkthrough
+- Navigate the HR portal: review your profile, update emergency contacts, explore benefits options
+- Concur setup: create your travel and expense profile (see the Travel and Expense Policy)
+- Learning management system: view assigned training courses and deadlines
+
+2:30 PM — Team Workflow Overview
+- Your manager or a senior team member walks you through:
+  - Team's current projects and priorities
+  - Sprint/iteration cadence and planning process
+  - Code review or document review process
+  - On-call rotation (if applicable)
+  - Team rituals: standups, retrospectives, demos
+
+DAY 3 — DEEP DIVE AND CONNECTIONS (Wednesday)
+
+9:00 AM — Required Training Block 2
+- Data Privacy and GDPR Compliance training (online, 30 minutes)
+- Code of Conduct acknowledgment (read and sign electronically)
+- Emergency Procedures and Safety training (online, 15 minutes) — covers evacuation routes, fire extinguisher locations, first aid kits, and reporting procedures
+
+10:00 AM — Product and Architecture Overview
+- Presentation on the company's products, services, and customer base
+- For technical roles: system architecture walkthrough, key repositories, deployment pipeline
+- For non-technical roles: product demo and customer journey overview
+
+1:00 PM — Cross-Functional Introductions
+- 30-minute meetings with key partners in other departments you'll work with regularly
+- Your manager will pre-schedule these based on your role
+
+3:00 PM — Shadowing Session 1
+- Observe a team member performing a core workflow relevant to your role
+- Take notes and prepare questions for your buddy or manager
+
+DAY 4 — HANDS-ON PRACTICE (Thursday)
+
+9:00 AM — First Assignment
+- Your manager will assign a small, well-scoped starter task
+- Technical roles: a "good first issue" bug fix or documentation update
+- Non-technical roles: a defined deliverable with clear requirements and an example to follow
+
+11:00 AM — Knowledge Base and Documentation
+- Tour of the company intranet, wiki, and knowledge base
+- Review team-specific documentation, runbooks, and FAQs
+- Identify where to find answers before asking colleagues
+
+1:00 PM — Shadowing Session 2
+- Shadow a different team member on a different workflow
+- For technical roles: observe a code review or deployment process
+- For non-technical roles: sit in on a client meeting or stakeholder presentation
+
+3:00 PM — Buddy Check-In
+- Review your first few days with your onboarding buddy
+- Discuss any questions, concerns, or things that were unclear
+- Get recommendations for people to meet and resources to explore
+
+DAY 5 — WRAP-UP AND PLANNING (Friday)
+
+9:00 AM — Continue Starter Task
+- Continue working on your assigned task from Day 4
+- Ask questions proactively — this is expected and encouraged during onboarding
+
+11:00 AM — Department All-Hands or Team Meeting
+- Attend your first department all-hands meeting
+- You'll be introduced to the broader team
+
+1:00 PM — End-of-Week 1:1 with Manager
+- Review your first week: what went well, what was confusing, what you need
+- Align on priorities for Week 2
+- Set preliminary 30-day goals together
+- Discuss your 30/60/90 day milestones (detailed below)
+
+2:00 PM — Self-Paced Exploration
+- Explore the codebase, documentation, or tools at your own pace
+- Read through recent team communications and project updates
+- Complete any remaining required training
+
+WEEKS 2-4 — RAMPING UP
+
+Key Activities:
+- Complete any remaining role-specific technical training
+- Shadow team members on additional key workflows and processes
 - Begin contributing to projects with guidance from your buddy or manager
-- Attend department all-hands meeting
-- Complete your benefits enrollment (deadline: 30 days from start date)
-- Review company intranet and knowledge base resources
+- Attend all recurring team meetings (standups, planning, retrospectives)
+- Complete your benefits enrollment before the 30-day deadline — see the Benefits Guide for details
+- Review the company intranet and knowledge base resources
+- Complete any role-specific certifications assigned in the learning management system
 
-DAYS 30-60 - BUILDING MOMENTUM
+30-DAY MILESTONES:
+- All required training completed and documented
+- Systems and tools set up and functional
+- At least one task or project contribution completed
+- Benefits enrollment finalized
+- Comfortable with team processes and communication norms
+- 30-day check-in with manager: review initial goals, address questions, provide and receive feedback
 
-- 30-day check-in with manager: review initial goals, address questions
-- Take ownership of at least one small project or task
-- Provide feedback on the onboarding experience to HR
-- Connect with colleagues outside your immediate team
+DAYS 30-60 — BUILDING MOMENTUM
+
+Key Activities:
+- Take ownership of at least one project or workstream
+- Begin participating actively in team planning and decision-making
+- Provide feedback on the onboarding experience to HR (survey sent at day 30)
+- Connect with colleagues outside your immediate team — attend cross-functional meetings and social events
 - Begin attending optional brown bag lunches and learning sessions
+- Start contributing to team documentation and knowledge sharing
 
-DAYS 60-90 - FULL INTEGRATION
+60-DAY MILESTONES:
+- Independently completing tasks with minimal guidance
+- Contributing meaningfully to team goals and deliverables
+- Building productive relationships across the team and cross-functionally
+- 60-day check-in with manager: assess progress, adjust goals if needed, discuss development areas
 
-- 60-day check-in with manager: assess progress, adjust goals if needed
-- Contribute independently to team projects
-- 90-day formal review with manager: performance discussion and goal setting for the next quarter
+DAYS 60-90 — FULL INTEGRATION
+
+Key Activities:
+- Contribute independently to team projects at the expected level for your role
+- Identify areas for process improvement and propose solutions
+- Mentor or assist newer team members if applicable
+- Begin thinking about longer-term career goals and development plan
+
+90-DAY MILESTONES:
+- Performing independently at the expected level for your role and experience
+- Fully integrated into team workflows, culture, and communication
+- Clear goals set for the next quarter aligned with team objectives
+- 90-day formal review with manager: performance discussion, goal setting for next quarter, discuss career development
 - Onboarding buddy relationship formally concludes (informal mentoring may continue)
 - Complete the onboarding satisfaction survey
 
 KEY CONTACTS
 
 - HR Business Partner: hr@acmecorp.com
-- IT Help Desk: helpdesk@acmecorp.com or extension 4357
+- IT Help Desk: helpdesk@acmecorp.com or extension 4357 (HELP)
 - Facilities: facilities@acmecorp.com
-- Your onboarding buddy: assigned on Day 1
-- Employee Assistance Program (EAP): 1-800-555-0199 (24/7)
+- Benefits Team: benefits@acmecorp.com (see the Benefits Guide)
+- Travel and Expense: travel@acmecorp.com (see the Travel and Expense Policy)
+- Security Team: security@acmecorp.com
+- Employee Assistance Program (EAP): 1-800-555-0199 (24/7, confidential)
+- Your Onboarding Buddy: assigned on Day 1
+- Anonymous Ethics Hotline: 1-800-555-0188
