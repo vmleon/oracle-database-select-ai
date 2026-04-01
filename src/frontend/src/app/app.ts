@@ -12,6 +12,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
         <a routerLink="/chat" routerLinkActive="active">Chat</a>
         <a routerLink="/agents" routerLinkActive="active">Agents</a>
         <a routerLink="/rag" routerLinkActive="active">RAG</a>
+        <a routerLink="/hybrid" routerLinkActive="active">Hybrid</a>
       </nav>
     </header>
     <main>

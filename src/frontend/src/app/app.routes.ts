@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'rag',
     loadComponent: () => import('./rag/rag.component').then((m) => m.RagComponent),
   },
+  {
+    path: 'hybrid',
+    loadComponent: () => import('./hybrid/hybrid.component').then((m) => m.HybridComponent),
+  },
 ];

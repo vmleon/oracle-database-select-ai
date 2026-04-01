@@ -141,6 +141,21 @@ public class SelectAIController {
         return new RagResponse(request.prompt(), answer, elapsed);
     }
 
+    @PostMapping("/hybrid")
+    public HybridResponse hybrid(@RequestBody HybridRequest request) {
+        String prompt = validatePrompt(request.prompt());
+        log.info("Select AI hybrid: {}", prompt);
+
+        setProfile(ragProfile);
+
+        long t0 = System.currentTimeMillis();
+        String answer = jdbcTemplate.queryForObject(
+                String.format("SELECT AI narrate %s", prompt), String.class);
+        long elapsed = System.currentTimeMillis() - t0;
+
+        return new HybridResponse(request.prompt(), answer, elapsed);
+    }
+
     private void setProfile(String profileName) {
         jdbcTemplate.execute(String.format(
                 "BEGIN dbms_cloud_ai.set_profile(profile_name => '%s'); END;",

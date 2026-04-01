@@ -35,6 +35,12 @@ export interface ChatResponse {
   timeInMillis: number;
 }
 
+export interface HybridResponse {
+  prompt: string;
+  answer: string;
+  timeInMillis: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SelectAiService {
   constructor(private http: HttpClient) {}
@@ -57,5 +63,9 @@ export class SelectAiService {
 
   chat(prompt: string) {
     return this.http.post<ChatResponse>('/api/v1/selectai/chat', { prompt });
+  }
+
+  hybrid(prompt: string) {
+    return this.http.post<HybridResponse>('/api/v1/selectai/hybrid', { prompt });
   }
 }
