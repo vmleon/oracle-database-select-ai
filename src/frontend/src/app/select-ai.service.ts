@@ -17,6 +17,12 @@ export interface AgentResponse {
   timeInMillis: number;
 }
 
+export interface RunSqlResponse {
+  prompt: string;
+  result: Record<string, string>[];
+  timeInMillis: number;
+}
+
 export interface RagResponse {
   prompt: string;
   answer: string;
@@ -29,6 +35,10 @@ export class SelectAiService {
 
   query(prompt: string) {
     return this.http.post<QueryResponse>('/api/v1/selectai/query', { prompt });
+  }
+
+  runsql(prompt: string) {
+    return this.http.post<RunSqlResponse>('/api/v1/selectai/runsql', { prompt });
   }
 
   agents(prompt: string) {

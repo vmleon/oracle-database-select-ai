@@ -74,6 +74,28 @@ public class SelectAIController {
                 result, resultTime);
     }
 
+    @PostMapping("/runsql")
+    public RunSqlResponse runsql(@RequestBody QueryRequest request) {
+        String prompt = validatePrompt(request.prompt());
+        log.info("Select AI runsql: {}", prompt);
+
+        setProfile(queryProfile);
+
+        long t0 = System.currentTimeMillis();
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+                String.format("SELECT AI runsql %s", prompt));
+        long elapsed = System.currentTimeMillis() - t0;
+
+        List<Map<String, String>> result = rows.stream()
+                .map(row -> row.entrySet().stream()
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                e -> String.valueOf(e.getValue()))))
+                .collect(Collectors.toList());
+
+        return new RunSqlResponse(request.prompt(), result, elapsed);
+    }
+
     @PostMapping("/agents")
     public AgentResponse agents(@RequestBody AgentRequest request) {
         String prompt = validatePrompt(request.prompt());

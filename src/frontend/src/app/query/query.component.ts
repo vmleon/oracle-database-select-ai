@@ -1,6 +1,8 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectAiService, QueryResponse } from '../select-ai.service';
+import { SelectAiService, QueryResponse, RunSqlResponse } from '../select-ai.service';
+
+type Mode = 'quick' | 'detailed';
 
 @Component({
   selector: 'app-query',
@@ -8,6 +10,15 @@ import { SelectAiService, QueryResponse } from '../select-ai.service';
   template: `
     <h2 class="page-title">Select AI — Natural Language to SQL</h2>
     <p class="subtitle">Ask questions about employees, departments, salaries, and job history.</p>
+
+    <div class="mode-toggle">
+      <button
+        [class.active]="mode() === 'quick'"
+        (click)="mode.set('quick')">Quick Query</button>
+      <button
+        [class.active]="mode() === 'detailed'"
+        (click)="mode.set('detailed')">Detailed</button>
+    </div>
 
     <div class="input-row">
       <textarea
@@ -27,35 +38,23 @@ import { SelectAiService, QueryResponse } from '../select-ai.service';
       }
     </div>
 
-    @if (response()) {
-      <section>
-        <h3>Generated SQL</h3>
-        <pre>{{ response()!.sqlQuery }}</pre>
-        <p class="timing">{{ response()!.sqlQueryTimeInMillis }}ms</p>
-      </section>
-
-      <section>
-        <h3>Narration</h3>
-        <p class="response-text">{{ response()!.narration }}</p>
-        <p class="timing">{{ response()!.narrationTimeInMillis }}ms</p>
-      </section>
-
-      @if (response()!.result.length > 0) {
+    @if (runsqlResponse()) {
+      @if (runsqlResponse()!.result.length > 0) {
         <section>
-          <h3>Results ({{ response()!.result.length }} rows)</h3>
+          <h3>Results ({{ runsqlResponse()!.result.length }} rows)</h3>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  @for (col of columns(); track col) {
+                  @for (col of runsqlColumns(); track col) {
                     <th>{{ col }}</th>
                   }
                 </tr>
               </thead>
               <tbody>
-                @for (row of response()!.result; track $index) {
+                @for (row of runsqlResponse()!.result; track $index) {
                   <tr>
-                    @for (col of columns(); track col) {
+                    @for (col of runsqlColumns(); track col) {
                       <td>{{ row[col] }}</td>
                     }
                   </tr>
@@ -63,7 +62,48 @@ import { SelectAiService, QueryResponse } from '../select-ai.service';
               </tbody>
             </table>
           </div>
-          <p class="timing">{{ response()!.resultTimeInMillis }}ms</p>
+          <p class="timing">{{ runsqlResponse()!.timeInMillis }}ms</p>
+        </section>
+      }
+    }
+
+    @if (queryResponse()) {
+      <section>
+        <h3>Generated SQL</h3>
+        <pre>{{ queryResponse()!.sqlQuery }}</pre>
+        <p class="timing">{{ queryResponse()!.sqlQueryTimeInMillis }}ms</p>
+      </section>
+
+      <section>
+        <h3>Narration</h3>
+        <p class="response-text">{{ queryResponse()!.narration }}</p>
+        <p class="timing">{{ queryResponse()!.narrationTimeInMillis }}ms</p>
+      </section>
+
+      @if (queryResponse()!.result.length > 0) {
+        <section>
+          <h3>Results ({{ queryResponse()!.result.length }} rows)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  @for (col of queryColumns(); track col) {
+                    <th>{{ col }}</th>
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of queryResponse()!.result; track $index) {
+                  <tr>
+                    @for (col of queryColumns(); track col) {
+                      <td>{{ row[col] }}</td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <p class="timing">{{ queryResponse()!.resultTimeInMillis }}ms</p>
         </section>
       }
     }
@@ -73,6 +113,16 @@ import { SelectAiService, QueryResponse } from '../select-ai.service';
     }
   `,
   styles: `
+    .mode-toggle {
+      display: flex; gap: 0; margin-bottom: 1rem;
+    }
+    .mode-toggle button {
+      background: #1a1a2e; border: 1px solid #333; color: #888;
+      padding: 0.4rem 1rem; font-size: 0.85rem;
+    }
+    .mode-toggle button:first-child { border-radius: 6px 0 0 6px; }
+    .mode-toggle button:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+    .mode-toggle button.active { background: #3a3a8a; color: #fff; border-color: #3a3a8a; }
     .examples { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
     .examples span { color: #666; font-size: 0.85rem; }
     .example-btn {
@@ -85,12 +135,19 @@ import { SelectAiService, QueryResponse } from '../select-ai.service';
 })
 export class QueryComponent {
   prompt = '';
+  mode = signal<Mode>('quick');
   loading = signal(false);
-  response = signal<QueryResponse | null>(null);
+  runsqlResponse = signal<RunSqlResponse | null>(null);
+  queryResponse = signal<QueryResponse | null>(null);
   error = signal('');
 
-  columns = computed(() => {
-    const res = this.response();
+  runsqlColumns = computed(() => {
+    const res = this.runsqlResponse();
+    return res && res.result.length > 0 ? Object.keys(res.result[0]) : [];
+  });
+
+  queryColumns = computed(() => {
+    const res = this.queryResponse();
     return res && res.result.length > 0 ? Object.keys(res.result[0]) : [];
   });
 
@@ -105,17 +162,31 @@ export class QueryComponent {
   submit() {
     this.loading.set(true);
     this.error.set('');
-    this.response.set(null);
+    this.runsqlResponse.set(null);
+    this.queryResponse.set(null);
 
-    this.selectAi.query(this.prompt).subscribe({
-      next: (res) => {
-        this.response.set(res);
-        this.loading.set(false);
-      },
-      error: (err) => {
-        this.error.set(err.error?.message || 'Request failed');
-        this.loading.set(false);
-      },
-    });
+    if (this.mode() === 'quick') {
+      this.selectAi.runsql(this.prompt).subscribe({
+        next: (res) => {
+          this.runsqlResponse.set(res);
+          this.loading.set(false);
+        },
+        error: (err) => {
+          this.error.set(err.error?.message || 'Request failed');
+          this.loading.set(false);
+        },
+      });
+    } else {
+      this.selectAi.query(this.prompt).subscribe({
+        next: (res) => {
+          this.queryResponse.set(res);
+          this.loading.set(false);
+        },
+        error: (err) => {
+          this.error.set(err.error?.message || 'Request failed');
+          this.loading.set(false);
+        },
+      });
+    }
   }
 }
