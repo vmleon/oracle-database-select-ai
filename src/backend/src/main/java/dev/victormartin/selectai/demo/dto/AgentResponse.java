@@ -1,0 +1,8 @@
+package dev.victormartin.selectai.demo.dto;
+
+public record AgentResponse(
+        String prompt,
+        String response,
+        long timeInMillis
+) {
+}

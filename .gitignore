@@ -1,0 +1,49 @@
+# Backend (Spring Boot / Gradle)
+src/backend/.gradle/
+src/backend/build/
+src/backend/bin/
+
+# Frontend (Angular)
+src/frontend/node_modules/
+src/frontend/dist/
+src/frontend/.angular/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+venv/
+.venv/
+
+# Env
+.env
+*.log
+
+# Terraform
+deploy/tf/app/.terraform/
+deploy/tf/app/terraform.tfvars
+deploy/tf/app/*.tfstate
+deploy/tf/app/*.tfstate.backup
+deploy/tf/app/tfplan
+deploy/tf/app/outputs.json
+deploy/tf/app/generated/
+
+# Ansible generated
+deploy/ansible/ops/base/files/conn/admin.sql
+deploy/ansible/ops/base/files/init/*.rendered.sql
+
+# Artifacts
+*.zip
+wallet/
+
+# Superpowers
+.superpowers/

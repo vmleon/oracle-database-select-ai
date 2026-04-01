@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@selectai_high?TNS_ADMIN=/path/to/wallet
+    username: ADMIN
+    password: "changeme"

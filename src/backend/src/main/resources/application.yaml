@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: backend
+  main:
+    banner-mode: "off"
+  datasource:
+    url: jdbc:oracle:thin:@SERVICE_NAME_high?TNS_ADMIN=/PATH/TO/WALLET
+    username: ADMIN
+    password: "PASSWORD"
+    driver-class-name: oracle.jdbc.OracleDriver
+    type: oracle.ucp.jdbc.PoolDataSourceImpl
+    oracleucp:
+      connection-factory-class-name: oracle.jdbc.pool.OracleDataSource
+      sql-for-validate-connection: SELECT 1 FROM dual
+      initial-pool-size: 2
+      min-pool-size: 2
+      max-pool-size: 10
+server:
+  port: 8080
+selectai:
+  profile:
+    query: GENAI_SELECT_AI
+    agents: GENAI_AGENTS
+    rag: GENAI_RAG

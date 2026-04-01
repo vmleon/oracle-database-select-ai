@@ -1,0 +1,20 @@
+output "deployment_name" {
+  value = "${local.project_name}${local.deploy_id}"
+}
+
+output "lb_public_ip" {
+  value = oci_core_public_ip.public_reserved_ip.ip_address
+}
+
+output "ops_public_ip" {
+  value = module.ops.private_ip
+}
+
+output "db_name" {
+  value = module.adbs.db_name
+}
+
+output "db_admin_password" {
+  value     = module.adbs.admin_password
+  sensitive = true
+}

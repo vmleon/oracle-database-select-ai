@@ -1,0 +1,116 @@
+---
+- name: Set SQLPATH in bashrc
+  ansible.builtin.lineinfile:
+    path: /home/opc/.bashrc
+    line: "export SQLPATH=$HOME"
+    state: present
+  become_user: opc
+
+- name: Install JDK 23 headless
+  ansible.builtin.package:
+    name: jdk-23-headless
+    update_cache: yes
+
+- name: Install sqlcl
+  ansible.builtin.package:
+    name: sqlcl
+    update_cache: yes
+
+- name: Copy login.sql file
+  ansible.builtin.copy:
+    src: ../files/login.sql
+    dest: /home/opc/login.sql
+    owner: opc
+    group: opc
+    mode: '0640'
+
+- name: Create conn directory
+  ansible.builtin.file:
+    path: /home/opc/conn
+    state: directory
+    owner: opc
+    group: opc
+    mode: '0744'
+
+- name: Copy conn/admin.sql template
+  ansible.builtin.template:
+    src: ../files/conn/admin.sql.j2
+    dest: /home/opc/conn/admin.sql
+    owner: opc
+    group: opc
+    mode: '0640'
+
+- name: Create init directory
+  ansible.builtin.file:
+    path: /home/opc/init
+    state: directory
+    owner: opc
+    group: opc
+    mode: '0744'
+
+- name: Copy init SQL files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /home/opc/init/
+    owner: opc
+    group: opc
+    mode: '0640'
+  with_fileglob:
+    - ../files/init/*.sql
+
+- name: Render Select AI profile SQL scripts
+  ansible.builtin.template:
+    src: ../files/init/create_profile_select_ai.sql.j2
+    dest: "/home/opc/init/create_profile_{{ item.name }}.sql"
+    owner: opc
+    group: opc
+    mode: '0640'
+  vars:
+    select_ai_profile_name: "{{ item.profile }}"
+    select_ai_extra_attrs: "{{ item.extra }}"
+  loop:
+    - { name: select_ai, profile: GENAI_SELECT_AI, extra: "" }
+    - { name: agents, profile: GENAI_AGENTS, extra: ',\n            "oci_agent": true' }
+    - { name: rag, profile: GENAI_RAG, extra: ',\n            "oci_rag": true' }
+
+- name: Create queries directory
+  ansible.builtin.file:
+    path: /home/opc/queries
+    state: directory
+    owner: opc
+    group: opc
+    mode: '0744'
+
+- name: Copy queries SQL files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /home/opc/queries/
+    owner: opc
+    group: opc
+    mode: '0640'
+  with_fileglob:
+    - ../files/queries/*.sql
+
+- name: Create ADMIN connection
+  ansible.builtin.command: "sql /nolog @/home/opc/conn/admin.sql"
+  become_user: opc
+
+- name: Grant Permissions
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/grant_permissions.sql"
+  become_user: opc
+
+- name: Add Network ACL
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/network_acl.sql"
+  become_user: opc
+
+- name: Enable Resource Principal
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/enable_resource_principal.sql"
+  become_user: opc
+
+- name: Create Select AI profiles
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/create_profile_{{ item }}.sql"
+  become_user: opc
+  loop:
+    - select_ai
+    - agents
+    - rag

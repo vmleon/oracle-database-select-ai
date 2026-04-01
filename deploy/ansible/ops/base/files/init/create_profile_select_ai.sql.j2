@@ -1,0 +1,33 @@
+{% set profile_name = select_ai_profile_name | default('GENAI_SELECT_AI') %}
+{% set extra_attrs = select_ai_extra_attrs | default('') %}
+BEGIN
+    DBMS_CLOUD_AI.drop_profile(
+        profile_name => '{{ profile_name }}',
+        force => true
+    );
+END;
+/
+
+BEGIN
+    DBMS_CLOUD_AI.create_profile(
+        profile_name => '{{ profile_name }}',
+        attributes   =>
+        '{
+            "provider": "oci",
+            "credential_name": "OCI$RESOURCE_PRINCIPAL",
+            "object_list": [
+                {"owner": "SH", "name": "customers"},
+                {"owner": "SH", "name": "countries"},
+                {"owner": "SH", "name": "supplementary_demographics"},
+                {"owner": "SH", "name": "profits"},
+                {"owner": "SH", "name": "promotions"},
+                {"owner": "SH", "name": "products"}
+            ],
+            "region": "{{ region_name }}",
+            "oci_compartment_id": "{{ oci_genai_compartment_id }}",
+            "oci_apiformat": "GENERIC"{{ extra_attrs }}
+        }');
+END;
+/
+
+EXIT;
