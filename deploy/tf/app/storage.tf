@@ -14,6 +14,8 @@ resource "oci_objectstorage_object" "rag_docs" {
   source    = "${path.module}/../../ansible/ops/base/files/rag-docs/${each.value}"
 }
 
+resource "time_static" "deploy_time" {}
+
 # --- Artifacts Bucket ---
 
 resource "oci_objectstorage_bucket" "artifacts_bucket" {
@@ -35,7 +37,7 @@ resource "oci_objectstorage_preauthrequest" "ansible_ops_artifact_par" {
   name         = "ansible_ops_artifact_par"
   access_type  = "ObjectRead"
   object_name  = oci_objectstorage_object.ansible_ops_artifact_object.object
-  time_expires = timeadd(timestamp(), "${var.artifacts_par_expiration_in_days * 24}h")
+  time_expires = timeadd(time_static.deploy_time.rfc3339, "${var.artifacts_par_expiration_in_days * 24}h")
 }
 
 resource "oci_objectstorage_object" "ansible_backend_artifact_object" {
@@ -51,7 +53,7 @@ resource "oci_objectstorage_preauthrequest" "ansible_backend_artifact_par" {
   name         = "ansible_backend_artifact_par"
   access_type  = "ObjectRead"
   object_name  = oci_objectstorage_object.ansible_backend_artifact_object.object
-  time_expires = timeadd(timestamp(), "${var.artifacts_par_expiration_in_days * 24}h")
+  time_expires = timeadd(time_static.deploy_time.rfc3339, "${var.artifacts_par_expiration_in_days * 24}h")
 }
 
 resource "oci_objectstorage_object" "backend_jar_artifact_object" {
@@ -67,7 +69,7 @@ resource "oci_objectstorage_preauthrequest" "backend_jar_artifact_par" {
   name         = "backend_jar_artifact_par"
   access_type  = "ObjectRead"
   object_name  = oci_objectstorage_object.backend_jar_artifact_object.object
-  time_expires = timeadd(timestamp(), "${var.artifacts_par_expiration_in_days * 24}h")
+  time_expires = timeadd(time_static.deploy_time.rfc3339, "${var.artifacts_par_expiration_in_days * 24}h")
 }
 
 resource "oci_objectstorage_object" "db_wallet_artifact_object" {
@@ -83,7 +85,7 @@ resource "oci_objectstorage_preauthrequest" "db_wallet_artifact_par" {
   name         = "db_wallet_artifact_par"
   access_type  = "ObjectRead"
   object_name  = oci_objectstorage_object.db_wallet_artifact_object.object
-  time_expires = timeadd(timestamp(), "${var.artifacts_par_expiration_in_days * 24}h")
+  time_expires = timeadd(time_static.deploy_time.rfc3339, "${var.artifacts_par_expiration_in_days * 24}h")
 }
 
 resource "oci_objectstorage_object" "ansible_web_artifact_object" {
@@ -99,7 +101,7 @@ resource "oci_objectstorage_preauthrequest" "ansible_web_artifact_par" {
   name         = "ansible_web_artifact_par"
   access_type  = "ObjectRead"
   object_name  = oci_objectstorage_object.ansible_web_artifact_object.object
-  time_expires = timeadd(timestamp(), "${var.artifacts_par_expiration_in_days * 24}h")
+  time_expires = timeadd(time_static.deploy_time.rfc3339, "${var.artifacts_par_expiration_in_days * 24}h")
 }
 
 resource "oci_objectstorage_object" "web_artifact_object" {
@@ -115,5 +117,5 @@ resource "oci_objectstorage_preauthrequest" "web_artifact_par" {
   name         = "web_artifact_par"
   access_type  = "ObjectRead"
   object_name  = oci_objectstorage_object.web_artifact_object.object
-  time_expires = timeadd(timestamp(), "${var.artifacts_par_expiration_in_days * 24}h")
+  time_expires = timeadd(time_static.deploy_time.rfc3339, "${var.artifacts_par_expiration_in_days * 24}h")
 }
