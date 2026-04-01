@@ -1,0 +1,53 @@
+{% set profile_name = select_ai_profile_name | default('GENAI_SELECT_AI') %}
+-- Drop existing team/task/agent/tool (ignore errors if they don't exist)
+BEGIN DBMS_CLOUD_AI_AGENT.DROP_TEAM(team_name => 'SH_ANALYST_TEAM', force => true); EXCEPTION WHEN OTHERS THEN NULL; END;
+/
+BEGIN DBMS_CLOUD_AI_AGENT.DROP_TASK(task_name => 'ANALYZE_SH_TASK', force => true); EXCEPTION WHEN OTHERS THEN NULL; END;
+/
+BEGIN DBMS_CLOUD_AI_AGENT.DROP_AGENT(agent_name => 'SH_ANALYST', force => true); EXCEPTION WHEN OTHERS THEN NULL; END;
+/
+BEGIN DBMS_CLOUD_AI_AGENT.DROP_TOOL(tool_name => 'SH_SQL_TOOL', force => true); EXCEPTION WHEN OTHERS THEN NULL; END;
+/
+
+-- 1. Create NL2SQL tool pointing at the Select AI profile
+BEGIN
+    DBMS_CLOUD_AI_AGENT.CREATE_TOOL(
+        tool_name  => 'SH_SQL_TOOL',
+        attributes => '{"tool_type": "SQL",
+                        "tool_params": {"profile_name": "{{ profile_name }}"}}'
+    );
+END;
+/
+
+-- 2. Create agent with LLM profile and role
+BEGIN
+    DBMS_CLOUD_AI_AGENT.CREATE_AGENT(
+        agent_name => 'SH_ANALYST',
+        attributes => '{"profile_name": "{{ profile_name }}",
+                        "role": "You are a data analyst who answers questions about sales history data. The database contains customers, countries, demographics, profits, promotions, and products tables in the SH schema."}'
+    );
+END;
+/
+
+-- 3. Create task that uses the SQL tool
+BEGIN
+    DBMS_CLOUD_AI_AGENT.CREATE_TASK(
+        task_name  => 'ANALYZE_SH_TASK',
+        attributes => '{"instruction": "Answer the user question about sales data: {query}. Use the SQL tool to query the database.",
+                        "tools": ["SH_SQL_TOOL"],
+                        "enable_human_tool": "false"}'
+    );
+END;
+/
+
+-- 4. Create team binding agent to task
+BEGIN
+    DBMS_CLOUD_AI_AGENT.CREATE_TEAM(
+        team_name  => 'SH_ANALYST_TEAM',
+        attributes => '{"agents": [{"name": "SH_ANALYST", "task": "ANALYZE_SH_TASK"}],
+                        "process": "sequential"}'
+    );
+END;
+/
+
+EXIT;

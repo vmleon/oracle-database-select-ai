@@ -27,8 +27,8 @@ public class SelectAIController {
     @Value("${selectai.profile.query}")
     private String queryProfile;
 
-    @Value("${selectai.profile.agents}")
-    private String agentsProfile;
+    @Value("${selectai.agents.team}")
+    private String agentsTeam;
 
     @Value("${selectai.profile.rag}")
     private String ragProfile;
@@ -79,11 +79,11 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         log.info("Select AI agent: {}", prompt);
 
-        setProfile(agentsProfile);
+        setTeam(agentsTeam);
 
         long t0 = System.currentTimeMillis();
         String response = jdbcTemplate.queryForObject(
-                String.format("SELECT AI %s", prompt), String.class);
+                String.format("SELECT AI AGENT %s", prompt), String.class);
         long elapsed = System.currentTimeMillis() - t0;
 
         return new AgentResponse(request.prompt(), response, elapsed);
@@ -108,6 +108,12 @@ public class SelectAIController {
         jdbcTemplate.execute(String.format(
                 "BEGIN dbms_cloud_ai.set_profile(profile_name => '%s'); END;",
                 profileName));
+    }
+
+    private void setTeam(String teamName) {
+        jdbcTemplate.execute(String.format(
+                "BEGIN dbms_cloud_ai_agent.set_team(team_name => '%s'); END;",
+                teamName));
     }
 
     private String validatePrompt(String prompt) {

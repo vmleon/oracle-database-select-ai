@@ -7,17 +7,26 @@ import { SelectAiService, AgentResponse } from '../select-ai.service';
   imports: [FormsModule],
   template: `
     <h2 class="page-title">Select AI Agents</h2>
-    <p class="subtitle">Let the database agent autonomously reason and execute multi-step operations.</p>
+    <p class="subtitle">AI agent with NL2SQL tool — autonomously reasons and queries the SH schema.</p>
 
     <div class="input-row">
       <textarea
         [(ngModel)]="prompt"
         rows="3"
-        placeholder="e.g. Analyze the sales trends for the last quarter and summarize key findings"
+        placeholder="e.g. What are the top 5 products by total revenue?"
       ></textarea>
       <button (click)="submit()" [disabled]="!prompt.trim() || loading()">
         {{ loading() ? 'Processing...' : 'Send' }}
       </button>
+    </div>
+
+    <div class="examples">
+      <p>Try:</p>
+      <ul>
+        <li><a (click)="setPrompt('What are the top 5 customers by total amount sold?')">Top 5 customers by total amount sold</a></li>
+        <li><a (click)="setPrompt('Compare profits across product categories')">Compare profits across product categories</a></li>
+        <li><a (click)="setPrompt('Which countries have the most customers?')">Which countries have the most customers?</a></li>
+      </ul>
     </div>
 
     @if (response()) {
@@ -56,5 +65,9 @@ export class AgentsComponent {
         this.loading.set(false);
       },
     });
+  }
+
+  setPrompt(text: string) {
+    this.prompt = text;
   }
 }
