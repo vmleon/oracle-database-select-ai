@@ -19,7 +19,9 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation('org.springframework.boot:spring-boot-starter-jdbc') {
+		exclude group: 'com.zaxxer', module: 'HikariCP'
+	}
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'com.oracle.database.spring:oracle-spring-boot-starter-ucp:26.0.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
