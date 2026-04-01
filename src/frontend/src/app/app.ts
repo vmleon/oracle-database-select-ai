@@ -9,6 +9,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
       <h1>Oracle Select AI Demo</h1>
       <nav>
         <a routerLink="/query" routerLinkActive="active">Select AI</a>
+        <a routerLink="/chat" routerLinkActive="active">Chat</a>
         <a routerLink="/agents" routerLinkActive="active">Agents</a>
         <a routerLink="/rag" routerLinkActive="active">RAG</a>
       </nav>

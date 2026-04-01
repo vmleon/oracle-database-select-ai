@@ -111,6 +111,21 @@ public class SelectAIController {
         return new AgentResponse(request.prompt(), response, elapsed);
     }
 
+    @PostMapping("/chat")
+    public ChatResponse chat(@RequestBody ChatRequest request) {
+        String prompt = validatePrompt(request.prompt());
+        log.info("Select AI chat: {}", prompt);
+
+        setProfile(queryProfile);
+
+        long t0 = System.currentTimeMillis();
+        String response = jdbcTemplate.queryForObject(
+                String.format("SELECT AI chat %s", prompt), String.class);
+        long elapsed = System.currentTimeMillis() - t0;
+
+        return new ChatResponse(request.prompt(), response, elapsed);
+    }
+
     @PostMapping("/rag")
     public RagResponse rag(@RequestBody RagRequest request) {
         String prompt = validatePrompt(request.prompt());

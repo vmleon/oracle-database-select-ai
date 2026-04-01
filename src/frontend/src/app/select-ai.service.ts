@@ -29,6 +29,12 @@ export interface RagResponse {
   timeInMillis: number;
 }
 
+export interface ChatResponse {
+  prompt: string;
+  response: string;
+  timeInMillis: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SelectAiService {
   constructor(private http: HttpClient) {}
@@ -47,5 +53,9 @@ export class SelectAiService {
 
   rag(prompt: string) {
     return this.http.post<RagResponse>('/api/v1/selectai/rag', { prompt });
+  }
+
+  chat(prompt: string) {
+    return this.http.post<ChatResponse>('/api/v1/selectai/chat', { prompt });
   }
 }

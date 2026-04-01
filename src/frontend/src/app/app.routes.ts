@@ -7,6 +7,10 @@ export const routes: Routes = [
     loadComponent: () => import('./query/query.component').then((m) => m.QueryComponent),
   },
   {
+    path: 'chat',
+    loadComponent: () => import('./chat/chat.component').then((m) => m.ChatComponent),
+  },
+  {
     path: 'agents',
     loadComponent: () => import('./agents/agents.component').then((m) => m.AgentsComponent),
   },
