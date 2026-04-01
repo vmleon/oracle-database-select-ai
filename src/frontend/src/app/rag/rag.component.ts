@@ -7,13 +7,13 @@ import { SelectAiService, RagResponse } from '../select-ai.service';
   imports: [FormsModule],
   template: `
     <h2 class="page-title">Select AI RAG</h2>
-    <p class="subtitle">Combine database knowledge with document retrieval for richer answers.</p>
+    <p class="subtitle">Ask questions about company policies and HR documents.</p>
 
     <div class="input-row">
       <textarea
         [(ngModel)]="prompt"
         rows="3"
-        placeholder="e.g. What are our return policies for hardware products?"
+        placeholder="e.g. How many vacation days do new employees get?"
       ></textarea>
       <button (click)="submit()" [disabled]="!prompt.trim() || loading()">
         {{ loading() ? 'Searching...' : 'Ask' }}
@@ -26,13 +26,6 @@ import { SelectAiService, RagResponse } from '../select-ai.service';
         <div class="response-text">{{ response()!.answer }}</div>
         <p class="timing">{{ response()!.timeInMillis }}ms</p>
       </section>
-
-      @if (response()!.context) {
-        <section>
-          <h3>Retrieved Context</h3>
-          <pre>{{ response()!.context }}</pre>
-        </section>
-      }
     }
 
     @if (error()) {

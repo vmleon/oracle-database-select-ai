@@ -20,6 +20,9 @@ locals {
     oci_genai_model_name      = var.oci_genai_model_name
     oci_genai_compartment_id  = var.oci_genai_compartment_id
 
+    rag_bucket_name       = var.rag_bucket_name
+    rag_bucket_namespace  = var.rag_bucket_namespace
+
     ansible_ops_par_full_path  = var.ansible_ops_artifact_par_full_path
   })
 }

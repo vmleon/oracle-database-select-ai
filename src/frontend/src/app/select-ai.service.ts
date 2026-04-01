@@ -21,7 +21,6 @@ export interface RagResponse {
   prompt: string;
   answer: string;
   timeInMillis: number;
-  context: string | null;
 }
 
 @Injectable({ providedIn: 'root' })

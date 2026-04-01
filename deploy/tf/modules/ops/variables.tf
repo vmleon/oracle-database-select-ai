@@ -87,3 +87,11 @@ variable "oci_genai_model_name" {
 variable "oci_genai_compartment_id" {
   type = string
 }
+
+variable "rag_bucket_name" {
+  type = string
+}
+
+variable "rag_bucket_namespace" {
+  type = string
+}

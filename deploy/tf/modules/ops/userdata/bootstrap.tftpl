@@ -47,7 +47,10 @@ cat <<EOT >> /home/opc/ansible_params.json
   "oci_genai_model_name": "${oci_genai_model_name}",
   "oci_genai_compartment_id": "${oci_genai_compartment_id}",
 
-  "region_name": "${region_name}"
+  "region_name": "${region_name}",
+
+  "rag_bucket_name": "${rag_bucket_name}",
+  "rag_bucket_namespace": "${rag_bucket_namespace}"
 }
 EOT
 chown opc:opc /home/opc/ansible_params.json

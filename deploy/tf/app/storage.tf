@@ -1,3 +1,21 @@
+# --- RAG Documents Bucket ---
+
+resource "oci_objectstorage_bucket" "rag_bucket" {
+  compartment_id = var.compartment_ocid
+  name           = "rag_docs_${local.project_name}${local.deploy_id}"
+  namespace      = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+}
+
+resource "oci_objectstorage_object" "rag_docs" {
+  for_each  = fileset("${path.module}/../../ansible/ops/base/files/rag-docs", "*.txt")
+  bucket    = oci_objectstorage_bucket.rag_bucket.name
+  namespace = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+  object    = each.value
+  source    = "${path.module}/../../ansible/ops/base/files/rag-docs/${each.value}"
+}
+
+# --- Artifacts Bucket ---
+
 resource "oci_objectstorage_bucket" "artifacts_bucket" {
   compartment_id = var.compartment_ocid
   name           = "artifacts_${local.project_name}${local.deploy_id}"

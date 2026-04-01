@@ -1,0 +1,25 @@
+BEGIN
+    DBMS_CLOUD_AI.DROP_VECTOR_INDEX(
+        index_name => 'HR_POLICY_INDEX',
+        force => true
+    );
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -20000 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    DBMS_CLOUD_AI.CREATE_VECTOR_INDEX(
+        index_name  => 'HR_POLICY_INDEX',
+        attributes  => '{"vector_db_provider": "oracle",
+                         "location":           "https://objectstorage.{{ region_name }}.oraclecloud.com/n/{{ rag_bucket_namespace }}/b/{{ rag_bucket_name }}/o/",
+                         "object_storage_credential_name": "OCI$RESOURCE_PRINCIPAL",
+                         "profile_name":       "GENAI_RAG",
+                         "chunk_size":         1500,
+                         "chunk_overlap":      300}'
+    );
+END;
+/
+
+EXIT;

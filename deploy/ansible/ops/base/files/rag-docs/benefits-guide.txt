@@ -1,0 +1,71 @@
+EMPLOYEE BENEFITS GUIDE
+Acme Corporation
+
+HEALTH INSURANCE
+
+Acme Corporation offers three health insurance plans through BlueCross BlueShield:
+
+1. Basic Plan: $75/month employee-only, $200/month family
+   - $1,500 individual deductible, $3,000 family deductible
+   - 80/20 coinsurance after deductible
+   - $5,000 out-of-pocket maximum
+
+2. Standard Plan: $150/month employee-only, $400/month family
+   - $750 individual deductible, $1,500 family deductible
+   - 90/10 coinsurance after deductible
+   - $3,000 out-of-pocket maximum
+
+3. Premium Plan: $250/month employee-only, $600/month family
+   - $250 individual deductible, $500 family deductible
+   - 100% covered after deductible
+   - $1,000 out-of-pocket maximum
+
+All plans include preventive care at no cost, prescription drug coverage, and mental health services. Acme Corporation covers 70% of premium costs for all plans.
+
+DENTAL INSURANCE
+
+Dental coverage is provided through Delta Dental at $25/month for individual coverage and $65/month for family coverage. Coverage includes two preventive cleanings per year at no cost, basic procedures at 80% coverage, and major procedures at 50% coverage. Annual maximum benefit is $2,000 per person.
+
+VISION INSURANCE
+
+Vision coverage is provided through VSP at $10/month for individual and $25/month for family. Benefits include an annual eye exam with a $10 copay, $150 allowance for frames every 24 months, and contact lens coverage up to $130 per year.
+
+401(K) RETIREMENT PLAN
+
+Acme Corporation offers a 401(k) retirement plan through Fidelity Investments. Key features:
+- Employee contributions up to IRS annual limits
+- Company match: 100% of the first 4% of salary contributed, plus 50% of the next 2%
+- Maximum employer match: 5% of salary
+- Immediate vesting on employee contributions
+- Employer match vests over 3 years: 33% after year 1, 66% after year 2, 100% after year 3
+- Both traditional (pre-tax) and Roth (post-tax) options available
+
+LIFE INSURANCE
+
+Acme Corporation provides basic life insurance at 2x annual salary at no cost to the employee, up to a maximum of $500,000. Supplemental life insurance is available for purchase at group rates up to 5x salary.
+
+DISABILITY INSURANCE
+
+Short-term disability: 60% of base salary for up to 26 weeks, with a 7-day waiting period. Provided at no cost.
+Long-term disability: 60% of base salary after 26 weeks of disability, continuing until age 65. Employee cost is $15/month.
+
+WELLNESS PROGRAMS
+
+Acme Corporation offers a comprehensive wellness program including:
+- $500 annual wellness reimbursement for gym memberships, fitness classes, or wellness apps
+- Free annual health screenings and flu shots
+- Employee Assistance Program (EAP) with 8 free counseling sessions per year
+- Monthly wellness challenges with prizes
+- Ergonomic workstation assessments
+
+EDUCATION BENEFITS
+
+Tuition reimbursement up to $5,250 per year for job-related courses and degree programs. Employees must maintain a grade of B or above and remain employed for 12 months after reimbursement, or repay the benefit.
+
+COMMUTER BENEFITS
+
+Pre-tax commuter benefits up to $300/month for transit passes and $300/month for qualified parking expenses.
+
+ENROLLMENT
+
+Benefits enrollment occurs annually during Open Enrollment (November 1-15). New hires have 30 days from their start date to enroll. Life events (marriage, birth, adoption) allow a 30-day special enrollment period.

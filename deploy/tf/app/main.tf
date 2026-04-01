@@ -78,6 +78,9 @@ module "ops" {
   db_wallet_par_full_path = oci_objectstorage_preauthrequest.db_wallet_artifact_par.full_path
 
   ansible_ops_artifact_par_full_path = oci_objectstorage_preauthrequest.ansible_ops_artifact_par.full_path
+
+  rag_bucket_name          = oci_objectstorage_bucket.rag_bucket.name
+  rag_bucket_namespace     = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
 }
 
 resource "local_file" "adb_wallet_file" {

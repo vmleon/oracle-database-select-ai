@@ -1,0 +1,82 @@
+NEW EMPLOYEE ONBOARDING CHECKLIST
+Acme Corporation
+
+BEFORE YOUR FIRST DAY
+
+Your manager and HR will coordinate the following before you arrive:
+- Laptop and equipment ordered and configured
+- Email account and system access provisioned
+- Building access badge prepared
+- Desk or workspace assigned
+- Welcome kit assembled (company swag, office supplies, org chart)
+
+DAY 1 - WELCOME AND ORIENTATION
+
+Morning:
+- Check in at the front desk; collect your badge and welcome kit
+- Meet your manager for a welcome coffee
+- Tour of the office: restrooms, kitchen, meeting rooms, emergency exits
+- IT setup session: laptop configuration, email, Slack, VPN, and password setup
+- Review and sign employment documents with HR
+
+Afternoon:
+- Company overview presentation by HR (mission, values, org structure)
+- Benefits enrollment walkthrough
+- Set up direct deposit and tax forms
+- Meet your onboarding buddy (assigned peer mentor for your first 90 days)
+- Lunch with your immediate team
+
+WEEK 1 - GETTING STARTED
+
+Required training (complete by end of week 1):
+- Information Security Awareness training (online, 45 minutes)
+- Anti-Harassment and Inclusion training (online, 60 minutes)
+- Data Privacy and GDPR compliance (online, 30 minutes)
+- Code of Conduct acknowledgment
+- Emergency procedures and safety training (15 minutes)
+
+Key meetings:
+- 1:1 with your manager to discuss role expectations, 30-60-90 day goals
+- Team standup or weekly meeting
+- Introduction meetings with key cross-functional partners
+- Schedule recurring 1:1s with your manager (weekly recommended)
+
+Systems and tools to set up:
+- Slack: join your team channel and #general, #random, #announcements
+- HR portal: review your profile, emergency contacts, benefits selections
+- Concur: set up your travel and expense profile
+- JIRA/project management tool: get access to relevant boards
+- GitHub/source control: set up SSH keys and repository access
+
+WEEKS 2-4 - RAMPING UP
+
+- Complete any role-specific technical training
+- Shadow team members on key workflows and processes
+- Begin contributing to projects with guidance from your buddy or manager
+- Attend department all-hands meeting
+- Complete your benefits enrollment (deadline: 30 days from start date)
+- Review company intranet and knowledge base resources
+
+DAYS 30-60 - BUILDING MOMENTUM
+
+- 30-day check-in with manager: review initial goals, address questions
+- Take ownership of at least one small project or task
+- Provide feedback on the onboarding experience to HR
+- Connect with colleagues outside your immediate team
+- Begin attending optional brown bag lunches and learning sessions
+
+DAYS 60-90 - FULL INTEGRATION
+
+- 60-day check-in with manager: assess progress, adjust goals if needed
+- Contribute independently to team projects
+- 90-day formal review with manager: performance discussion and goal setting for the next quarter
+- Onboarding buddy relationship formally concludes (informal mentoring may continue)
+- Complete the onboarding satisfaction survey
+
+KEY CONTACTS
+
+- HR Business Partner: hr@acmecorp.com
+- IT Help Desk: helpdesk@acmecorp.com or extension 4357
+- Facilities: facilities@acmecorp.com
+- Your onboarding buddy: assigned on Day 1
+- Employee Assistance Program (EAP): 1-800-555-0199 (24/7)

@@ -70,7 +70,7 @@
     select_ai_extra_attrs: "{{ item.extra }}"
   loop:
     - { name: select_ai, profile: GENAI_SELECT_AI, extra: "" }
-    - { name: rag, profile: GENAI_RAG, extra: ',\n            "oci_rag": true' }
+    - { name: rag, profile: GENAI_RAG, extra: ',\n            "vector_index_name": "HR_POLICY_INDEX"' }
 
 - name: Create queries directory
   ansible.builtin.file:
@@ -112,6 +112,18 @@
   loop:
     - select_ai
     - rag
+
+- name: Render vector index creation SQL script
+  ansible.builtin.template:
+    src: ../files/init/create_vector_index.sql.j2
+    dest: /home/opc/init/create_vector_index.sql
+    owner: opc
+    group: opc
+    mode: '0640'
+
+- name: Create Vector Index for RAG
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/create_vector_index.sql"
+  become_user: opc
 
 - name: Render agent creation SQL script
   ansible.builtin.template:

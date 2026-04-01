@@ -101,7 +101,7 @@ public class SelectAIController {
                 String.format("SELECT AI narrate %s", prompt), String.class);
         long elapsed = System.currentTimeMillis() - t0;
 
-        return new RagResponse(request.prompt(), answer, elapsed, null);
+        return new RagResponse(request.prompt(), answer, elapsed);
     }
 
     private void setProfile(String profileName) {

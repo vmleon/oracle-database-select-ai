@@ -34,3 +34,16 @@ resource "oci_identity_policy" "dg_allow_more_genai_in_compartment_policy" {
 
   depends_on = [oci_identity_dynamic_group.autonomous_dynamic_group, module.adbs]
 }
+
+resource "oci_identity_policy" "dg_allow_objectstorage_policy" {
+  provider       = oci.home
+  compartment_id = var.tenancy_ocid
+  name           = "dg_objectstorage_${local.project_name}${local.deploy_id}"
+  description    = "Allow ADB to read Object Storage for RAG documents in ${local.project_name} ${local.deploy_id}"
+  statements = [
+    "Allow dynamic-group ${local.dynamic_group_name} to read objects in compartment id ${var.compartment_ocid}",
+    "Allow dynamic-group ${local.dynamic_group_name} to read buckets in compartment id ${var.compartment_ocid}"
+  ]
+
+  depends_on = [oci_identity_dynamic_group.autonomous_dynamic_group]
+}
