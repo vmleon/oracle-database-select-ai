@@ -1,4 +1,4 @@
 package dev.victormartin.selectai.demo.dto;
 
-public record AgentRequest(String prompt) {
+public record AgentRequest(String prompt, String conversationId) {
 }
