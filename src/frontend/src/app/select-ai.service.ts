@@ -14,6 +14,7 @@ export interface QueryResponse {
 export interface AgentResponse {
   prompt: string;
   response: string;
+  conversationId: string;
   timeInMillis: number;
 }
 
@@ -53,8 +54,8 @@ export class SelectAiService {
     return this.http.post<RunSqlResponse>('/api/v1/selectai/runsql', { prompt });
   }
 
-  agents(prompt: string) {
-    return this.http.post<AgentResponse>('/api/v1/selectai/agents', { prompt });
+  agents(prompt: string, conversationId?: string) {
+    return this.http.post<AgentResponse>('/api/v1/selectai/agents', { prompt, conversationId });
   }
 
   rag(prompt: string) {
