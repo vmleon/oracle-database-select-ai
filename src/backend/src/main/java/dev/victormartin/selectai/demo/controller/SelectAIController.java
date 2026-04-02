@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -99,16 +100,21 @@ public class SelectAIController {
     @PostMapping("/agents")
     public AgentResponse agents(@RequestBody AgentRequest request) {
         String prompt = validatePrompt(request.prompt());
-        log.info("Select AI agent: {}", prompt);
+        String conversationId = request.conversationId() != null
+                ? request.conversationId()
+                : UUID.randomUUID().toString();
+        log.info("Select AI agent: {} (conversation: {})", prompt, conversationId);
 
-        setTeam(agentsTeam);
+        String paramsJson = String.format("{\"conversation_id\": \"%s\"}", conversationId);
 
         long t0 = System.currentTimeMillis();
         String response = jdbcTemplate.queryForObject(
-                String.format("SELECT AI AGENT %s", prompt), String.class);
+                "SELECT DBMS_CLOUD_AI_AGENT.RUN_TEAM(?, ?, ?) FROM DUAL",
+                String.class,
+                agentsTeam, prompt, paramsJson);
         long elapsed = System.currentTimeMillis() - t0;
 
-        return new AgentResponse(request.prompt(), response, elapsed);
+        return new AgentResponse(request.prompt(), response, conversationId, elapsed);
     }
 
     @PostMapping("/chat")
@@ -160,12 +166,6 @@ public class SelectAIController {
         jdbcTemplate.execute(String.format(
                 "BEGIN dbms_cloud_ai.set_profile(profile_name => '%s'); END;",
                 profileName));
-    }
-
-    private void setTeam(String teamName) {
-        jdbcTemplate.execute(String.format(
-                "BEGIN dbms_cloud_ai_agent.set_team(team_name => '%s'); END;",
-                teamName));
     }
 
     private String validatePrompt(String prompt) {
