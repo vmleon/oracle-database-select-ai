@@ -415,11 +415,13 @@ def ansible():
 
     console.print("1. SSH to ops instance:")
     console.print(f"   {ssh_cmd}\n")
-    console.print("2. Run ops playbook (database setup):")
+    console.print("2. Wait for cloud-init to finish:")
+    console.print("   sudo cloud-init status --wait\n")
+    console.print("3. Run ops playbook (database setup):")
     console.print("   ansible-playbook -i inventory ops/server.yaml\n")
-    console.print("3. Run backend playbook:")
+    console.print("4. Run backend playbook:")
     console.print("   ansible-playbook -i inventory backend/server.yaml\n")
-    console.print("4. Run web playbook:")
+    console.print("5. Run web playbook:")
     console.print("   ansible-playbook -i inventory web/server.yaml\n")
 
 
