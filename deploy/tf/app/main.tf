@@ -11,8 +11,8 @@ module "adbs" {
   project_name     = local.project_name
   deploy_id        = local.deploy_id
   compartment_ocid = var.compartment_ocid
-  ecpu_count       = var.ecpu_count
-  storage_in_tbs   = var.storage_in_tbs
+  autonomous_database_compute_count              = var.ecpu_count
+  autonomous_database_data_storage_size_in_tbs   = var.storage_in_tbs
 }
 
 module "backend" {
