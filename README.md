@@ -17,23 +17,36 @@ Demo project showcasing three Oracle Database 26ai Select AI capabilities on Aut
 
 ## Quick Start
 
+1. Install Python dependencies
+
 ```bash
-# 1. Install Python dependencies
 pip install -r requirements.txt
+```
 
-# 2. Interactive OCI setup (creates .env)
+2. Interactive OCI setup (creates .env)
+
+```bash
 python manage.py setup
+```
 
-# 3. Generate Terraform variables
+3. Generate Terraform variables
+
+```bash
 python manage.py tf
+```
 
-# 4. Deploy infrastructure
+4. Deploy infrastructure
+
+```bash
 cd deploy/tf/app
 terraform init
 terraform plan -out=tfplan
 terraform apply tfplan
+```
 
-# 5. After deployment, get Ansible commands
+5. After deployment, get Ansible commands
+
+```bash
 cd ../../..
 python manage.py ansible
 ```
@@ -57,12 +70,16 @@ python manage.py ansible
 
 ## Local Development
 
+Backend:
+
 ```bash
-# Backend
 cd src/backend
 ./gradlew bootRun --args='--spring.profiles.active=local'
+```
 
-# Frontend (proxies /api to localhost:8080)
+Frontend (proxies /api to localhost:8080):
+
+```bash
 cd src/frontend
 npm install
 npm start

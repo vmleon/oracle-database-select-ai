@@ -9,6 +9,7 @@ from pathlib import Path
 
 import click
 from dotenv import load_dotenv, set_key
+from InquirerPy import inquirer
 from jinja2 import Template
 from rich.console import Console
 from rich.panel import Panel
@@ -104,7 +105,8 @@ def _list_compartments(oci_config):
             }
         ]
 
-        response = identity_client.list_compartments(
+        response = oci.pagination.list_call_get_all_results(
+            identity_client.list_compartments,
             compartment_id=tenancy_id,
             compartment_id_in_subtree=True,
             access_level="ACCESSIBLE",
@@ -138,11 +140,11 @@ def setup():
 
     profiles, oci_config_parser = _read_oci_config()
 
-    profile = click.prompt(
-        "OCI profile",
-        type=click.Choice(profiles, case_sensitive=False),
+    profile = inquirer.select(
+        message="OCI profile:",
+        choices=profiles,
         default=profiles[0] if profiles else None,
-    )
+    ).execute()
 
     profile_config = oci_config_parser[profile]
     tenancy_ocid = profile_config.get("tenancy")
@@ -169,11 +171,11 @@ def setup():
             label = f"{reg['name']} (home)" if reg["is_home"] else reg["name"]
             region_choices.append(label)
 
-        selected = click.prompt(
-            "Region",
-            type=click.Choice(region_choices, case_sensitive=False),
+        selected = inquirer.select(
+            message="Region:",
+            choices=region_choices,
             default=region_choices[0],
-        )
+        ).execute()
         region = selected.replace(" (home)", "")
     else:
         region = click.prompt("Region", default=config_region)
@@ -188,11 +190,11 @@ def setup():
         comp_choices = [c["name"] for c in compartments]
         comp_map = {c["name"]: c["id"] for c in compartments}
 
-        selected_comp = click.prompt(
-            "Compartment",
-            type=click.Choice(comp_choices, case_sensitive=False),
-            default=comp_choices[0],
-        )
+        selected_comp = inquirer.fuzzy(
+            message="Compartment (type to search):",
+            choices=comp_choices,
+            default=None,
+        ).execute()
         compartment_ocid = comp_map[selected_comp]
     else:
         compartment_ocid = click.prompt("Compartment OCID")
