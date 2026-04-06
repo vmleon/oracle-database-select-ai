@@ -374,29 +374,47 @@ def ansible():
 
     console.print("[bold]Ansible Provisioning Commands[/bold]\n")
 
+    # Get ops_public_ip from terraform output
+    import subprocess
+
+    ops_ip = None
+    lb_ip = None
+    try:
+        result = subprocess.run(
+            ["terraform", "output", "-raw", "ops_public_ip"],
+            cwd=TF_DIR, capture_output=True, text=True,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            ops_ip = result.stdout.strip()
+
+        result = subprocess.run(
+            ["terraform", "output", "-raw", "lb_public_ip"],
+            cwd=TF_DIR, capture_output=True, text=True,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            lb_ip = result.stdout.strip()
+    except FileNotFoundError:
+        pass
+
+    if not ops_ip:
+        console.print("[red]Error:[/red] Could not read ops_public_ip from terraform output.")
+        console.print("Make sure terraform has been applied: cd deploy/tf/app && terraform apply")
+        sys.exit(1)
+
+    ssh_private_key = os.getenv("SSH_PRIVATE_KEY_PATH", "")
+
+    console.print(f"  Load Balancer: [bold]{lb_ip or 'N/A'}[/bold]")
+    console.print(f"  Ops instance:  [bold]{ops_ip}[/bold]\n")
+
     console.print(
         "Cloud-init handles automated provisioning on instance creation.\n"
         "Use these commands for manual re-runs or troubleshooting:\n"
     )
 
-    # Check for terraform outputs
-    outputs_file = TF_DIR / "outputs.json"
-    if outputs_file.exists():
-        import json
-
-        outputs = json.loads(outputs_file.read_text())
-        lb_ip = outputs.get("lb_public_ip", {}).get("value", "<LB_IP>")
-        ops_ip = outputs.get("ops_public_ip", {}).get("value", "<OPS_IP>")
-
-        console.print(f"  Load Balancer: [bold]{lb_ip}[/bold]")
-        console.print(f"  Ops instance:  [bold]{ops_ip}[/bold]\n")
-    else:
-        console.print(
-            "  [yellow]Tip:[/yellow] Run 'cd deploy/tf/app && terraform output -json > outputs.json'\n"
-        )
+    ssh_cmd = f"ssh -i {ssh_private_key} opc@{ops_ip}" if ssh_private_key else f"ssh opc@{ops_ip}"
 
     console.print("1. SSH to ops instance:")
-    console.print("   ssh opc@<OPS_PUBLIC_IP>\n")
+    console.print(f"   {ssh_cmd}\n")
     console.print("2. Run ops playbook (database setup):")
     console.print("   ansible-playbook -i inventory ops/server.yaml\n")
     console.print("3. Run backend playbook:")
