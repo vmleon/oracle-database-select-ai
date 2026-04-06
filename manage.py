@@ -200,15 +200,50 @@ def setup():
         compartment_ocid = click.prompt("Compartment OCID")
 
     # SSH key
-    default_ssh = str(Path.home() / ".ssh" / "id_rsa")
-    ssh_private_key_path = click.prompt(
-        "SSH private key path", default=default_ssh
-    )
+    ssh_dir = Path.home() / ".ssh"
+    ssh_keys = sorted(
+        f.name
+        for f in ssh_dir.iterdir()
+        if f.is_file() and not f.suffix and (f.with_suffix(".pub")).exists()
+    ) if ssh_dir.is_dir() else []
+
+    if ssh_keys:
+        ssh_private_key_path = str(ssh_dir / inquirer.fuzzy(
+            message="SSH private key:",
+            choices=ssh_keys,
+        ).execute())
+    else:
+        ssh_private_key_path = click.prompt("SSH private key path")
     ssh_public_key_path = ssh_private_key_path + ".pub"
     if Path(ssh_public_key_path).exists():
         ssh_public_key = Path(ssh_public_key_path).read_text().strip()
     else:
         ssh_public_key = click.prompt("SSH public key (paste content)")
+
+    # Read API key content
+    key_file_path = Path(key_file).expanduser()
+    if key_file_path.exists():
+        private_api_key_content = key_file_path.read_text().strip()
+    else:
+        console.print(f"[yellow]Warning:[/yellow] Key file not found: {key_file}")
+        private_api_key_content = click.prompt("Paste OCI API private key content")
+
+    # GenAI configuration
+    console.print()
+    oci_genai_compartment_id = inquirer.text(
+        message="GenAI compartment OCID (Enter to use same as above):",
+        default=compartment_ocid,
+    ).execute()
+
+    oci_genai_model_name = inquirer.text(
+        message="GenAI model name:",
+        default="meta.llama-3.3-70b-instruct",
+    ).execute()
+
+    oci_genai_runtime_name = inquirer.text(
+        message="GenAI runtime name:",
+        default="oci",
+    ).execute()
 
     # Generate DB password
     db_admin_password = _generate_password()
@@ -243,6 +278,10 @@ def setup():
         "DB_ADMIN_PASSWORD": db_admin_password,
         "SSH_PRIVATE_KEY_PATH": ssh_private_key_path,
         "SSH_PUBLIC_KEY": ssh_public_key,
+        "OCI_PRIVATE_API_KEY_CONTENT": private_api_key_content,
+        "OCI_GENAI_COMPARTMENT_ID": oci_genai_compartment_id,
+        "OCI_GENAI_MODEL_NAME": oci_genai_model_name,
+        "OCI_GENAI_RUNTIME_NAME": oci_genai_runtime_name,
     }
 
     with open(ENV_FILE, "w") as f:
@@ -265,12 +304,19 @@ def tf():
     required_vars = [
         "OCI_PROFILE",
         "OCI_TENANCY_OCID",
+        "OCI_USER_OCID",
+        "OCI_FINGERPRINT",
+        "OCI_KEY_FILE",
         "OCI_COMPARTMENT_OCID",
         "OCI_REGION",
         "PROJECT_NAME",
         "DB_ADMIN_PASSWORD",
         "SSH_PUBLIC_KEY",
         "SSH_PRIVATE_KEY_PATH",
+        "OCI_PRIVATE_API_KEY_CONTENT",
+        "OCI_GENAI_COMPARTMENT_ID",
+        "OCI_GENAI_MODEL_NAME",
+        "OCI_GENAI_RUNTIME_NAME",
     ]
     missing = [v for v in required_vars if not os.getenv(v)]
     if missing:
@@ -290,12 +336,18 @@ def tf():
     tfvars_content = template.render(
         profile=os.getenv("OCI_PROFILE"),
         tenancy_ocid=os.getenv("OCI_TENANCY_OCID"),
+        user_ocid=os.getenv("OCI_USER_OCID"),
+        fingerprint=os.getenv("OCI_FINGERPRINT"),
+        private_api_key_content=os.getenv("OCI_PRIVATE_API_KEY_CONTENT"),
         compartment_ocid=os.getenv("OCI_COMPARTMENT_OCID"),
         region=os.getenv("OCI_REGION"),
         project_name=os.getenv("PROJECT_NAME"),
         db_admin_password=os.getenv("DB_ADMIN_PASSWORD"),
         ssh_public_key=os.getenv("SSH_PUBLIC_KEY"),
         ssh_private_key_path=os.getenv("SSH_PRIVATE_KEY_PATH"),
+        oci_genai_compartment_id=os.getenv("OCI_GENAI_COMPARTMENT_ID"),
+        oci_genai_model_name=os.getenv("OCI_GENAI_MODEL_NAME"),
+        oci_genai_runtime_name=os.getenv("OCI_GENAI_RUNTIME_NAME"),
     )
 
     tfvars_file = TF_DIR / "terraform.tfvars"
@@ -355,14 +407,63 @@ def ansible():
 
 @cli.command()
 def clean():
-    """Print commands to destroy infrastructure."""
-    console.print("[bold]Destroy Infrastructure[/bold]\n")
-    console.print("Run the following commands:\n")
-    console.print("  cd deploy/tf/app")
-    console.print("  terraform destroy\n")
-    console.print(
-        "[yellow]Note:[/yellow] After destroying, delete .env if no longer needed."
-    )
+    """Clean up generated files, or show destroy steps if infra exists."""
+    import json
+    import shutil
+    import subprocess
+
+    console.print("[bold]Clean Up[/bold]\n")
+
+    # Check terraform state for existing resources
+    has_resources = False
+    tf_state = TF_DIR / "terraform.tfstate"
+    if tf_state.exists():
+        try:
+            state = json.loads(tf_state.read_text())
+            resources = state.get("resources", [])
+            has_resources = len(resources) > 0
+        except (json.JSONDecodeError, KeyError):
+            has_resources = True
+
+    if has_resources:
+        console.print("[yellow]Terraform state has active resources.[/yellow]")
+        console.print("Destroy infrastructure first:\n")
+        console.print("  cd deploy/tf/app")
+        console.print("  terraform destroy\n")
+        console.print("Then re-run: [bold]python manage.py clean[/bold]")
+        return
+
+    # No active resources — clean generated files and folders
+    generated = [
+        ENV_FILE,
+        TF_DIR / "terraform.tfvars",
+        TF_DIR / "terraform.tfstate",
+        TF_DIR / "terraform.tfstate.backup",
+        TF_DIR / "tfplan",
+        TF_DIR / "outputs.json",
+        TF_DIR / ".terraform.lock.hcl",
+    ]
+    generated_dirs = [
+        TF_DIR / "generated",
+        TF_DIR / ".terraform",
+    ]
+
+    deleted = []
+    for f in generated:
+        if f.exists():
+            f.unlink()
+            deleted.append(str(f.relative_to(PROJECT_ROOT)))
+    for d in generated_dirs:
+        if d.exists():
+            shutil.rmtree(d)
+            deleted.append(str(d.relative_to(PROJECT_ROOT)))
+
+    if deleted:
+        console.print("[green]Deleted:[/green]")
+        for item in deleted:
+            console.print(f"  {item}")
+    else:
+        console.print("Nothing to clean.")
 
 
 if __name__ == "__main__":

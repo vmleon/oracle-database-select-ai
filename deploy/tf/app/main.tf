@@ -74,10 +74,18 @@ module "ops" {
   ssh_public_key       = var.ssh_public_key
   ads                  = data.oci_identity_availability_domains.ads.availability_domains
 
+  user_ocid               = var.user_ocid
+  fingerprint             = var.fingerprint
+  private_api_key_content = var.private_api_key_content
+
   db_admin_password       = module.adbs.admin_password
   db_wallet_par_full_path = oci_objectstorage_preauthrequest.db_wallet_artifact_par.full_path
 
   ansible_ops_artifact_par_full_path = oci_objectstorage_preauthrequest.ansible_ops_artifact_par.full_path
+
+  oci_genai_runtime_name    = var.oci_genai_runtime_name
+  oci_genai_model_name      = var.oci_genai_model_name
+  oci_genai_compartment_id  = var.oci_genai_compartment_id
 
   rag_bucket_name          = oci_objectstorage_bucket.rag_bucket.name
   rag_bucket_namespace     = data.oci_objectstorage_namespace.objectstorage_namespace.namespace

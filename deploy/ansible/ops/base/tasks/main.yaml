@@ -104,15 +104,23 @@
   ansible.builtin.debug:
     msg: "{{ network_acl_result.stdout_lines }}"
 
-- name: Enable Resource Principal
-  ansible.builtin.command: "sql -name admin -s @/home/opc/init/enable_resource_principal.sql"
-  become_user: opc
-  register: resource_principal_result
-  failed_when: "'ORA-' in resource_principal_result.stdout or resource_principal_result.rc != 0"
+- name: Render OCI credential SQL script
+  ansible.builtin.template:
+    src: ../files/init/create_credential.sql.j2
+    dest: /home/opc/init/create_credential.sql
+    owner: opc
+    group: opc
+    mode: '0640'
 
-- name: Show Enable Resource Principal output
+- name: Create OCI API Key Credential
+  ansible.builtin.command: "sql -name admin -s @/home/opc/init/create_credential.sql"
+  become_user: opc
+  register: credential_result
+  failed_when: "'ORA-' in credential_result.stdout or credential_result.rc != 0"
+
+- name: Show OCI Credential output
   ansible.builtin.debug:
-    msg: "{{ resource_principal_result.stdout_lines }}"
+    msg: "{{ credential_result.stdout_lines }}"
 
 - name: Unlock HR schema
   ansible.builtin.command: "sql -name admin -s @/home/opc/init/unlock_hr.sql"

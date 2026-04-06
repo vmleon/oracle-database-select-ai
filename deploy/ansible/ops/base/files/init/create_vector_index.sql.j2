@@ -14,7 +14,7 @@ BEGIN
         index_name  => 'HR_POLICY_INDEX',
         attributes  => '{"vector_db_provider": "oracle",
                          "location":           "https://objectstorage.{{ region_name }}.oraclecloud.com/n/{{ rag_bucket_namespace }}/b/{{ rag_bucket_name }}/o/",
-                         "object_storage_credential_name": "OCI$RESOURCE_PRINCIPAL",
+                         "object_storage_credential_name": "OCI_API_KEY_CRED",
                          "profile_name":       "GENAI_RAG",
                          "chunk_size":         1500,
                          "chunk_overlap":      300}'

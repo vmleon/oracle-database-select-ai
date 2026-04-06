@@ -10,13 +10,19 @@ locals {
   })
 }
 
-data "oci_core_images" "ol8_images" {
+data "oci_core_images" "ol9_images" {
   compartment_id           = var.compartment_ocid
-  shape                    = var.instance_shape
   operating_system         = "Oracle Linux"
-  operating_system_version = "8"
+  operating_system_version = "9"
+  shape                    = var.instance_shape
   sort_by                  = "TIMECREATED"
   sort_order               = "DESC"
+
+  filter {
+    name   = "display_name"
+    values = ["^Oracle-Linux-9\\.\\d+-\\d{4}\\.\\d{2}\\.\\d{2}-\\d+$"]
+    regex  = true
+  }
 }
 
 resource "oci_core_instance" "instance" {
@@ -45,7 +51,7 @@ resource "oci_core_instance" "instance" {
 
   source_details {
     source_type = "image"
-    source_id   = data.oci_core_images.ol8_images.images[0].id
+    source_id   = data.oci_core_images.ol9_images.images[0].id
   }
 
   timeouts {

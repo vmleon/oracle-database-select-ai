@@ -29,7 +29,7 @@ variable "project_name" {
 
 variable "instance_shape" {
   type    = string
-  default = "VM.Standard.A1.Flex"
+  default = "VM.Standard.E4.Flex"
 }
 
 variable "ecpu_count" {
@@ -40,6 +40,31 @@ variable "ecpu_count" {
 variable "storage_in_tbs" {
   type    = number
   default = 1
+}
+
+variable "user_ocid" {
+  type = string
+}
+
+variable "fingerprint" {
+  type = string
+}
+
+variable "private_api_key_content" {
+  type      = string
+  sensitive = true
+}
+
+variable "oci_genai_runtime_name" {
+  type = string
+}
+
+variable "oci_genai_model_name" {
+  type = string
+}
+
+variable "oci_genai_compartment_id" {
+  type = string
 }
 
 variable "artifacts_par_expiration_in_days" {
