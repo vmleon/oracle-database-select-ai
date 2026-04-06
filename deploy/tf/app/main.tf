@@ -66,7 +66,7 @@ module "ops" {
   tenancy_ocid        = var.tenancy_ocid
   compartment_ocid    = var.compartment_ocid
 
-  subnet_id            = oci_core_subnet.app_subnet.id
+  subnet_id            = oci_core_subnet.public_subnet.id
   instance_shape       = var.instance_shape
   backend_private_ip   = module.backend.private_ip
   web_private_ip       = module.web.private_ip

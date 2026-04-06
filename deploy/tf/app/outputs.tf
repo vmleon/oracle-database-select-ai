@@ -7,7 +7,7 @@ output "lb_public_ip" {
 }
 
 output "ops_public_ip" {
-  value = module.ops.private_ip
+  value = module.ops.public_ip
 }
 
 output "db_name" {

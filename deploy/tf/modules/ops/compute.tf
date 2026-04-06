@@ -67,7 +67,7 @@ resource "oci_core_instance" "instance" {
 
   create_vnic_details {
     subnet_id                 = var.subnet_id
-    assign_public_ip          = false
+    assign_public_ip          = true
     display_name              = "${var.project_name}${var.deploy_id}"
     assign_private_dns_record = true
     hostname_label            = "${var.project_name}${var.deploy_id}"

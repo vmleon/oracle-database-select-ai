@@ -118,6 +118,13 @@ cd ../../..
 python manage.py ansible
 ```
 
+6. SSH into the ops instance (IP shown by `manage.py ansible`) and wait for cloud-init to finish
+
+```bash
+sudo cloud-init status       # "done" when complete
+tail -f /var/log/cloud-init-output.log  # watch progress
+```
+
 ## Project Structure
 
 ```
