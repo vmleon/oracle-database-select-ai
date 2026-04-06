@@ -1,3 +1,5 @@
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+
 BEGIN
     DBMS_NETWORK_ACL_ADMIN.APPEND_HOST_ACE(
         host => 'oraclecloud.com',

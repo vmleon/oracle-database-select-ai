@@ -25,10 +25,11 @@ resource "oci_objectstorage_bucket" "artifacts_bucket" {
 }
 
 resource "oci_objectstorage_object" "ansible_ops_artifact_object" {
-  bucket    = oci_objectstorage_bucket.artifacts_bucket.name
-  source    = data.archive_file.ansible_ops_artifact.output_path
-  namespace = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
-  object    = "ansible_ops_artifact.zip"
+  bucket      = oci_objectstorage_bucket.artifacts_bucket.name
+  source      = data.archive_file.ansible_ops_artifact.output_path
+  namespace   = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+  object      = "ansible_ops_artifact.zip"
+  content_md5 = data.archive_file.ansible_ops_artifact.output_md5
 }
 
 resource "oci_objectstorage_preauthrequest" "ansible_ops_artifact_par" {
@@ -41,10 +42,11 @@ resource "oci_objectstorage_preauthrequest" "ansible_ops_artifact_par" {
 }
 
 resource "oci_objectstorage_object" "ansible_backend_artifact_object" {
-  bucket    = oci_objectstorage_bucket.artifacts_bucket.name
-  source    = data.archive_file.ansible_backend_artifact.output_path
-  namespace = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
-  object    = "ansible_backend_artifact.zip"
+  bucket      = oci_objectstorage_bucket.artifacts_bucket.name
+  source      = data.archive_file.ansible_backend_artifact.output_path
+  namespace   = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+  object      = "ansible_backend_artifact.zip"
+  content_md5 = data.archive_file.ansible_backend_artifact.output_md5
 }
 
 resource "oci_objectstorage_preauthrequest" "ansible_backend_artifact_par" {
@@ -57,10 +59,11 @@ resource "oci_objectstorage_preauthrequest" "ansible_backend_artifact_par" {
 }
 
 resource "oci_objectstorage_object" "backend_jar_artifact_object" {
-  bucket    = oci_objectstorage_bucket.artifacts_bucket.name
-  source    = data.archive_file.backend_jar_artifact.output_path
-  namespace = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
-  object    = "backend_jar_artifact.zip"
+  bucket      = oci_objectstorage_bucket.artifacts_bucket.name
+  source      = data.archive_file.backend_jar_artifact.output_path
+  namespace   = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+  object      = "backend_jar_artifact.zip"
+  content_md5 = data.archive_file.backend_jar_artifact.output_md5
 }
 
 resource "oci_objectstorage_preauthrequest" "backend_jar_artifact_par" {
@@ -89,10 +92,11 @@ resource "oci_objectstorage_preauthrequest" "db_wallet_artifact_par" {
 }
 
 resource "oci_objectstorage_object" "ansible_web_artifact_object" {
-  bucket    = oci_objectstorage_bucket.artifacts_bucket.name
-  source    = data.archive_file.ansible_web_artifact.output_path
-  namespace = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
-  object    = "ansible_web_artifact.zip"
+  bucket      = oci_objectstorage_bucket.artifacts_bucket.name
+  source      = data.archive_file.ansible_web_artifact.output_path
+  namespace   = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+  object      = "ansible_web_artifact.zip"
+  content_md5 = data.archive_file.ansible_web_artifact.output_md5
 }
 
 resource "oci_objectstorage_preauthrequest" "ansible_web_artifact_par" {
@@ -105,10 +109,11 @@ resource "oci_objectstorage_preauthrequest" "ansible_web_artifact_par" {
 }
 
 resource "oci_objectstorage_object" "web_artifact_object" {
-  bucket    = oci_objectstorage_bucket.artifacts_bucket.name
-  source    = data.archive_file.web_artifact.output_path
-  namespace = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
-  object    = "web_artifact.zip"
+  bucket      = oci_objectstorage_bucket.artifacts_bucket.name
+  source      = data.archive_file.web_artifact.output_path
+  namespace   = data.oci_objectstorage_namespace.objectstorage_namespace.namespace
+  object      = "web_artifact.zip"
+  content_md5 = data.archive_file.web_artifact.output_md5
 }
 
 resource "oci_objectstorage_preauthrequest" "web_artifact_par" {

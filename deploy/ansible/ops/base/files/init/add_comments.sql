@@ -1,4 +1,5 @@
 -- Add comments to HR schema tables and columns for better Select AI context
+WHENEVER SQLERROR EXIT SQL.SQLCODE
 
 -- EMPLOYEES
 COMMENT ON TABLE HR.EMPLOYEES IS 'All current employees with their job, salary, manager, and department assignment';

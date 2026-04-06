@@ -1,4 +1,6 @@
 {% set profile_name = select_ai_profile_name | default('GENAI_SELECT_AI') %}
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+
 -- Drop existing team/task/agent/tool (ignore errors if they don't exist)
 BEGIN DBMS_CLOUD_AI_AGENT.DROP_TEAM(team_name => 'SH_ANALYST_TEAM', force => true); EXCEPTION WHEN OTHERS THEN NULL; END;
 /

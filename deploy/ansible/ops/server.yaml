@@ -5,3 +5,4 @@
     - base
   environment:
     SQLPATH: "$HOME"
+    TERM: dumb

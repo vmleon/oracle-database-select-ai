@@ -93,6 +93,12 @@
 - name: Create ADMIN connection
   ansible.builtin.command: "sql /nolog @/home/opc/conn/admin.sql"
   become_user: opc
+  register: admin_conn_result
+  failed_when: "'ORA-' in admin_conn_result.stdout or 'Error' in admin_conn_result.stdout or admin_conn_result.rc != 0"
+
+- name: Show ADMIN connection output
+  ansible.builtin.debug:
+    msg: "{{ admin_conn_result.stdout_lines }}"
 
 - name: Add Network ACL
   ansible.builtin.command: "sql -name admin -s @/home/opc/init/network_acl.sql"
