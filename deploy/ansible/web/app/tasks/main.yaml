@@ -4,12 +4,6 @@
     name: nginx
     update_cache: yes
 
-- name: Enable nginx
-  ansible.builtin.service:
-    name: nginx.service
-    state: started
-    enabled: yes
-
 - name: Copy web static content
   ansible.builtin.copy:
     src: files/web.zip
@@ -18,7 +12,19 @@
 - name: Unzip static content
   ansible.builtin.command: unzip -o /home/opc/web.zip -d /usr/share/nginx/html/
   become: true
+
+- name: Copy nginx config
+  ansible.builtin.copy:
+    src: files/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  become: true
   notify: restart nginx
+
+- name: Enable nginx
+  ansible.builtin.service:
+    name: nginx.service
+    state: started
+    enabled: yes
 
 - name: Stop firewalld
   ansible.builtin.command: systemctl stop firewalld
