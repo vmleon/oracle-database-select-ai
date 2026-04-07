@@ -40,15 +40,6 @@ import { MarkdownPipe } from '../markdown.pipe';
       <p class="error">{{ error() }}</p>
     }
   `,
-  styles: `
-    .examples { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-    .examples span { color: #7A7470; font-size: 0.85rem; }
-    .example-btn {
-      font-size: 0.8rem; padding: 0.25rem 0.75rem;
-      background: #2C2723; border: 1px solid #3C3835; color: #9B9590;
-    }
-    .example-btn:hover { background: #363230; color: #F1EFED; }
-  `,
 })
 export class ChatComponent {
   prompt = '';
