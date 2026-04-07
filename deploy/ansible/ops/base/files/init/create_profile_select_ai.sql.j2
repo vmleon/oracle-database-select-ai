@@ -19,6 +19,7 @@ BEGIN
         '{
             "provider": "oci",
             "credential_name": "OCI_API_KEY_CRED",
+{% if include_object_list | default(true) %}
             "object_list": [
                 {"owner": "HR", "name": "EMPLOYEES"},
                 {"owner": "HR", "name": "DEPARTMENTS"},
@@ -28,7 +29,8 @@ BEGIN
                 {"owner": "HR", "name": "COUNTRIES"},
                 {"owner": "HR", "name": "REGIONS"}
             ],
-            "region": "{{ region_name }}",
+{% endif %}
+            "region": "{{ genai_region }}",
             "oci_compartment_id": "{{ oci_genai_compartment_id }}",
             "oci_apiformat": "GENERIC"{{ extra_attrs }}
         }');
