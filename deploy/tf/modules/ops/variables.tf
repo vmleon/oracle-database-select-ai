@@ -96,6 +96,10 @@ variable "oci_genai_compartment_id" {
   type = string
 }
 
+variable "genai_region" {
+  type = string
+}
+
 variable "rag_bucket_name" {
   type = string
 }

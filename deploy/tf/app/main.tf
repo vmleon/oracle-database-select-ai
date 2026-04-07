@@ -86,6 +86,7 @@ module "ops" {
   oci_genai_runtime_name    = var.oci_genai_runtime_name
   oci_genai_model_name      = var.oci_genai_model_name
   oci_genai_compartment_id  = var.oci_genai_compartment_id
+  genai_region              = var.genai_region
 
   rag_bucket_name          = oci_objectstorage_bucket.rag_bucket.name
   rag_bucket_namespace     = data.oci_objectstorage_namespace.objectstorage_namespace.namespace

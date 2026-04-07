@@ -19,6 +19,7 @@ locals {
     oci_genai_runtime_name    = var.oci_genai_runtime_name
     oci_genai_model_name      = var.oci_genai_model_name
     oci_genai_compartment_id  = var.oci_genai_compartment_id
+    genai_region              = var.genai_region
 
     rag_bucket_name       = var.rag_bucket_name
     rag_bucket_namespace  = var.rag_bucket_namespace
