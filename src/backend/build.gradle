@@ -13,7 +13,7 @@ java {
 	}
 }
 
-ext['oracle-database.version'] = '23.26.1.0.0'
+ext['oracle-database.version'] = '23.9.0.25.07'
 
 repositories {
 	mavenCentral()

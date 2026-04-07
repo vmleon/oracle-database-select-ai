@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -22,8 +20,10 @@ public class SelectAIController {
 
     private static final Logger log = LoggerFactory.getLogger(SelectAIController.class);
     private static final int MAX_RESULT_ROWS = 500;
-    // Allow only natural-language characters: letters, digits, spaces, commas, periods, hyphens, parentheses
-    private static final Pattern ALLOWED_PROMPT = Pattern.compile("^[\\p{L}\\p{N}\\s,\\.\\-()]+$");
+    private static final Pattern ALLOWED_PROMPT = Pattern.compile("^[\\p{L}\\p{N}\\s,\\.\\-()\\?!':;\"/&#%]+$");
+
+    private static final String GENERATE_SQL =
+            "SELECT DBMS_CLOUD_AI.GENERATE(prompt => ?, profile_name => ?, action => ?) FROM DUAL";
 
     @Value("${selectai.profile.query}")
     private String queryProfile;
@@ -45,16 +45,14 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         log.info("Select AI query: {}", prompt);
 
-        setProfile(queryProfile);
-
         long t0 = System.currentTimeMillis();
         String sqlCode = jdbcTemplate.queryForObject(
-                String.format("SELECT AI showsql %s", prompt), String.class);
+                GENERATE_SQL, String.class, prompt, queryProfile, "showsql");
         long sqlQueryTime = System.currentTimeMillis() - t0;
 
         long t1 = System.currentTimeMillis();
         String narration = jdbcTemplate.queryForObject(
-                String.format("SELECT AI narrate %s", prompt), String.class);
+                GENERATE_SQL, String.class, prompt, queryProfile, "narrate");
         long narrationTime = System.currentTimeMillis() - t1;
 
         long t2 = System.currentTimeMillis();
@@ -80,11 +78,11 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         log.info("Select AI runsql: {}", prompt);
 
-        setProfile(queryProfile);
-
         long t0 = System.currentTimeMillis();
+        String sqlCode = jdbcTemplate.queryForObject(
+                GENERATE_SQL, String.class, prompt, queryProfile, "showsql");
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(
-                String.format("SELECT AI runsql %s", prompt));
+                "SELECT * FROM (" + sqlCode + ") WHERE ROWNUM <= " + MAX_RESULT_ROWS);
         long elapsed = System.currentTimeMillis() - t0;
 
         List<Map<String, String>> result = rows.stream()
@@ -122,11 +120,9 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         log.info("Select AI chat: {}", prompt);
 
-        setProfile(queryProfile);
-
         long t0 = System.currentTimeMillis();
         String response = jdbcTemplate.queryForObject(
-                String.format("SELECT AI chat %s", prompt), String.class);
+                GENERATE_SQL, String.class, prompt, queryProfile, "chat");
         long elapsed = System.currentTimeMillis() - t0;
 
         return new ChatResponse(request.prompt(), response, elapsed);
@@ -137,11 +133,9 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         log.info("Select AI RAG: {}", prompt);
 
-        setProfile(ragProfile);
-
         long t0 = System.currentTimeMillis();
         String answer = jdbcTemplate.queryForObject(
-                String.format("SELECT AI narrate %s", prompt), String.class);
+                GENERATE_SQL, String.class, prompt, ragProfile, "narrate");
         long elapsed = System.currentTimeMillis() - t0;
 
         return new RagResponse(request.prompt(), answer, elapsed);
@@ -152,20 +146,12 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         log.info("Select AI hybrid: {}", prompt);
 
-        setProfile(ragProfile);
-
         long t0 = System.currentTimeMillis();
         String answer = jdbcTemplate.queryForObject(
-                String.format("SELECT AI narrate %s", prompt), String.class);
+                GENERATE_SQL, String.class, prompt, ragProfile, "narrate");
         long elapsed = System.currentTimeMillis() - t0;
 
         return new HybridResponse(request.prompt(), answer, elapsed);
-    }
-
-    private void setProfile(String profileName) {
-        jdbcTemplate.execute(String.format(
-                "BEGIN dbms_cloud_ai.set_profile(profile_name => '%s'); END;",
-                profileName));
     }
 
     private String validatePrompt(String prompt) {
