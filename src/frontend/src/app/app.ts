@@ -18,6 +18,9 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     <main>
       <router-outlet />
     </main>
+    <footer>
+      Created by <a href="https://www.linkedin.com/in/victormartindeveloper/" target="_blank" rel="noopener">Victor Martin</a> at Oracle Database EMEA Platform Technology Solutions (2026)
+    </footer>
   `,
   styles: `
     :host {
@@ -56,10 +59,25 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     nav a.active { background: #C74634; color: #fff; }
     main {
       flex: 1;
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 4rem;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
+    }
+    footer {
+      padding: 0.75rem 1.5rem;
+      background: #2C2723;
+      border-top: 1px solid #3C3835;
+      text-align: center;
+      color: #9B9590;
+      font-size: 0.8rem;
+    }
+    footer a {
+      color: #C74634;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
     }
   `,
 })
