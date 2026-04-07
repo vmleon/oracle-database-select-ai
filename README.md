@@ -10,6 +10,11 @@ The backend is a thin Spring Boot layer that forwards prompts to the database vi
 - **Select AI Agents** — Agentic AI. The database autonomously reasons and executes multi-step analytical tasks.
 - **Select AI RAG** — Retrieval Augmented Generation. Combines database knowledge with document retrieval for richer answers.
 
+### Articles
+
+- [Three Ways Oracle Database 26ai Answers Questions You Couldn't Ask Before](docs/articles/01-select-ai-three-ways-to-query.md) — What Select AI does: NL2SQL, RAG, and Agents explained with code and diagrams.
+- [Deploying Oracle Database 26ai Select AI on OCI](docs/articles/02-select-ai-deploying-the-full-stack.md) — How the infrastructure gets provisioned: the Python CLI, Terraform, Ansible, and cloud-init pipeline.
+
 ## Architecture
 
 ```mermaid
@@ -30,166 +35,208 @@ graph LR
     ADB -- RAG documents --> ObjStore
 ```
 
-## Data Flow by Feature
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant BE as Backend
-    participant ADB as ADB 26ai
-    participant AI as OCI GenAI
-    participant OS as Object Storage
-
-    rect rgb(230, 240, 255)
-    Note over U,AI: Select AI (NL2SQL)
-    U->>BE: natural-language question
-    BE->>ADB: SELECT AI showsql / narrate
-    ADB->>AI: translate prompt to SQL
-    AI-->>ADB: generated SQL
-    ADB-->>BE: SQL + narration + result rows
-    BE-->>U: structured response
-    end
-
-    rect rgb(230, 255, 230)
-    Note over U,AI: Select AI Agents
-    U->>BE: analytical question
-    BE->>ADB: DBMS_CLOUD_AI_AGENT.RUN_TEAM
-    ADB->>AI: multi-step reasoning
-    AI-->>ADB: agent actions + final answer
-    ADB-->>BE: response
-    BE-->>U: agent response
-    end
-
-    rect rgb(255, 240, 230)
-    Note over U,OS: Select AI RAG
-    U->>BE: document question
-    BE->>ADB: SELECT AI narrate (RAG profile)
-    ADB->>OS: vector search over indexed docs
-    OS-->>ADB: relevant chunks
-    ADB->>AI: augmented prompt + context
-    AI-->>ADB: grounded answer
-    ADB-->>BE: response
-    BE-->>U: RAG answer
-    end
-```
-
 ## Prerequisites
 
-- Python 3.11+
-- OCI CLI configured (`~/.oci/config`)
-- Terraform 1.5+
-- Ansible 2.15+
-- Java 23 (GraalVM or OpenJDK)
-- Node.js 22+ / npm 11+
+| Tool      | Minimum version | Check                  |
+| --------- | --------------- | ---------------------- |
+| Python    | 3.11+           | `python3 --version`    |
+| OCI CLI   | configured      | `~/.oci/config` exists |
+| Terraform | 1.5+            | `terraform --version`  |
+| Java      | 23+             | `java --version`       |
+| Node.js   | 22+             | `node --version`       |
+| npm       | 10+             | `npm --version`        |
 
-## Quick Start
+## Deployment
 
-1. Install Python dependencies
+### Step 1 — Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Interactive OCI setup (creates .env)
+### Step 2 — Interactive OCI setup
+
+Reads your `~/.oci/config`, lists subscribed regions and compartments via the OCI SDK, and saves everything to `.env`. Also generates an Oracle-compliant database password.
 
 ```bash
 python manage.py setup
 ```
 
-3. Build backend and frontend (checks Java 23+, Node 22+)
+### Step 3 — Build backend and frontend
+
+Compiles the Spring Boot JAR and Angular production bundle. Checks tool versions before starting.
 
 ```bash
 python manage.py build
 ```
 
-4. Generate Terraform variables
+### Step 4 — Generate Terraform variables
+
+Renders `terraform.tfvars` from the `.env` values using a Jinja2 template.
 
 ```bash
 python manage.py tf
 ```
 
-5. Deploy infrastructure
+### Step 5 — Deploy infrastructure
 
 ```bash
 cd deploy/tf/app
+```
+
+```bash
 terraform init
+```
+
+```bash
 terraform plan -out=tfplan
+```
+
+```bash
 terraform apply tfplan
 ```
 
-6. After deployment, get Ansible commands
+This provisions the full OCI stack: VCN (3 subnets), Autonomous Database, 3 compute instances, load balancer, and Object Storage buckets with all artifacts.
+
+### Step 6 — Verify provisioning
+
+Go back to the project root and get the connection details:
 
 ```bash
 cd ../../..
+```
+
+```bash
 python manage.py ansible
 ```
 
-7. SSH into the ops instance (IP shown by `manage.py ansible`) and wait for cloud-init to finish
+This prints the load balancer IP, ops instance IP, and SSH command. SSH into the ops instance and wait for cloud-init to finish:
 
 ```bash
-sudo cloud-init status       # "done" when complete
-tail -f /var/log/cloud-init-output.log  # watch progress
+ssh -i ~/.ssh/your_key opc@<ops_ip>
 ```
+
+```bash
+sudo cloud-init status --wait
+```
+
+When cloud-init shows `status: done`, the demo is ready. Open the load balancer IP in your browser.
+
+## Cleanup
+
+Check for active resources and print destroy instructions:
+
+```bash
+python manage.py clean
+```
+
+If Terraform resources are still running, destroy them first:
+
+```bash
+cd deploy/tf/app
+```
+
+```bash
+terraform destroy
+```
+
+Then re-run `python manage.py clean` to remove generated files (`.env`, `terraform.tfvars`, build artifacts).
 
 ## Troubleshooting
 
-From the ops instance, you can SSH into backend and web instances to debug:
+### Cloud-init logs
+
+On any instance, check provisioning progress:
 
 ```bash
-# Get private IPs
-cat /home/opc/ansible_params.json | grep -E "backend_private_ip|web_private_ip"
-
-# SSH to backend or web
-ssh -i /home/opc/private.key opc@<backend_private_ip>
-ssh -i /home/opc/private.key opc@<web_private_ip>
+sudo cloud-init status
 ```
 
-On each instance:
+```bash
+sudo tail -100 /var/log/cloud-init-output.log
+```
+
+### SSH to private instances
+
+From the ops instance, reach backend and web VMs:
 
 ```bash
-sudo cloud-init status --wait              # check if provisioning finished
-sudo tail -100 /var/log/cloud-init-output.log  # view provisioning logs
+cat /home/opc/ansible_params.json | grep -E "backend_private_ip|web_private_ip"
+```
 
-# Backend-specific
-systemctl status backend                   # check Spring Boot service
-journalctl -u backend -f                   # follow backend logs
+```bash
+ssh opc@<backend_private_ip>
+```
 
-# Web-specific
-systemctl status nginx                     # check nginx service
+### Backend service
+
+```bash
+systemctl status backend
+```
+
+```bash
+journalctl -u backend -f
+```
+
+### Web service
+
+```bash
+systemctl status nginx
+```
+
+### Re-run Ansible playbook (ops)
+
+If provisioning failed partway through:
+
+```bash
+ansible-playbook -i ops.ini --extra-vars "@ansible_params.json" ansible_ops/server.yaml
 ```
 
 ## Project Structure
 
 ```
-├── manage.py              # CLI for setup, deployment, and management
+├── manage.py              # CLI: setup, build, tf, ansible, clean
 ├── requirements.txt       # Python dependencies
-├── docs/                  # Documentation
-│   ├── todos/             # TODO tracking
+├── docs/
 │   ├── articles/          # Technical articles
+│   ├── todos/             # TODO tracking
 │   └── issues/            # Known issues
 ├── src/
-│   ├── backend/           # Spring Boot 3.5 + Java 23
+│   ├── backend/           # Spring Boot 3.5 + Java 23 + Gradle
 │   └── frontend/          # Angular v21
 └── deploy/
     ├── tf/                # Terraform (OCI infrastructure)
-    └── ansible/           # Ansible (configuration management)
+    │   ├── app/           # Main orchestration layer
+    │   └── modules/       # adbs, backend, web, ops
+    └── ansible/           # Ansible roles: ops, backend, web
 ```
 
 ## Local Development
 
-Backend:
+### Backend
 
 ```bash
 cd src/backend
+```
+
+```bash
 ./gradlew bootRun --args='--spring.profiles.active=local'
 ```
 
-Frontend (proxies /api to localhost:8080):
+### Frontend
+
+Proxies `/api` requests to `localhost:8080`.
 
 ```bash
 cd src/frontend
+```
+
+```bash
 npm install
+```
+
+```bash
 npm start
 ```
 
-Open http://localhost:4200 in your browser.
+Open http://localhost:4200.

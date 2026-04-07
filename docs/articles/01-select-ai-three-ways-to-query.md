@@ -490,7 +490,7 @@ No separate vector database. No external agent framework. No embedding service. 
 
 The backend is 150 lines of JDBC calls. The database does the rest.
 
-The full architecture — Terraform infrastructure, Ansible automation, Spring Boot backend, Angular frontend — is covered in a companion article (coming soon). If you want to reproduce this end-to-end, start there.
+The full architecture — Terraform infrastructure, Ansible automation, Spring Boot backend, Angular frontend — is covered in [Deploying Oracle Database 26ai Select AI on OCI](02-select-ai-deploying-the-full-stack.md). If you want to reproduce this end-to-end, start there.
 
 ---
 
