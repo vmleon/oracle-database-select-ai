@@ -81,12 +81,12 @@ interface ChatMessage {
     }
     .new-conversation {
       background: transparent;
-      border: 1px solid #555;
-      color: #aaa;
+      border: 1px solid #3C3835;
+      color: #9B9590;
       font-size: 0.8rem;
       padding: 0.4rem 0.75rem;
     }
-    .new-conversation:hover { border-color: #888; color: #ddd; }
+    .new-conversation:hover { border-color: #7A7470; color: #F1EFED; }
     .chat-thread {
       flex: 1;
       overflow-y: auto;
@@ -107,23 +107,23 @@ interface ChatMessage {
       white-space: pre-wrap;
     }
     .message.user .bubble {
-      background: #3a3a8a;
+      background: #C74634;
       color: #fff;
       border-bottom-right-radius: 4px;
     }
     .message.agent .bubble {
-      background: #1a1a2e;
-      border: 1px solid #333;
-      color: #ccc;
+      background: #2C2723;
+      border: 1px solid #3C3835;
+      color: #D5D0CC;
       border-bottom-left-radius: 4px;
     }
     .bubble .timing {
       display: block;
       font-size: 0.75rem;
-      color: #666;
+      color: #7A7470;
       margin-top: 0.3rem;
     }
-    .thinking { color: #888; font-style: italic; }
+    .thinking { color: #9B9590; font-style: italic; }
     .input-row { margin-top: auto; }
   `,
 })

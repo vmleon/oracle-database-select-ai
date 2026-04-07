@@ -117,19 +117,19 @@ type Mode = 'quick' | 'detailed';
       display: flex; gap: 0; margin-bottom: 1rem;
     }
     .mode-toggle button {
-      background: #1a1a2e; border: 1px solid #333; color: #888;
+      background: #2C2723; border: 1px solid #3C3835; color: #9B9590;
       padding: 0.4rem 1rem; font-size: 0.85rem;
     }
     .mode-toggle button:first-child { border-radius: 6px 0 0 6px; }
     .mode-toggle button:last-child { border-radius: 0 6px 6px 0; border-left: none; }
-    .mode-toggle button.active { background: #3a3a8a; color: #fff; border-color: #3a3a8a; }
+    .mode-toggle button.active { background: #C74634; color: #fff; border-color: #C74634; }
     .examples { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-    .examples span { color: #666; font-size: 0.85rem; }
+    .examples span { color: #7A7470; font-size: 0.85rem; }
     .example-btn {
       font-size: 0.8rem; padding: 0.25rem 0.75rem;
-      background: #1a1a2e; border: 1px solid #333; color: #aaa;
+      background: #2C2723; border: 1px solid #3C3835; color: #9B9590;
     }
-    .example-btn:hover { background: #2a2a4a; color: #ddd; }
+    .example-btn:hover { background: #363230; color: #F1EFED; }
     .table-wrap { overflow-x: auto; }
   `,
 })
