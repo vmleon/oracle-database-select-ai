@@ -106,10 +106,18 @@ public class SelectAIController {
         String paramsJson = String.format("{\"conversation_id\": \"%s\"}", conversationId);
 
         long t0 = System.currentTimeMillis();
-        String response = jdbcTemplate.queryForObject(
-                "SELECT DBMS_CLOUD_AI_AGENT.RUN_TEAM(?, ?, ?) FROM DUAL",
-                String.class,
-                agentsTeam, prompt, paramsJson);
+        String response;
+        try {
+            response = jdbcTemplate.queryForObject(
+                    "SELECT DBMS_CLOUD_AI_AGENT.RUN_TEAM(?, ?, ?) FROM DUAL",
+                    String.class,
+                    agentsTeam, prompt, paramsJson);
+        } catch (Exception e) {
+            long elapsed = System.currentTimeMillis() - t0;
+            log.error("Select AI agent failed after {}ms (conversation: {}): {}",
+                    elapsed, conversationId, e.getMessage());
+            throw e;
+        }
         long elapsed = System.currentTimeMillis() - t0;
 
         return new AgentResponse(request.prompt(), response, conversationId, elapsed);
