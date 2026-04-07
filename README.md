@@ -125,6 +125,33 @@ sudo cloud-init status       # "done" when complete
 tail -f /var/log/cloud-init-output.log  # watch progress
 ```
 
+## Troubleshooting
+
+From the ops instance, you can SSH into backend and web instances to debug:
+
+```bash
+# Get private IPs
+cat /home/opc/ansible_params.json | grep -E "backend_private_ip|web_private_ip"
+
+# SSH to backend or web
+ssh -i /home/opc/private.key opc@<backend_private_ip>
+ssh -i /home/opc/private.key opc@<web_private_ip>
+```
+
+On each instance:
+
+```bash
+sudo cloud-init status --wait              # check if provisioning finished
+sudo tail -100 /var/log/cloud-init-output.log  # view provisioning logs
+
+# Backend-specific
+systemctl status backend                   # check Spring Boot service
+journalctl -u backend -f                   # follow backend logs
+
+# Web-specific
+systemctl status nginx                     # check nginx service
+```
+
 ## Project Structure
 
 ```

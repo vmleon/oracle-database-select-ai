@@ -6,7 +6,8 @@ touch /home/opc/bootstrap.lock
 # Update and upgrade repo
 dnf update -y
 dnf upgrade -y
-dnf install ansible -y
+dnf install oracle-epel-release-el9 -y
+dnf install ansible-core -y
 
 curl --fail -sS "${wallet_par_full_path}" -o /home/opc/wallet.zip.b64
 base64 -d /home/opc/wallet.zip.b64 > /home/opc/wallet.zip && rm -rf /home/opc/wallet.zip.b64

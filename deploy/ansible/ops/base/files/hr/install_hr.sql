@@ -1,0 +1,29 @@
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+
+-- Drop HR if exists
+BEGIN
+    EXECUTE IMMEDIATE 'DROP USER HR CASCADE';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
+-- Create HR user
+CREATE USER HR IDENTIFIED BY "SamplePass123#";
+ALTER USER HR QUOTA UNLIMITED ON DATA;
+GRANT CREATE SESSION, CREATE TABLE, CREATE VIEW, CREATE PROCEDURE,
+      CREATE SEQUENCE, CREATE TRIGGER, CREATE SYNONYM, CREATE TYPE,
+      CREATE MATERIALIZED VIEW TO HR;
+
+-- Switch to HR schema
+ALTER SESSION SET CURRENT_SCHEMA = HR;
+
+-- Create tables, populate data, create code objects
+@/home/opc/hr/hr_create.sql
+@/home/opc/hr/hr_populate.sql
+@/home/opc/hr/hr_code.sql
+
+-- Switch back to ADMIN
+ALTER SESSION SET CURRENT_SCHEMA = ADMIN;
+
+EXIT;

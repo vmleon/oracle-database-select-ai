@@ -6,7 +6,8 @@ touch /home/opc/bootstrap.lock
 # Update and upgrade repo
 dnf update -y
 dnf upgrade -y
-dnf install ansible -y
+dnf install oracle-epel-release-el9 -y
+dnf install ansible-core -y
 
 # Get ansible_web
 curl --fail -sS "${ansible_web_par_full_path}" -o /home/opc/ansible_web.zip

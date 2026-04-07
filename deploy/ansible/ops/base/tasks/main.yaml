@@ -68,9 +68,10 @@
   vars:
     select_ai_profile_name: "{{ item.profile }}"
     select_ai_extra_attrs: "{{ item.extra }}"
+    include_object_list: "{{ item.include_object_list }}"
   loop:
-    - { name: select_ai, profile: GENAI_SELECT_AI, extra: "" }
-    - { name: rag, profile: GENAI_RAG, extra: ',\n            "vector_index_name": "HR_POLICY_INDEX"' }
+    - { name: select_ai, profile: GENAI_SELECT_AI, extra: "", include_object_list: true }
+    - { name: rag, profile: GENAI_RAG, extra: ', "vector_index_name": "HR_POLICY_INDEX"', include_object_list: false }
 
 - name: Create queries directory
   ansible.builtin.file:
@@ -128,17 +129,25 @@
   ansible.builtin.debug:
     msg: "{{ credential_result.stdout_lines }}"
 
-- name: Unlock HR schema
-  ansible.builtin.command: "sql -name admin -s @/home/opc/init/unlock_hr.sql"
+- name: Copy HR schema scripts
+  ansible.builtin.copy:
+    src: ../files/hr/
+    dest: /home/opc/hr/
+    owner: opc
+    group: opc
+    mode: '0640'
+
+- name: Install HR schema
+  ansible.builtin.command: "sql -name admin -s @/home/opc/hr/install_hr.sql"
   become_user: opc
-  register: unlock_hr_result
-  failed_when: "'ORA-' in unlock_hr_result.stdout or unlock_hr_result.rc != 0"
+  register: install_hr_result
+  failed_when: "'ORA-' in install_hr_result.stdout or install_hr_result.rc != 0"
 
-- name: Show Unlock HR output
+- name: Show Install HR output
   ansible.builtin.debug:
-    msg: "{{ unlock_hr_result.stdout_lines }}"
+    msg: "{{ install_hr_result.stdout_lines }}"
 
-- name: Add HR table comments
+- name: Add HR table comments for Select AI
   ansible.builtin.command: "sql -name admin -s @/home/opc/init/add_comments.sql"
   become_user: opc
   register: add_comments_result
