@@ -25,12 +25,10 @@ interface ChatMessage {
 
     @if (messages().length === 0 && !loading()) {
       <div class="examples">
-        <p>Try:</p>
-        <ul>
-          <li><a (click)="sendPrompt('Which departments have the highest average salary?')">Which departments have the highest average salary?</a></li>
-          <li><a (click)="sendPrompt('Show me employees who changed roles and their salary progression')">Employees who changed roles and their salary progression</a></li>
-          <li><a (click)="sendPrompt('Compare headcount across all regions')">Compare headcount across all regions</a></li>
-        </ul>
+        <span>Try: </span>
+        @for (ex of examples; track ex) {
+          <button class="example-btn" (click)="sendPrompt(ex)">{{ ex }}</button>
+        }
       </div>
     }
 
@@ -125,6 +123,13 @@ interface ChatMessage {
       margin-top: 0.3rem;
     }
     .thinking { color: #9B9590; font-style: italic; }
+    .examples { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .examples span { color: #7A7470; font-size: 0.85rem; }
+    .example-btn {
+      font-size: 0.8rem; padding: 0.25rem 0.75rem;
+      background: #2C2723; border: 1px solid #3C3835; color: #9B9590;
+    }
+    .example-btn:hover { background: #363230; color: #F1EFED; }
     .input-row { margin-top: auto; }
   `,
 })
@@ -132,6 +137,11 @@ export class AgentsComponent {
   @ViewChild('chatThread') chatThread!: ElementRef;
 
   prompt = '';
+  examples = [
+    'Which departments have the highest average salary?',
+    'Show me employees who changed roles and their salary progression',
+    'Compare headcount across all regions',
+  ];
   loading = signal(false);
   messages = signal<ChatMessage[]>([]);
   conversationId = signal<string | null>(null);
