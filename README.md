@@ -96,13 +96,19 @@ pip install -r requirements.txt
 python manage.py setup
 ```
 
-3. Generate Terraform variables
+3. Build backend and frontend (checks Java 23+, Node 22+)
+
+```bash
+python manage.py build
+```
+
+4. Generate Terraform variables
 
 ```bash
 python manage.py tf
 ```
 
-4. Deploy infrastructure
+5. Deploy infrastructure
 
 ```bash
 cd deploy/tf/app
@@ -111,14 +117,14 @@ terraform plan -out=tfplan
 terraform apply tfplan
 ```
 
-5. After deployment, get Ansible commands
+6. After deployment, get Ansible commands
 
 ```bash
 cd ../../..
 python manage.py ansible
 ```
 
-6. SSH into the ops instance (IP shown by `manage.py ansible`) and wait for cloud-init to finish
+7. SSH into the ops instance (IP shown by `manage.py ansible`) and wait for cloud-init to finish
 
 ```bash
 sudo cloud-init status       # "done" when complete

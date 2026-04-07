@@ -3,7 +3,10 @@
 
 import configparser
 import os
+import re
 import secrets
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -358,6 +361,64 @@ def setup():
             f.write(f'{key}="{value}"\n')
 
     console.print(f"\n[green]Configuration saved to {ENV_FILE}[/green]")
+    console.print("\nNext step: [bold]python manage.py build[/bold]")
+
+
+def _check_version(cmd, args, name, min_major):
+    """Check a tool is installed and meets minimum major version."""
+    try:
+        result = subprocess.run(
+            [cmd] + args, capture_output=True, text=True, timeout=15
+        )
+        output = result.stdout + result.stderr
+        match = re.search(r"(\d+)\.\d+", output)
+        if not match:
+            console.print(f"[red]Error:[/red] Could not parse {name} version from: {output.strip()}")
+            return False
+        major = int(match.group(1))
+        if major < min_major:
+            console.print(f"[red]Error:[/red] {name} {major} found, need {min_major}+")
+            return False
+        console.print(f"  {name} {match.group(0)} [green]OK[/green]")
+        return True
+    except FileNotFoundError:
+        console.print(f"[red]Error:[/red] {name} not found. Install {name} {min_major}+ and try again.")
+        return False
+
+
+def _run_build_step(label, cmd, cwd):
+    """Run a build command with live output. Returns True on success."""
+    console.print(f"\n[bold]{label}[/bold]")
+    result = subprocess.run(cmd, cwd=cwd, shell=True)
+    if result.returncode != 0:
+        console.print(f"[red]Error:[/red] {label} failed (exit {result.returncode})")
+        return False
+    return True
+
+
+@cli.command()
+def build():
+    """Build backend JAR and frontend dist."""
+    console.print("[bold]Building backend and frontend...[/bold]\n")
+
+    console.print("Checking tools:")
+    ok = True
+    ok = _check_version("java", ["--version"], "Java", 23) and ok
+    ok = _check_version("node", ["--version"], "Node", 22) and ok
+    ok = _check_version("npm", ["--version"], "npm", 10) and ok
+    if not ok:
+        sys.exit(1)
+
+    backend_dir = PROJECT_ROOT / "src" / "backend"
+    frontend_dir = PROJECT_ROOT / "src" / "frontend"
+
+    if not _run_build_step("Backend (Gradle)", "./gradlew build", backend_dir):
+        sys.exit(1)
+
+    if not _run_build_step("Frontend (Angular)", "npm install && npm run build", frontend_dir):
+        sys.exit(1)
+
+    console.print("\n[green]Build complete.[/green]")
     console.print("\nNext step: [bold]python manage.py tf[/bold]")
 
 
@@ -395,6 +456,20 @@ def tf():
         )
         sys.exit(1)
 
+    # Check for build artifacts
+    jar_path = PROJECT_ROOT / "src" / "backend" / "build" / "libs" / "backend-1.0.0.jar"
+    dist_path = PROJECT_ROOT / "src" / "frontend" / "dist"
+    missing = []
+    if not jar_path.exists():
+        missing.append("Backend JAR (src/backend/build/libs/backend-1.0.0.jar)")
+    if not dist_path.exists() or not any(dist_path.iterdir()):
+        missing.append("Frontend dist (src/frontend/dist/)")
+    if missing:
+        console.print("[yellow]Warning:[/yellow] Build artifacts missing:")
+        for m in missing:
+            console.print(f"  - {m}")
+        console.print("Run [bold]python manage.py build[/bold] first.\n")
+
     console.print("[bold]Generating terraform.tfvars...[/bold]\n")
 
     template_file = TF_DIR / "terraform.tfvars.j2"
@@ -431,7 +506,7 @@ def tf():
     console.print("  terraform init")
     console.print("  terraform plan -out=tfplan")
     console.print("  terraform apply tfplan\n")
-    console.print("After terraform completes: [bold]python manage.py ansible[/bold]")
+    console.print("After Terraform completes: [bold]python manage.py ansible[/bold]")
 
 
 @cli.command()
@@ -446,8 +521,6 @@ def ansible():
     console.print("[bold]Ansible Provisioning Commands[/bold]\n")
 
     # Get ops_public_ip from terraform output
-    import subprocess
-
     ops_ip = None
     lb_ip = None
     try:
@@ -494,10 +567,8 @@ def ansible():
 
 @cli.command()
 def clean():
-    """Clean up generated files, or show destroy steps if infra exists."""
+    """Clean up all generated and build files."""
     import json
-    import shutil
-    import subprocess
 
     console.print("[bold]Clean Up[/bold]\n")
 
@@ -520,7 +591,7 @@ def clean():
         console.print("Then re-run: [bold]python manage.py clean[/bold]")
         return
 
-    # No active resources — clean generated files and folders
+    # Generated infra files
     generated = [
         ENV_FILE,
         TF_DIR / "terraform.tfvars",
@@ -533,6 +604,12 @@ def clean():
     generated_dirs = [
         TF_DIR / "generated",
         TF_DIR / ".terraform",
+        # Build artifacts
+        PROJECT_ROOT / "src" / "backend" / "build",
+        PROJECT_ROOT / "src" / "backend" / ".gradle",
+        PROJECT_ROOT / "src" / "frontend" / "dist",
+        PROJECT_ROOT / "src" / "frontend" / ".angular",
+        PROJECT_ROOT / "src" / "frontend" / "node_modules",
     ]
 
     deleted = []
