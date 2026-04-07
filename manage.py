@@ -21,6 +21,52 @@ ENV_FILE = PROJECT_ROOT / ".env"
 TF_DIR = PROJECT_ROOT / "deploy" / "tf" / "app"
 ANSIBLE_DIR = PROJECT_ROOT / "deploy" / "ansible"
 
+# Tier 1 GenAI regions with full on-demand model support
+GENAI_TIER1_REGIONS = [
+    "us-chicago-1",
+    "eu-frankfurt-1",
+    "uk-london-1",
+    "ap-osaka-1",
+    "sa-saopaulo-1",
+]
+
+# Maps non-Tier-1 regions to nearest Tier 1 GenAI region
+GENAI_REGION_MAP = {
+    # Americas → Chicago
+    "us-ashburn-1": "us-chicago-1",
+    "us-phoenix-1": "us-chicago-1",
+    "us-sanjose-1": "us-chicago-1",
+    "ca-toronto-1": "us-chicago-1",
+    "ca-montreal-1": "us-chicago-1",
+    "mx-queretaro-1": "us-chicago-1",
+    "mx-monterrey-1": "us-chicago-1",
+    # South America → Sao Paulo
+    "sa-santiago-1": "sa-saopaulo-1",
+    "sa-vinhedo-1": "sa-saopaulo-1",
+    # EMEA → Frankfurt
+    "eu-amsterdam-1": "eu-frankfurt-1",
+    "eu-zurich-1": "eu-frankfurt-1",
+    "eu-madrid-1": "eu-frankfurt-1",
+    "eu-marseille-1": "eu-frankfurt-1",
+    "eu-milan-1": "eu-frankfurt-1",
+    "eu-paris-1": "eu-frankfurt-1",
+    "eu-stockholm-1": "eu-frankfurt-1",
+    "il-jerusalem-1": "eu-frankfurt-1",
+    "af-johannesburg-1": "eu-frankfurt-1",
+    "me-jeddah-1": "eu-frankfurt-1",
+    "me-dubai-1": "eu-frankfurt-1",
+    "me-riyadh-1": "eu-frankfurt-1",
+    # APAC → Osaka
+    "ap-tokyo-1": "ap-osaka-1",
+    "ap-mumbai-1": "ap-osaka-1",
+    "ap-hyderabad-1": "ap-osaka-1",
+    "ap-singapore-1": "ap-osaka-1",
+    "ap-sydney-1": "ap-osaka-1",
+    "ap-melbourne-1": "ap-osaka-1",
+    "ap-seoul-1": "ap-osaka-1",
+    "ap-chuncheon-1": "ap-osaka-1",
+}
+
 
 def _read_oci_config():
     """Read OCI config file and return available profiles."""
@@ -182,6 +228,27 @@ def setup():
 
     sdk_config["region"] = region
 
+    # GenAI region resolution
+    if region in GENAI_TIER1_REGIONS:
+        genai_region = region
+        console.print(f"\n[green]GenAI region:[/green] {genai_region} (full model support)")
+    elif region in GENAI_REGION_MAP:
+        genai_region = GENAI_REGION_MAP[region]
+        console.print(f"\n[green]GenAI region:[/green] {genai_region} (nearest full-support region)")
+        if click.confirm("Override GenAI region?", default=False):
+            genai_region = inquirer.select(
+                message="GenAI region:",
+                choices=GENAI_TIER1_REGIONS,
+                default=genai_region,
+            ).execute()
+    else:
+        console.print(f"\n[yellow]Region {region} not in GenAI mapping.[/yellow]")
+        genai_region = inquirer.select(
+            message="Select GenAI region:",
+            choices=GENAI_TIER1_REGIONS,
+            default=GENAI_TIER1_REGIONS[0],
+        ).execute()
+
     # Compartment selection
     console.print("\nFetching compartments...")
     compartments = _list_compartments(sdk_config)
@@ -251,12 +318,13 @@ def setup():
     # Summary
     console.print(
         Panel(
-            f"Profile:     {profile}\n"
-            f"Tenancy:     {tenancy_ocid}\n"
-            f"Region:      {region}\n"
-            f"Compartment: {compartment_ocid}\n"
-            f"SSH key:     {ssh_private_key_path}\n"
-            f"DB password: (generated, stored in .env)",
+            f"Profile:      {profile}\n"
+            f"Tenancy:      {tenancy_ocid}\n"
+            f"Region:       {region}\n"
+            f"GenAI Region: {genai_region}\n"
+            f"Compartment:  {compartment_ocid}\n"
+            f"SSH key:      {ssh_private_key_path}\n"
+            f"DB password:  (generated, stored in .env)",
             title="Configuration Summary",
         )
     )
@@ -274,6 +342,7 @@ def setup():
         "OCI_KEY_FILE": key_file,
         "OCI_COMPARTMENT_OCID": compartment_ocid,
         "OCI_REGION": region,
+        "OCI_GENAI_REGION": genai_region,
         "PROJECT_NAME": "selectai",
         "DB_ADMIN_PASSWORD": db_admin_password,
         "SSH_PRIVATE_KEY_PATH": ssh_private_key_path,
@@ -299,7 +368,7 @@ def tf():
         console.print("[red]Error:[/red] .env not found. Run 'python manage.py setup' first.")
         sys.exit(1)
 
-    load_dotenv(ENV_FILE)
+    load_dotenv(ENV_FILE, override=True)
 
     required_vars = [
         "OCI_PROFILE",
@@ -309,6 +378,7 @@ def tf():
         "OCI_KEY_FILE",
         "OCI_COMPARTMENT_OCID",
         "OCI_REGION",
+        "OCI_GENAI_REGION",
         "PROJECT_NAME",
         "DB_ADMIN_PASSWORD",
         "SSH_PUBLIC_KEY",
@@ -341,6 +411,7 @@ def tf():
         private_api_key_content=os.getenv("OCI_PRIVATE_API_KEY_CONTENT"),
         compartment_ocid=os.getenv("OCI_COMPARTMENT_OCID"),
         region=os.getenv("OCI_REGION"),
+        genai_region=os.getenv("OCI_GENAI_REGION"),
         project_name=os.getenv("PROJECT_NAME"),
         db_admin_password=os.getenv("DB_ADMIN_PASSWORD"),
         ssh_public_key=os.getenv("SSH_PUBLIC_KEY"),
@@ -370,7 +441,7 @@ def ansible():
         console.print("[red]Error:[/red] .env not found. Run 'python manage.py setup' first.")
         sys.exit(1)
 
-    load_dotenv(ENV_FILE)
+    load_dotenv(ENV_FILE, override=True)
 
     console.print("[bold]Ansible Provisioning Commands[/bold]\n")
 
