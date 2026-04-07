@@ -1,12 +1,13 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectAiService, QueryResponse, RunSqlResponse } from '../select-ai.service';
+import { MarkdownPipe } from '../markdown.pipe';
 
 type Mode = 'quick' | 'detailed';
 
 @Component({
   selector: 'app-query',
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownPipe],
   template: `
     <h2 class="page-title">Select AI — Natural Language to SQL</h2>
     <p class="subtitle">Ask questions about employees, departments, salaries, and job history.</p>
@@ -76,7 +77,7 @@ type Mode = 'quick' | 'detailed';
 
       <section>
         <h3>Narration</h3>
-        <p class="response-text">{{ queryResponse()!.narration }}</p>
+        <div class="response-text" [innerHTML]="queryResponse()!.narration | markdown"></div>
         <p class="timing">{{ queryResponse()!.narrationTimeInMillis }}ms</p>
       </section>
 

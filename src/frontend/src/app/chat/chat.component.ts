@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectAiService, ChatResponse } from '../select-ai.service';
+import { MarkdownPipe } from '../markdown.pipe';
 
 @Component({
   selector: 'app-chat',
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownPipe],
   template: `
     <h2 class="page-title">Select AI Chat</h2>
     <p class="subtitle">General knowledge questions answered by the LLM through the same SELECT AI interface — no tables queried.</p>
@@ -32,7 +33,7 @@ import { SelectAiService, ChatResponse } from '../select-ai.service';
     @if (response()) {
       <section>
         <h3>Chat Response</h3>
-        <div class="response-text">{{ response()!.response }}</div>
+        <div class="response-text" [innerHTML]="response()!.response | markdown"></div>
         <p class="timing">{{ response()!.timeInMillis }}ms</p>
       </section>
     }

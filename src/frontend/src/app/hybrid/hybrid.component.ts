@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectAiService, HybridResponse } from '../select-ai.service';
+import { MarkdownPipe } from '../markdown.pipe';
 
 @Component({
   selector: 'app-hybrid',
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownPipe],
   template: `
     <h2 class="page-title">Select AI Hybrid</h2>
     <p class="subtitle">Ask questions that combine database records with company documents — answered in a single query.</p>
@@ -30,7 +31,7 @@ import { SelectAiService, HybridResponse } from '../select-ai.service';
     @if (response()) {
       <section>
         <h3>Answer</h3>
-        <div class="response-text">{{ response()!.answer }}</div>
+        <div class="response-text" [innerHTML]="response()!.answer | markdown"></div>
         <p class="timing">{{ response()!.timeInMillis }}ms</p>
       </section>
     }

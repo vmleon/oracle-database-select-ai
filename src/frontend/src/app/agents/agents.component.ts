@@ -1,6 +1,7 @@
 import { Component, signal, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectAiService } from '../select-ai.service';
+import { MarkdownPipe } from '../markdown.pipe';
 
 interface ChatMessage {
   role: 'user' | 'agent';
@@ -10,7 +11,7 @@ interface ChatMessage {
 
 @Component({
   selector: 'app-agents',
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownPipe],
   template: `
     <div class="chat-header">
       <div>
@@ -37,7 +38,7 @@ interface ChatMessage {
       @for (msg of messages(); track $index) {
         <div class="message" [class]="msg.role">
           <div class="bubble">
-            {{ msg.content }}
+            <span [innerHTML]="msg.content | markdown"></span>
             @if (msg.timeInMillis) {
               <span class="timing">{{ msg.timeInMillis }}ms</span>
             }
