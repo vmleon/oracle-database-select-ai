@@ -3,8 +3,7 @@ set -e
 
 touch /home/opc/bootstrap.lock
 
-# Update and upgrade repo
-dnf update -y
+# Update repo
 dnf upgrade -y
 dnf install oracle-epel-release-el9 -y
 dnf install ansible-core -y
