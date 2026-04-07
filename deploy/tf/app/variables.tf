@@ -67,6 +67,11 @@ variable "oci_genai_compartment_id" {
   type = string
 }
 
+variable "genai_region" {
+  description = "OCI region for GenAI API calls (may differ from infrastructure region)"
+  type        = string
+}
+
 variable "artifacts_par_expiration_in_days" {
   type    = number
   default = 7
