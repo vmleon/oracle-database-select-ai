@@ -154,7 +154,7 @@ export class QueryComponent {
   examples = [
     'Who are the top 5 highest paid employees?',
     'How many employees are in each department?',
-    'Show me all employees hired in the last 3 years',
+    'Show me all employees hired in the last 10 years',
   ];
 
   constructor(private selectAi: SelectAiService) {}
