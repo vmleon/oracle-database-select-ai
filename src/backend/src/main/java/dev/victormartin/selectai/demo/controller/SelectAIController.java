@@ -46,31 +46,40 @@ public class SelectAIController {
         log.info("Select AI query: {}", prompt);
 
         long t0 = System.currentTimeMillis();
-        String sqlCode = jdbcTemplate.queryForObject(
-                GENERATE_SQL, String.class, prompt, queryProfile, "showsql");
-        long sqlQueryTime = System.currentTimeMillis() - t0;
+        try {
+            String sqlCode = jdbcTemplate.queryForObject(
+                    GENERATE_SQL, String.class, prompt, queryProfile, "showsql");
+            long sqlQueryTime = System.currentTimeMillis() - t0;
 
-        long t1 = System.currentTimeMillis();
-        String narration = jdbcTemplate.queryForObject(
-                GENERATE_SQL, String.class, prompt, queryProfile, "narrate");
-        long narrationTime = System.currentTimeMillis() - t1;
+            long t1 = System.currentTimeMillis();
+            String narration = jdbcTemplate.queryForObject(
+                    GENERATE_SQL, String.class, prompt, queryProfile, "narrate");
+            long narrationTime = System.currentTimeMillis() - t1;
 
-        long t2 = System.currentTimeMillis();
-        String boundedSql = "SELECT * FROM (" + sqlCode + ") WHERE ROWNUM <= " + MAX_RESULT_ROWS;
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(boundedSql);
-        long resultTime = System.currentTimeMillis() - t2;
+            long t2 = System.currentTimeMillis();
+            String boundedSql = "SELECT * FROM (" + sqlCode + ") WHERE ROWNUM <= " + MAX_RESULT_ROWS;
+            List<Map<String, Object>> rows = jdbcTemplate.queryForList(boundedSql);
+            long resultTime = System.currentTimeMillis() - t2;
 
-        List<Map<String, String>> result = rows.stream()
-                .map(row -> row.entrySet().stream()
-                        .collect(Collectors.toMap(
-                                Map.Entry::getKey,
-                                e -> String.valueOf(e.getValue()))))
-                .collect(Collectors.toList());
+            List<Map<String, String>> result = rows.stream()
+                    .map(row -> row.entrySet().stream()
+                            .collect(Collectors.toMap(
+                                    Map.Entry::getKey,
+                                    e -> String.valueOf(e.getValue()))))
+                    .collect(Collectors.toList());
 
-        return new QueryResponse(
-                request.prompt(), sqlCode, sqlQueryTime,
-                narration, narrationTime,
-                result, resultTime);
+            long totalElapsed = System.currentTimeMillis() - t0;
+            log.info("Select AI query OK in {}ms (sql={}ms, narrate={}ms, exec={}ms, rows={})",
+                    totalElapsed, sqlQueryTime, narrationTime, resultTime, result.size());
+            return new QueryResponse(
+                    request.prompt(), sqlCode, sqlQueryTime,
+                    narration, narrationTime,
+                    result, resultTime);
+        } catch (Exception e) {
+            long elapsed = System.currentTimeMillis() - t0;
+            log.error("Select AI query failed after {}ms: {}", elapsed, e.getMessage(), e);
+            throw e;
+        }
     }
 
     @PostMapping("/runsql")
@@ -79,20 +88,27 @@ public class SelectAIController {
         log.info("Select AI runsql: {}", prompt);
 
         long t0 = System.currentTimeMillis();
-        String sqlCode = jdbcTemplate.queryForObject(
-                GENERATE_SQL, String.class, prompt, queryProfile, "showsql");
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(
-                "SELECT * FROM (" + sqlCode + ") WHERE ROWNUM <= " + MAX_RESULT_ROWS);
-        long elapsed = System.currentTimeMillis() - t0;
+        try {
+            String sqlCode = jdbcTemplate.queryForObject(
+                    GENERATE_SQL, String.class, prompt, queryProfile, "showsql");
+            List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+                    "SELECT * FROM (" + sqlCode + ") WHERE ROWNUM <= " + MAX_RESULT_ROWS);
+            long elapsed = System.currentTimeMillis() - t0;
 
-        List<Map<String, String>> result = rows.stream()
-                .map(row -> row.entrySet().stream()
-                        .collect(Collectors.toMap(
-                                Map.Entry::getKey,
-                                e -> String.valueOf(e.getValue()))))
-                .collect(Collectors.toList());
+            List<Map<String, String>> result = rows.stream()
+                    .map(row -> row.entrySet().stream()
+                            .collect(Collectors.toMap(
+                                    Map.Entry::getKey,
+                                    e -> String.valueOf(e.getValue()))))
+                    .collect(Collectors.toList());
 
-        return new RunSqlResponse(request.prompt(), result, elapsed);
+            log.info("Select AI runsql OK in {}ms (rows={})", elapsed, result.size());
+            return new RunSqlResponse(request.prompt(), result, elapsed);
+        } catch (Exception e) {
+            long elapsed = System.currentTimeMillis() - t0;
+            log.error("Select AI runsql failed after {}ms: {}", elapsed, e.getMessage(), e);
+            throw e;
+        }
     }
 
     @PostMapping("/agents")
@@ -115,10 +131,11 @@ public class SelectAIController {
         } catch (Exception e) {
             long elapsed = System.currentTimeMillis() - t0;
             log.error("Select AI agent failed after {}ms (conversation: {}): {}",
-                    elapsed, conversationId, e.getMessage());
+                    elapsed, conversationId, e.getMessage(), e);
             throw e;
         }
         long elapsed = System.currentTimeMillis() - t0;
+        log.info("Select AI agent OK in {}ms (conversation: {})", elapsed, conversationId);
 
         return new AgentResponse(request.prompt(), response, conversationId, elapsed);
     }
@@ -129,11 +146,18 @@ public class SelectAIController {
         log.info("Select AI chat: {}", prompt);
 
         long t0 = System.currentTimeMillis();
-        String response = jdbcTemplate.queryForObject(
-                GENERATE_SQL, String.class, prompt, queryProfile, "chat");
-        long elapsed = System.currentTimeMillis() - t0;
+        try {
+            String response = jdbcTemplate.queryForObject(
+                    GENERATE_SQL, String.class, prompt, queryProfile, "chat");
+            long elapsed = System.currentTimeMillis() - t0;
 
-        return new ChatResponse(request.prompt(), response, elapsed);
+            log.info("Select AI chat OK in {}ms", elapsed);
+            return new ChatResponse(request.prompt(), response, elapsed);
+        } catch (Exception e) {
+            long elapsed = System.currentTimeMillis() - t0;
+            log.error("Select AI chat failed after {}ms: {}", elapsed, e.getMessage(), e);
+            throw e;
+        }
     }
 
     @PostMapping("/rag")
@@ -142,11 +166,18 @@ public class SelectAIController {
         log.info("Select AI RAG: {}", prompt);
 
         long t0 = System.currentTimeMillis();
-        String answer = jdbcTemplate.queryForObject(
-                GENERATE_SQL, String.class, prompt, ragProfile, "narrate");
-        long elapsed = System.currentTimeMillis() - t0;
+        try {
+            String answer = jdbcTemplate.queryForObject(
+                    GENERATE_SQL, String.class, prompt, ragProfile, "narrate");
+            long elapsed = System.currentTimeMillis() - t0;
 
-        return new RagResponse(request.prompt(), answer, elapsed);
+            log.info("Select AI RAG OK in {}ms", elapsed);
+            return new RagResponse(request.prompt(), answer, elapsed);
+        } catch (Exception e) {
+            long elapsed = System.currentTimeMillis() - t0;
+            log.error("Select AI RAG failed after {}ms: {}", elapsed, e.getMessage(), e);
+            throw e;
+        }
     }
 
     @PostMapping("/hybrid")
@@ -155,11 +186,18 @@ public class SelectAIController {
         log.info("Select AI hybrid: {}", prompt);
 
         long t0 = System.currentTimeMillis();
-        String answer = jdbcTemplate.queryForObject(
-                GENERATE_SQL, String.class, prompt, ragProfile, "narrate");
-        long elapsed = System.currentTimeMillis() - t0;
+        try {
+            String answer = jdbcTemplate.queryForObject(
+                    GENERATE_SQL, String.class, prompt, ragProfile, "narrate");
+            long elapsed = System.currentTimeMillis() - t0;
 
-        return new HybridResponse(request.prompt(), answer, elapsed);
+            log.info("Select AI hybrid OK in {}ms", elapsed);
+            return new HybridResponse(request.prompt(), answer, elapsed);
+        } catch (Exception e) {
+            long elapsed = System.currentTimeMillis() - t0;
+            log.error("Select AI hybrid failed after {}ms: {}", elapsed, e.getMessage(), e);
+            throw e;
+        }
     }
 
     private String validatePrompt(String prompt) {
