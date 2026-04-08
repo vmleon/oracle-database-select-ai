@@ -167,7 +167,7 @@ cat /home/opc/ansible_params.json | grep -E "backend_private_ip|web_private_ip"
 ```
 
 ```bash
-ssh opc@<backend_private_ip>
+ssh -i /home/opc/private.key opc@<backend_private_ip>
 ```
 
 ### Backend service
