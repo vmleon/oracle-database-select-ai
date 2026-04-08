@@ -1,12 +1,13 @@
 import { Component, signal, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectAiService } from '../select-ai.service';
+import { SelectAiService, AgentTrace, ToolTrace } from '../select-ai.service';
 import { MarkdownPipe } from '../markdown.pipe';
 
 interface ChatMessage {
   role: 'user' | 'agent';
   content: string;
   timeInMillis?: number;
+  trace?: AgentTrace | null;
 }
 
 @Component({
@@ -39,6 +40,56 @@ interface ChatMessage {
             <span [innerHTML]="msg.content | markdown"></span>
             @if (msg.timeInMillis) {
               <span class="timing">{{ msg.timeInMillis }}ms</span>
+            }
+            @if (msg.trace && msg.trace.tasks.length > 0) {
+              <button class="trace-toggle" (click)="toggleTrace($index); $event.stopPropagation()">
+                {{ isTraceOpen($index) ? 'Hide' : 'Show' }} execution trace
+                ({{ msg.trace.tasks.length }} {{ msg.trace.tasks.length === 1 ? 'task' : 'tasks' }}, {{ msg.trace.tools.length }} tool {{ msg.trace.tools.length === 1 ? 'call' : 'calls' }})
+              </button>
+              @if (isTraceOpen($index)) {
+                <div class="trace-panel">
+                  @for (task of msg.trace.tasks; track task.taskOrder) {
+                    <div class="trace-task">
+                      <div class="trace-task-header">
+                        <span class="trace-step">Task {{ task.taskOrder }}</span>
+                        <span class="trace-agent">{{ task.agentName }}</span>
+                        <span class="trace-duration">{{ task.durationMillis }}ms</span>
+                        <span class="trace-state" [class]="'state-' + task.state.toLowerCase()">{{ task.state }}</span>
+                      </div>
+                      @if (task.input) {
+                        <div class="trace-detail">
+                          <span class="trace-label">Input:</span>
+                          <span class="trace-value">{{ task.input }}</span>
+                        </div>
+                      }
+                      @for (tool of getToolsForTask(msg.trace!, task.taskOrder); track tool.toolName) {
+                        <div class="trace-tool">
+                          <span class="trace-tool-name">{{ tool.toolName }}</span>
+                          <span class="trace-duration">{{ tool.durationMillis }}ms</span>
+                          @if (tool.input) {
+                            <div class="trace-detail">
+                              <span class="trace-label">Input:</span>
+                              <pre class="trace-code">{{ tool.input }}</pre>
+                            </div>
+                          }
+                          @if (tool.output) {
+                            <div class="trace-detail">
+                              <span class="trace-label">Output:</span>
+                              <pre class="trace-code">{{ tool.output }}</pre>
+                            </div>
+                          }
+                        </div>
+                      }
+                      @if (task.result) {
+                        <div class="trace-detail">
+                          <span class="trace-label">Result:</span>
+                          <span class="trace-value">{{ task.result }}</span>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              }
             }
           </div>
         </div>
@@ -123,6 +174,66 @@ interface ChatMessage {
       margin-top: 0.3rem;
     }
     .thinking { color: #9B9590; font-style: italic; }
+    .trace-toggle {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid #3C3835;
+      color: #9B9590;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .trace-toggle:hover { border-color: #7A7470; color: #F1EFED; }
+    .trace-panel {
+      margin-top: 0.5rem;
+      border-top: 1px solid #3C3835;
+      padding-top: 0.5rem;
+    }
+    .trace-task {
+      margin-bottom: 0.75rem;
+      padding: 0.5rem;
+      background: #252120;
+      border-radius: 6px;
+      border-left: 3px solid #C74634;
+    }
+    .trace-task-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .trace-step { font-weight: 600; color: #C0BAB5; font-size: 0.8rem; }
+    .trace-agent { color: #C74634; font-size: 0.8rem; }
+    .trace-duration { color: #7A7470; font-size: 0.75rem; }
+    .trace-state { font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 3px; }
+    .state-succeeded { background: #1a3a1a; color: #4ade80; }
+    .state-failed { background: #3a1a1a; color: #f87171; }
+    .state-running { background: #3a3a1a; color: #facc15; }
+    .trace-tool {
+      margin: 0.3rem 0 0.3rem 1rem;
+      padding: 0.3rem 0.5rem;
+      border-left: 2px solid #3C3835;
+      font-size: 0.8rem;
+    }
+    .trace-tool-name { color: #9B9590; font-weight: 500; margin-right: 0.5rem; }
+    .trace-detail { margin-top: 0.2rem; font-size: 0.75rem; }
+    .trace-label { color: #7A7470; margin-right: 0.3rem; }
+    .trace-value { color: #D5D0CC; }
+    .trace-code {
+      margin: 0.2rem 0;
+      padding: 0.3rem 0.5rem;
+      background: #1a1816;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      max-height: 150px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: #D5D0CC;
+    }
     .input-row { margin-top: auto; }
   `,
 })
@@ -164,6 +275,7 @@ export class AgentsComponent {
           role: 'agent',
           content: res.response,
           timeInMillis: res.timeInMillis,
+          trace: res.trace,
         }]);
         this.loading.set(false);
         this.scrollToBottom();
@@ -188,6 +300,25 @@ export class AgentsComponent {
       ke.preventDefault();
       this.submit();
     }
+  }
+
+  toggledTraces = signal<Set<number>>(new Set());
+
+  toggleTrace(index: number) {
+    this.toggledTraces.update(set => {
+      const next = new Set(set);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  }
+
+  isTraceOpen(index: number): boolean {
+    return this.toggledTraces().has(index);
+  }
+
+  getToolsForTask(trace: AgentTrace, taskOrder: number): ToolTrace[] {
+    return trace.tools.filter(t => t.taskOrder === taskOrder);
   }
 
   private scrollToBottom() {

@@ -137,7 +137,18 @@ public class SelectAIController {
         long elapsed = System.currentTimeMillis() - t0;
         log.info("Select AI agent OK in {}ms (conversation: {})", elapsed, conversationId);
 
-        return new AgentResponse(request.prompt(), response, conversationId, elapsed);
+        AgentTrace trace = null;
+        try {
+            String teamExecId = resolveTeamExecId(conversationId);
+            if (teamExecId != null) {
+                trace = buildTrace(teamExecId);
+                logTrace(trace);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to retrieve agent trace (conversation: {}): {}", conversationId, e.getMessage());
+        }
+
+        return new AgentResponse(request.prompt(), response, conversationId, elapsed, trace);
     }
 
     @PostMapping("/chat")
@@ -197,6 +208,90 @@ public class SelectAIController {
             long elapsed = System.currentTimeMillis() - t0;
             log.error("Select AI hybrid failed after {}ms: {}", elapsed, e.getMessage(), e);
             throw e;
+        }
+    }
+
+    private String resolveTeamExecId(String conversationId) {
+        try {
+            return jdbcTemplate.queryForObject("""
+                    SELECT TEAM_EXEC_ID FROM (
+                        SELECT DISTINCT TEAM_EXEC_ID, START_DATE
+                        FROM USER_AI_AGENT_TASK_HISTORY
+                        WHERE JSON_VALUE(COVERSATION_PARAM, '$.conversation_id') = ?
+                        ORDER BY START_DATE DESC
+                    ) WHERE ROWNUM = 1
+                    """, String.class, conversationId);
+        } catch (Exception e) {
+            log.warn("Could not resolve TEAM_EXEC_ID for conversation {}: {}", conversationId, e.getMessage());
+            return null;
+        }
+    }
+
+    private AgentTrace buildTrace(String teamExecId) {
+        Map<String, Object> team = jdbcTemplate.queryForMap(
+                "SELECT TEAM_NAME, STATE FROM USER_AI_AGENT_TEAM_HISTORY WHERE TEAM_EXEC_ID = ?",
+                teamExecId);
+
+        List<AgentTrace.TaskTrace> tasks = jdbcTemplate.query("""
+                SELECT AGENT_NAME, TASK_NAME, TASK_ORDER, INPUT, RESULT, STATE,
+                       EXTRACT(DAY FROM (END_DATE - START_DATE)) * 86400000 +
+                       EXTRACT(HOUR FROM (END_DATE - START_DATE)) * 3600000 +
+                       EXTRACT(MINUTE FROM (END_DATE - START_DATE)) * 60000 +
+                       ROUND(EXTRACT(SECOND FROM (END_DATE - START_DATE)) * 1000) AS DURATION_MS
+                FROM USER_AI_AGENT_TASK_HISTORY
+                WHERE TEAM_EXEC_ID = ?
+                ORDER BY TASK_ORDER
+                """, (rs, rowNum) -> new AgentTrace.TaskTrace(
+                rs.getString("AGENT_NAME"),
+                rs.getString("TASK_NAME"),
+                rs.getInt("TASK_ORDER"),
+                rs.getString("INPUT"),
+                rs.getString("RESULT"),
+                rs.getString("STATE"),
+                rs.getLong("DURATION_MS")
+        ), teamExecId);
+
+        List<AgentTrace.ToolTrace> tools = jdbcTemplate.query("""
+                SELECT AGENT_NAME, TOOL_NAME, TASK_NAME, TASK_ORDER, INPUT, OUTPUT, TOOL_OUTPUT,
+                       EXTRACT(DAY FROM (END_DATE - START_DATE)) * 86400000 +
+                       EXTRACT(HOUR FROM (END_DATE - START_DATE)) * 3600000 +
+                       EXTRACT(MINUTE FROM (END_DATE - START_DATE)) * 60000 +
+                       ROUND(EXTRACT(SECOND FROM (END_DATE - START_DATE)) * 1000) AS DURATION_MS
+                FROM USER_AI_AGENT_TOOL_HISTORY
+                WHERE TEAM_EXEC_ID = ?
+                ORDER BY TASK_ORDER, START_DATE
+                """, (rs, rowNum) -> new AgentTrace.ToolTrace(
+                rs.getString("AGENT_NAME"),
+                rs.getString("TOOL_NAME"),
+                rs.getString("TASK_NAME"),
+                rs.getInt("TASK_ORDER"),
+                rs.getString("INPUT"),
+                rs.getString("OUTPUT"),
+                rs.getString("TOOL_OUTPUT"),
+                rs.getLong("DURATION_MS")
+        ), teamExecId);
+
+        return new AgentTrace(
+                teamExecId,
+                (String) team.get("TEAM_NAME"),
+                (String) team.get("STATE"),
+                tasks,
+                tools);
+    }
+
+    private void logTrace(AgentTrace trace) {
+        log.info("Agent trace [{}] team={} state={}", trace.teamExecId(), trace.teamName(), trace.state());
+        for (var task : trace.tasks()) {
+            log.info("  Task #{} agent={} task={} state={} ({}ms)",
+                    task.taskOrder(), task.agentName(), task.taskName(), task.state(), task.durationMillis());
+            log.debug("    Input: {}", task.input());
+            log.debug("    Result: {}", task.result());
+        }
+        for (var tool : trace.tools()) {
+            log.info("  Tool task#{} agent={} tool={} ({}ms)",
+                    tool.taskOrder(), tool.agentName(), tool.toolName(), tool.durationMillis());
+            log.debug("    Input: {}", tool.input());
+            log.debug("    Output: {}", tool.output());
         }
     }
 

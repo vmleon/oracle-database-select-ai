@@ -11,11 +11,41 @@ export interface QueryResponse {
   resultTimeInMillis: number;
 }
 
+export interface TaskTrace {
+  agentName: string;
+  taskName: string;
+  taskOrder: number;
+  input: string;
+  result: string;
+  state: string;
+  durationMillis: number;
+}
+
+export interface ToolTrace {
+  agentName: string;
+  toolName: string;
+  taskName: string;
+  taskOrder: number;
+  input: string;
+  output: string;
+  toolOutput: string;
+  durationMillis: number;
+}
+
+export interface AgentTrace {
+  teamExecId: string;
+  teamName: string;
+  state: string;
+  tasks: TaskTrace[];
+  tools: ToolTrace[];
+}
+
 export interface AgentResponse {
   prompt: string;
   response: string;
   conversationId: string;
   timeInMillis: number;
+  trace: AgentTrace | null;
 }
 
 export interface RunSqlResponse {

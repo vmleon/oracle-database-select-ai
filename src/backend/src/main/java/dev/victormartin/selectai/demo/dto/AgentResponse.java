@@ -4,6 +4,7 @@ public record AgentResponse(
         String prompt,
         String response,
         String conversationId,
-        long timeInMillis
+        long timeInMillis,
+        AgentTrace trace
 ) {
 }
