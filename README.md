@@ -2,6 +2,8 @@
 
 A full-stack demo that puts Oracle Database 26ai's Select AI features in front of a web UI. Users type natural-language questions; the Autonomous Database translates them into SQL, orchestrates agentic workflows, or retrieves answers from documents — all powered by OCI Generative AI.
 
+![Frontend](./images/frontend.png)
+
 The backend is a thin Spring Boot layer that forwards prompts to the database via JDBC. The database does the heavy lifting: it generates SQL, calls the LLM, manages agent reasoning, and performs vector search over indexed documents. Infrastructure is provisioned with Terraform on OCI and configured with Ansible.
 
 ### Features
@@ -18,7 +20,7 @@ The backend is a thin Spring Boot layer that forwards prompts to the database vi
 ## Architecture
 
 ```mermaid
-graph LR
+graph TB
     User([User])
     FE[Angular Frontend]
     LB[OCI Load Balancer]
