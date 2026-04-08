@@ -37,7 +37,7 @@ This is the companion article to [Three Ways Oracle Database 26ai Answers Questi
 The deployment is a four-phase pipeline. Each phase produces something the next phase needs.
 
 ```mermaid
-graph LR
+graph TB
     S["python manage.py setup"]
     B["python manage.py build"]
     T["python manage.py tf"]
@@ -118,7 +118,7 @@ Terraform needs to upload the backend JAR and frontend dist to Object Storage be
 `python manage.py build` checks that Java 23, Node 22, and npm are installed, then builds both artifacts:
 
 ```mermaid
-graph LR
+graph TB
     subgraph "Build Phase"
         BC["./gradlew build"] --> JAR["backend-1.0.0.jar"]
         FC["npm install && npm run build"] --> DIST["dist/frontend/browser/"]
@@ -230,7 +230,7 @@ deploy/tf/
 Terraform handles artifact delivery through Object Storage with PARs (Pre-Authenticated Requests):
 
 ```mermaid
-graph LR
+graph TB
     subgraph "Local Machine"
         JAR["backend-1.0.0.jar"]
         DIST["frontend/dist/"]

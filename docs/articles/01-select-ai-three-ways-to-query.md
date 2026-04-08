@@ -35,7 +35,7 @@ This is a [POC I built](https://github.com/vmleon/oracle-database-select-ai) to 
 ## The Architecture
 
 ```mermaid
-graph LR
+graph TB
     User([User])
     FE[Angular Frontend]
     LB[OCI Load Balancer]
@@ -262,7 +262,7 @@ But pure vector search has a blind spot: exact terms. If someone asks about "Sec
 Hybrid vector search solves this by running both searches in parallel:
 
 ```mermaid
-graph LR
+graph TB
     Q[User Question] --> VS[Vector Search<br/>semantic similarity]
     Q --> KS[Keyword Search<br/>exact term matching]
     VS --> RRF[Reciprocal Rank Fusion]
