@@ -15,7 +15,7 @@
 
 - name: Copy nginx config
   ansible.builtin.copy:
-    src: files/nginx.conf.j2
+    src: files/nginx.conf
     dest: /etc/nginx/nginx.conf
   become: true
   notify: restart nginx
@@ -26,8 +26,8 @@
     state: started
     enabled: yes
 
-- name: Stop firewalld
-  ansible.builtin.command: systemctl stop firewalld
-
 - name: Disable firewalld
-  ansible.builtin.command: systemctl disable firewalld
+  ansible.builtin.service:
+    name: firewalld
+    state: stopped
+    enabled: no
