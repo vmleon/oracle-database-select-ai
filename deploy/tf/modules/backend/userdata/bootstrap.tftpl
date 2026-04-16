@@ -3,12 +3,31 @@ set -e
 
 touch /home/opc/bootstrap.lock
 
+# Wait for IPv4 DNS to resolve the OCI yum mirror before touching dnf.
+# During early cloud-init the VCN resolver + NetworkManager can be briefly
+# inconsistent (link-local IPv6 present, no routable v6), causing the first
+# lookup to fail with curl error 6. getent ahostsv4 forces IPv4-only.
+wait_for_dns() {
+  local host="yum.${region_name}.oci.oraclecloud.com"
+  local -i tries=0 max=30
+  until getent ahostsv4 "$host" >/dev/null 2>&1; do
+    tries=$((tries+1))
+    if [ $tries -ge $max ]; then
+      echo "FATAL: DNS for $host not ready after $((max*2))s" >&2
+      exit 1
+    fi
+    sleep 2
+  done
+  echo "DNS ready after $tries attempt(s): $host"
+}
+wait_for_dns
+
 # Update repo
 dnf upgrade -y
 dnf install oracle-epel-release-el9 -y
 dnf install ansible-core -y
 
-curl --fail -sS "${wallet_par_full_path}" -o /home/opc/wallet.zip.b64
+curl -4 --fail -sS "${wallet_par_full_path}" -o /home/opc/wallet.zip.b64
 base64 -d /home/opc/wallet.zip.b64 > /home/opc/wallet.zip && rm -rf /home/opc/wallet.zip.b64
 # Extract wallet
 mkdir -p /home/opc/backend/wallet
@@ -17,14 +36,14 @@ chown -R opc:opc /home/opc/backend/wallet
 
 
 # Get ansible_backend
-curl --fail -sS "${ansible_backend_par_full_path}" -o /home/opc/ansible_backend.zip
+curl -4 --fail -sS "${ansible_backend_par_full_path}" -o /home/opc/ansible_backend.zip
 mkdir -p /home/opc/ansible_backend
 unzip /home/opc/ansible_backend.zip -d /home/opc/ansible_backend && \
     rm /home/opc/ansible_backend.zip
 chown -R opc:opc /home/opc/ansible_backend
 
 # Get backend_jar
-curl --fail -sS "${backend_jar_par_full_path}" -o /home/opc/backend_jar.zip
+curl -4 --fail -sS "${backend_jar_par_full_path}" -o /home/opc/backend_jar.zip
 mkdir -p /home/opc/backend
 unzip /home/opc/backend_jar.zip -d /home/opc/backend && \
     rm /home/opc/backend_jar.zip
