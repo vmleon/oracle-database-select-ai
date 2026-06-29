@@ -116,7 +116,8 @@ public class SelectAIController {
         String prompt = validatePrompt(request.prompt());
         String conversationId = request.conversationId() != null
                 ? request.conversationId()
-                : UUID.randomUUID().toString();
+                : jdbcTemplate.queryForObject(
+                        "SELECT DBMS_CLOUD_AI.CREATE_CONVERSATION FROM DUAL", String.class);
         log.info("Select AI agent: {} (conversation: {})", prompt, conversationId);
 
         String paramsJson = String.format("{\"conversation_id\": \"%s\"}", conversationId);
